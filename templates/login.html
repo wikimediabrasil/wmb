@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+    {% with lang=lang, username=username %}
+        {% include 'topnavbar.html' %}
+    {% endwith %}
+{% endblock %}
+
+{% block title %}Página inicial{% endblock %}
+{% block content %}
+    <div class="w3-container" style="text-align: center; padding:0">
+        <div class="w3-row">
+            <div class="w3-quarter">&nbsp;</div>
+            <div class="w3-half">
+                <div class="w3-quarter">&nbsp;</div>
+                <div class="w3-half">
+                    <form method="post" action="{{ url_for('login') }}">
+                        <h2 style="margin: 50px 0 50px 0">Faça a sua autenticação</h2>
+                        {{ form.hidden_tag() }}
+                        {{ wtf.form_field(form.username) }}
+                        {{ wtf.form_field(form.password) }}
+                        <span id="forgot_password" class="help-block"><a href="{{ url_for('login') }}" style="color:#008080;">Esqueci a senha</a></span>
+                        <button type="submit" style="width: 100%;margin-top: 15px">Autenticar-se</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

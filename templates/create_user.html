@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+    {% with lang=lang, username=username %}
+        {% include 'topnavbar.html' %}
+    {% endwith %}
+{% endblock %}
+
+{% block title %}Criar usuário{% endblock %}
+{% block content %}
+    <div class="w3-container" style="text-align: center; padding:0">
+        <div class="w3-row">
+            <div class="w3-quarter">&nbsp;</div>
+            <div class="w3-half">
+                <div class="w3-quarter">&nbsp;</div>
+                <div class="w3-half">
+                    <form method="post" action="{{ url_for('create_wmbuser') }}">
+                        <h2 style="margin: 50px 0 50px 0">Criar usuário(a)</h2>
+                        {{ form.hidden_tag() }}
+                        {{ wtf.form_field(form.username) }}
+                        {{ wtf.form_field(form.email) }}
+                        {{ wtf.form_field(form.password) }}
+                        <button type="submit" style="width: 100%;margin-top: 15px">Criar usuário</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

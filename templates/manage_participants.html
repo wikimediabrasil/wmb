@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    {% with lang=lang, username=username %}
+        {% include 'topnavbar.html' %}
+    {% endwith %}
+{% endblock %}
+
+{% block title %}Certificado{% endblock %}
+{% block content %}
+    <div class="w3-container" style="text-align: center; padding:0">
+        <div class="w3-container" style="text-align: center; padding:0">
+            <div class="w3-row">
+                <div class="w3-container" style="padding-top:50px;width:100%">
+                    <table class="dataframe" style="margin-bottom: 50px">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>delete?</th>
+                            <th>name</th>
+                            <th>username</th>
+                            <th>pronoun</th>
+                            <th>event</th>
+                            <th>date</th>
+                            <th>hours</th>
+                            <th>host</th>
+                            <th>certificate</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <form action="{{url_for('remove_checked')}}" method="post">
+                                {% for user in users %}
+                                    <tr>
+                                        <th>{{ user.id }}</th>
+                                        <td style="text-align: center"><input type="checkbox" name="check" value="{{ user.id }}"></td>
+                                        <td>{{ user.name }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.pronoun }}</td>
+                                        <td>{{ user.event }}</td>
+                                        <td>{{ user.date }}</td>
+                                        <td>{{ user.hours }}</td>
+                                        <td>{{ user.host }}</td>
+                                        <td>
+                                            <a href="{{ url_for('gerar_certificado_individual', id=user.id) }}">
+                                                <button type="button">Download</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <td colspan="10" style="padding: 0">
+                                        <input class="button" type="submit" style="margin: 0;width: 100%; background-color: #ff2400" value="Deletar">
+                                    </td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

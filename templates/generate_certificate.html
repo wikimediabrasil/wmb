@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block navbar %}
+    {% with lang=lang, username=username %}
+        {% include 'topnavbar.html' %}
+    {% endwith %}
+{% endblock %}
+
+{% block title %}Certificado{% endblock %}
+{% block content %}
+    <div class="w3-container" style="text-align: center; padding:0">
+        <div class="w3-container" style="text-align: center; padding:0">
+            <div class="w3-row">
+                <div class="w3-container w3-quarter" style="padding-top:50px"></div>
+                <div class="w3-container w3-half" style="padding-top:50px">
+                    <p>Verifique os dados apresentados abaixo.</p>
+                    <p>Se estiver satisfeito(a), clique no botão abaixo para produzir os documentos.</p>
+                    {% if csv_table %}
+                        <form action="{{ url_for('gerar_certificados') }}" method="post">
+                            <input type="hidden" name="csv_table" value="{{ csv_table }}">
+                            <input type="submit" name="submit_csv" class="button" value="Criar certificados">
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="w3-row" style="margin-bottom: 15px">
+                <div class="w3-container" style="padding-top:50px">
+                    {{ table|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

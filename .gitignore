@@ -1,0 +1,10 @@
+.idea
+__pycache__
+*/__pycache__
+config.yaml
+Lib/
+Scripts/
+venv/
+backgrounds
+users.db
+wmb_admin.db

@@ -1,0 +1,12 @@
+Flask
+pandas
+pandas_schema
+pyyaml
+flask_sqlalchemy
+sqlalchemy_utils
+cryptography
+fpdf
+pdfrw
+flask_wtf
+flask_bootstrap
+flask_login
