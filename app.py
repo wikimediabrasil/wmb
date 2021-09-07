@@ -2,6 +2,7 @@ import cryptography
 import csv
 import hashlib
 import io
+import json
 import os
 import pandas as pd
 import zipfile
@@ -22,7 +23,6 @@ from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length
 from functions import check_columns, check_host, tf_host, check_hour, check_date, check_pronoun, clean_string, \
     make_pdf_of_user
-
 
 __dir__ = os.path.dirname(__file__)
 app = Flask(__name__)
@@ -57,7 +57,8 @@ class SignupForm(FlaskForm):
 class ChangePasswordForm(FlaskForm):
     current_password = PasswordField('Senha atual', validators=[InputRequired(), Length(min=6, max=20)])
     password = PasswordField('Nova senha', validators=[InputRequired(), Length(min=6, max=20)])
-    confirmation_password = PasswordField('Confirme sua nova senha', validators=[InputRequired(), Length(min=6, max=20)])
+    confirmation_password = PasswordField('Confirme sua nova senha',
+                                          validators=[InputRequired(), Length(min=6, max=20)])
 
 
 class WMBUser(UserMixin, db.Model):
@@ -99,7 +100,7 @@ def login():
     if form.validate_on_submit():
         user = WMBUser.query.filter_by(username=form.username.data).first()
         if user:
-            if check_password_hash(user.password,form.password.data):
+            if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=True)
                 return redirect(url_for('certificate'))
             else:
@@ -226,12 +227,12 @@ def gerar_certificados():
 
     # If there is ids, create a zip file
     if ids.__len__() > 0:
+        users = [user for user in Users.query.all() if user.id in ids]
         s = io.BytesIO()
         zf = zipfile.ZipFile(s, "w")
         zipfilenames = []
 
-        for id_ in ids:
-            user = Users.query.filter_by(id=id_).first()
+        for user in users:
             zipfilenames.append(clean_string(user.event))
             pdf = make_pdf_of_user(user, app)
 
@@ -252,7 +253,7 @@ def gerar_certificados():
 @app.route('/gerar_certificado_individual/<int:id>', methods=['GET', 'POST'])
 @login_required
 def gerar_certificado_individual(id):
-    user = Users.query.filter_by(id=id).first()
+    user = Users.query.get(id)
     try:
         pdf = make_pdf_of_user(user, app)
         file = pdf.output(dest='S').encode('latin-1')
@@ -311,7 +312,22 @@ def remove_checked():
 @login_required
 def manage_participants():
     users = Users.query.all()
-    val = pd.read_sql_query("SELECT * from users", db.get_engine(app, 'users'))
+
+    table_obj = []
+    for user in users:
+        table_obj.append({"id": user.id,
+                          "name": user.name,
+                          "username": user.username,
+                          "pronoun": user.pronoun,
+                          "event": user.event,
+                          "date": user.date,
+                          "hours": user.hours,
+                          "host": user.host,
+                          "background": user.background})
+
+    # val = pd.read_sql_query("SELECT * from users", db.get_engine(app, 'users'))
+    table_json = json.dumps(table_obj)
+    val = pd.read_json(table_json)
     table = val.to_html()
     return render_template("manage_participants.html", users=users, table=table)
 
