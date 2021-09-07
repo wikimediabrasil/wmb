@@ -1,29 +1,28 @@
-from flask import Flask, render_template, request, make_response, redirect, url_for
-import pandas as pd
-import yaml
-import os
-import zipfile
-import io
-import csv
-import locale
-import math
-import hashlib
 import cryptography
-from fpdf import FPDF
+import csv
+import hashlib
+import io
+import os
+import pandas as pd
+import zipfile
+import yaml
+from datetime import datetime
+from flask import Flask, render_template, request, make_response, redirect, url_for
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf import FlaskForm
 from pandas_schema import Schema, Column
 from pandas_schema.validation import CustomElementValidation
-from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy_utils import StringEncryptedType
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.exc import SQLAlchemyError
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
-from wtforms.validators import InputRequired, Email, Length
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from wtforms.validators import InputRequired, Length
+from functions import check_columns, check_host, tf_host, check_hour, check_date, check_pronoun, clean_string, \
+    make_pdf_of_user
+
 
 __dir__ = os.path.dirname(__file__)
 app = Flask(__name__)
@@ -91,22 +90,6 @@ class Users(db.Model):
 
     def __repr__(self):
         return '<User %r>' % self.username
-
-
-class CertificationPDF(FPDF):
-    def header(self):
-        pass
-
-    def footer(self):
-        # user = Users.query.filter_by(username=username).first()
-        # date_modified = user.date_modified
-        # user_hash = hashlib.sha1(bytes("Certificate " + username + str(date_modified), 'utf-8')).hexdigest()
-        # self.set_y(-16.5)
-        # self.set_font('Merriweather', '', 8.8)
-        # self.cell(w=0, h=6.5, border=0, ln=1, align='C',
-        #           txt='A validade deste documento pode ser checada em https://ijc.toolforge.org/. '
-        #               'O código de validação é: Eder')
-        pass
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -250,7 +233,7 @@ def gerar_certificados():
         for id_ in ids:
             user = Users.query.filter_by(id=id_).first()
             zipfilenames.append(clean_string(user.event))
-            pdf = make_pdf_of_user(user)
+            pdf = make_pdf_of_user(user, app)
 
             # Generate the file
             file = pdf.output(dest='S').encode('latin-1')
@@ -266,12 +249,12 @@ def gerar_certificados():
         return response
 
 
-@app.route('/gerar_certificado_individual/<int:id>', methods=['GET'])
+@app.route('/gerar_certificado_individual/<int:id>', methods=['GET', 'POST'])
 @login_required
 def gerar_certificado_individual(id):
     user = Users.query.filter_by(id=id).first()
     try:
-        pdf = make_pdf_of_user(user)
+        pdf = make_pdf_of_user(user, app)
         file = pdf.output(dest='S').encode('latin-1')
 
         response = make_response(file)
@@ -282,96 +265,7 @@ def gerar_certificado_individual(id):
         response.headers.set('Content-Type', 'application/pdf')
         return response
     except:
-        return home
-
-
-@login_required
-def make_pdf_of_user(user):
-    # Create page
-    pdf = CertificationPDF(orientation='L', unit='mm', format='A4')
-    pdf.add_page()
-    pdf.set_text_color(0, 0, 0)
-    pdf.image(os.path.join(app.config['UPLOAD_FOLDER'], user.background), x=0, y=0, w=297, h=210)
-
-    #######################################################################################################
-    # Header
-    #######################################################################################################
-    pdf.set_y(20)  # Start the letter text at the 10x42mm point
-
-    pdf.add_font('Merriweather', '', os.path.join(app.static_folder, 'fonts/Merriweather-Regular.ttf'), uni=True)
-    pdf.add_font('Merriweather-Bold', '', os.path.join(app.static_folder, 'fonts/Merriweather-Bold.ttf'), uni=True)
-    pdf.set_font('Merriweather', '', 37)  # Text of the body in Times New Roman, regular, 13 pt
-
-    locale.setlocale(locale.LC_TIME, "pt_BR")  # Setting the language to portuguese for the date
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt='CERTIFICADO')
-
-    pdf.set_font('Merriweather', '', 14.5)
-    pdf.cell(w=0, h=10, ln=1)  # New line
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt='O grupo de usuários Wiki Movimento Brasil '
-                                                       '(CNPJ 29.801.908/0001-86), certifica que')
-    pdf.cell(w=0, h=10, ln=1)  # New line
-
-    #######################################################################################################
-    # User name
-    #######################################################################################################
-    name = user.name  # User full name
-    pdf.set_font('Merriweather', '', 35)
-    name_size = pdf.get_string_width(name)
-
-    if name_size > 287:
-        # Try to eliminate the prepositions
-        name_split = [name_part for name_part in name.split(' ') if not name_part.islower()]
-        # There's a first and last names and at least one middle name
-        if len(name_split) > 2:
-            first_name = name_split[0]
-            last_name = name_split[-1]
-            middle_names = [md_name[0] + '.' for md_name in name_split[1:-1]]
-            name = first_name + ' ' + ' '.join(middle_names) + ' ' + last_name
-            name_size = pdf.get_string_width(name)
-
-        # Even abbreviating, there is still the possibility that the name is too big, so
-        # we need to adjust it to the proper size
-        if name_size > 287:
-            pdf.set_font('Merriweather', '', math.floor(287 * 35 / name_size))
-
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=name)
-    pdf.cell(w=0, h=10, ln=1)  # New line
-
-    #######################################################################################################
-    # por ter completado as leituras e as 6 tarefas do curso online
-    #######################################################################################################
-    pdf.set_font('Merriweather', '', 14.5)
-    phrase_participation = "participou como " + role(user.host, user.pronoun) + " do evento"
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=phrase_participation)
-    pdf.cell(w=0, h=8, ln=1)  # New line
-
-    #######################################################################################################
-    # Introdução ao Jornalismo Científico
-    #######################################################################################################
-    pdf.set_font('Merriweather-Bold', '', 21)
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=user.event)
-    pdf.cell(w=0, h=8, ln=1)  # New line
-
-    #######################################################################################################
-    # no dia X (Carga horária: Y horas)
-    #######################################################################################################
-    pdf.set_font('Merriweather', '', 14.5)
-    date = datetime.strptime(user.date, "%d/%m/%Y").date()
-    phrase_time = "no dia " + date.strftime("%d de %B de %Y") + " (Carga horária: " + user.hours + ")."
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=phrase_time)
-    pdf.cell(w=0, h=8, ln=1)  # New line
-
-    user_hash = hashlib.sha1(
-        bytes("Certificate " + user.name + user.event + user.hours + str(user.host), 'utf-8')).hexdigest()
-    pdf.in_footer = 1
-    pdf.set_y(-16.5)
-    pdf.set_font('Merriweather', '', 8.8)
-    pdf.cell(w=0, h=6.5, border=0, ln=1, align='C',
-             txt='A validade deste documento pode ser checada em https://wmb.toolforge.org/. '
-                 'O código de validação é:' + user_hash)
-    pdf.in_footer = 0
-
-    return pdf
+        return redirect(url_for("home"))
 
 
 @app.route('/validar', methods=['POST', 'GET'])
@@ -422,23 +316,6 @@ def manage_participants():
     return render_template("manage_participants.html", users=users, table=table)
 
 
-def clean_string(text):
-    invalid_characters = '\\/:*?"<>|'
-    for ic in invalid_characters:
-        text = text.replace(ic, "")
-    return text
-
-
-def role(host, pronoun):
-    if host == "verdadeiro" or host == "true":
-        if pronoun.lower() == "a":
-            return "palestrante convidada"
-        else:
-            return "palestrante convidado"
-    else:
-        return "ouvinte"
-
-
 def register_person(csv_table):
     data = io.StringIO(csv_table)
     reader = csv.reader(data, delimiter=',')
@@ -476,59 +353,6 @@ def register_person(csv_table):
         else:
             ids.append(potential_user.id)
     return ids
-
-
-def check_hour(hour):
-    try:
-        float(hour)
-    except ValueError:
-        return False
-    return True
-
-
-def check_pronoun(pronoun):
-    pronouns = ['a', 'o']
-    try:
-        if not pronoun.lower() in pronouns:
-            return False
-    except ValueError:
-        return False
-    return True
-
-
-def check_date(date_text):
-    try:
-        datetime.strptime(date_text, '%d/%m/%Y')
-    except ValueError:
-        return False
-    return True
-
-
-def check_host(host):
-    possible_values = ["verdadeiro", "falso", "true", "false"]
-
-    try:
-        if host.lower() not in possible_values:
-            return False
-    except ValueError:
-        return False
-    return True
-
-
-def tf_host(host):
-    positive_values = ["verdadeiro", "true"]
-    if host.lower() in positive_values:
-        return True
-    else:
-        return False
-
-
-def check_columns(table):
-    columns = ["name", "username", "pronoun", "event", "date", "hours"]
-    for col in columns:
-        if col not in list(table.columns):
-            return False
-    return True
 
 
 if __name__ == '__main__':

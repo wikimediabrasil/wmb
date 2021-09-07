@@ -10,3 +10,6 @@ pdfrw
 flask_wtf
 flask_bootstrap
 flask_login
+werkzeug
+wtforms
+sqlalchemy
