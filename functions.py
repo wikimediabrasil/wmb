@@ -42,7 +42,7 @@ def role(host, pronoun):
     :param pronoun: the pronoun of the person, so a better writing can be made
     :return: string stating if the person was a host or not
     """
-    if host == "verdadeiro" or host == "true":
+    if host:
         if pronoun.lower() == "a":
             return " como palestrante convidada"
         else:
