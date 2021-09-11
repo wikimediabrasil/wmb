@@ -3,6 +3,7 @@ import locale
 import math
 import os
 import re
+import pandas as pd
 from datetime import datetime
 from flask_login import login_required
 from fpdf import FPDF
@@ -32,23 +33,19 @@ def clean_string(text):
     return text
 
 
-def role(host, pronoun):
+def build_role(role):
     """
     Function to build the part of the certificate text that
     identifies the type of certificate, if the person was a
-    host for the event or not
+    role for the event or not
 
-    :param host: true|verdadeiro/false|falso if the person was a host or not
-    :param pronoun: the pronoun of the person, so a better writing can be made
-    :return: string stating if the person was a host or not
+    :param role: name of the role the person did in the event
+    :return: string stating the role the person did
     """
-    if host:
-        if pronoun.lower() == "a":
-            return " como palestrante convidada"
-        else:
-            return " como palestrante convidado"
-    else:
+    if role == "ouvinte":
         return ""
+    else:
+        return " como " + role
 
 
 def check_hour(hour):
@@ -72,7 +69,7 @@ def check_pronoun(pronoun):
     :param pronoun: string to be checked
     :return: True/False depending if the string follows the A/O format
     """
-    pronouns = ['a', 'o']
+    pronouns = ['a', 'o', 'e', 'x']
     try:
         if not pronoun.lower() in pronouns:
             return False
@@ -88,39 +85,29 @@ def check_date(date_text):
     :return: True/False depending if the string follows the dd/mm/yyyy format
     """
     try:
-        datetime.strptime(date_text, '%d/%m/%Y')
+        if not pd.isnull(date_text):
+            datetime.strptime(date_text, '%d/%m/%Y')
+        else:
+            return True
     except ValueError:
         return False
     return True
 
 
-def check_host(host):
+def check_role(role):
     """
-    Function to validate the host formatting
-    :param host: string to be checked
-    :return: True/False depending if the string follows the verdadeiro|true/falso|false format
+    Function to validate the role formatting
+    :param role: string to be checked
+    :return: True/False depending if the string is among the valid values
     """
-    possible_values = ["verdadeiro", "falso", "true", "false"]
+    possible_values = ["ouvinte", "palestrante", "mediador", "mediadora", "organizador", "organizadora"]
 
     try:
-        if host.lower() not in possible_values:
+        if role.lower() not in possible_values:
             return False
     except ValueError:
         return False
     return True
-
-
-def tf_host(host):
-    """
-    Function to turn the host string into a boolean value
-    :param host: string with the host status
-    :return: True/False
-    """
-    positive_values = ["verdadeiro", "true"]
-    if host.lower() in positive_values:
-        return True
-    else:
-        return False
 
 
 def check_columns(table):
@@ -129,7 +116,7 @@ def check_columns(table):
     :param table:
     :return:
     """
-    columns = ["name", "username", "pronoun", "event", "date", "hours"]
+    columns = ["name", "username", "pronoun", "event", "date_start", "date_end", "hours"]
     for col in columns:
         if col not in list(table.columns):
             return False
@@ -192,7 +179,7 @@ def make_pdf_of_user(user, app):
     # por ter completado as leituras e as 6 tarefas do curso online
     #######################################################################################################
     pdf.set_font('Merriweather', '', 13)
-    phrase_participation = "participou" + role(user.host, user.pronoun) + " do evento"
+    phrase_participation = "participou" + build_role(user.role) + " do evento"
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=phrase_participation)
     pdf.cell(w=0, h=5, ln=1)  # New line
 
@@ -204,11 +191,28 @@ def make_pdf_of_user(user, app):
     pdf.cell(w=0, h=5, ln=1)  # New line
 
     #######################################################################################################
-    # no dia X (Carga horária: Y horas)
+    # no dia X/entre os dias X e Y (Carga horária: Z horas)
     #######################################################################################################
     pdf.set_font('Merriweather', '', 13)
-    date = datetime.strptime(user.date, "%d/%m/%Y").date()
-    phrase_time = "no dia " + date.strftime("%d de %B de %Y") + " (Carga horária: " + user.hours + ")."
+
+    if not user.date_end:
+        date = datetime.strptime(user.date_start, "%d/%m/%Y").date()
+        phrase_time = "no dia " + date.strftime("%d de %B de %Y") + " (Carga horária: " + user.hours + ")."
+    else:
+        date_start = datetime.strptime(user.date_start, "%d/%m/%Y").date()
+        date_end = datetime.strptime(user.date_end, "%d/%m/%Y").date()
+
+        if date_start.year == date_end.year:
+            if date_start.month == date_end.month:
+                start_format = "%d"
+            else:
+                start_format = "%d de %B"
+        else:
+            start_format = "%d de %B de %Y"
+
+        phrase_time = "entre os dias " + date_start.strftime(start_format) + " e " + \
+                      date_end.strftime("%d de %B de %Y") + " (Carga horária: " + user.hours + ")."
+
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=phrase_time)
     pdf.cell(w=0, h=15, ln=1)  # New line
 
@@ -220,7 +224,7 @@ def make_pdf_of_user(user, app):
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="Presidente do Wiki Movimento Brasil")
 
     user_hash = hashlib.sha1(
-        bytes("Certificate " + user.name + user.event + user.hours + str(user.host), 'utf-8')).hexdigest()
+        bytes("Certificate " + user.name + user.event + user.hours + str(user.role), 'utf-8')).hexdigest()
     pdf.in_footer = 1
     pdf.set_y(-16.5)
     pdf.set_font('Merriweather', '', 8.8)

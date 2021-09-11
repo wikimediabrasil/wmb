@@ -21,7 +21,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length
-from functions import check_columns, check_host, tf_host, check_hour, check_date, check_pronoun, clean_string, \
+from functions import check_columns, check_role, check_hour, check_date, check_pronoun, clean_string, \
     make_pdf_of_user
 
 __dir__ = os.path.dirname(__file__)
@@ -68,6 +68,7 @@ class WMBUser(UserMixin, db.Model):
     username = db.Column(db.String(20), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
+    users = db.relationship("Users")
 
 
 @login_manager.user_loader
@@ -84,10 +85,12 @@ class Users(db.Model):
     username = db.Column(StringEncryptedType(db.String(150), key), nullable=True)
     pronoun = db.Column(db.String(1), nullable=False)
     event = db.Column(StringEncryptedType(db.String(300), key), nullable=False)
-    date = db.Column(db.String(10), default=datetime.utcnow().strftime('%d/%m/%Y'), nullable=False)
+    date_start = db.Column(db.String(10), default=datetime.utcnow().strftime('%d/%m/%Y'), nullable=False)
+    date_end = db.Column(db.String(10), default=datetime.utcnow().strftime('%d/%m/%Y'), nullable=True)
     hours = db.Column(db.String(5), nullable=False)
-    host = db.Column(StringEncryptedType(db.Boolean, key), nullable=False)
+    role = db.Column(StringEncryptedType(db.String(), key), nullable=False)
     background = db.Column(StringEncryptedType(db.String(500), key), nullable=False)
+    wmb_user = db.Column(db.String(20), db.ForeignKey('wmb_admin.username'))
 
     def __repr__(self):
         return '<User %r>' % self.username
@@ -187,21 +190,24 @@ def certificate():
         if check_columns(file):
             pronoun_validation = [
                 CustomElementValidation(lambda d: check_pronoun(d), 'valores inválidos para a coluna "pronouns"')]
-            date_validation = [
-                CustomElementValidation(lambda d: check_date(d), 'valores inválidos para a coluna "date"')]
+            date_start_validation = [
+                CustomElementValidation(lambda d: check_date(d), 'valores inválidos para a coluna "date_start"')]
+            date_end_validation = [
+                CustomElementValidation(lambda d: check_date(d), 'valores inválidos para a coluna "date_end"')]
             hour_validation = [
                 CustomElementValidation(lambda d: check_hour(d), 'valores inválidos para a coluna "hours"')]
-            host_validation = [
-                CustomElementValidation(lambda d: check_host(d), 'valores inválidos para a coluna "host"')]
+            role_validation = [
+                CustomElementValidation(lambda d: check_role(d), 'valores inválidos para a coluna "role"')]
 
             schema = Schema([
                 Column("name", allow_empty=False),
                 Column("username", allow_empty=True),
                 Column("pronoun", pronoun_validation, allow_empty=False),
                 Column("event", allow_empty=False),
-                Column("date", date_validation, allow_empty=False),
+                Column("date_start", date_start_validation, allow_empty=False),
+                Column("date_end", date_end_validation, allow_empty=True),
                 Column("hours", hour_validation, allow_empty=False),
-                Column("host", host_validation, allow_empty=False),
+                Column("role", role_validation, allow_empty=False),
                 Column("background", allow_empty=False),
             ])
 
@@ -277,7 +283,7 @@ def validate_document():
         if hash_to_be_checked:
             users = Users.query.all()
             hashs_certificate = [
-                hashlib.sha1(bytes("Certificate " + user.name + user.event + user.hours + str(user.host),
+                hashlib.sha1(bytes("Certificate " + user.name + user.event + user.hours + str(user.role),
                                    'utf-8')).hexdigest() for user in users]
             if hash_to_be_checked in hashs_certificate:
                 message = True
@@ -320,9 +326,10 @@ def manage_participants():
                           "username": user.username,
                           "pronoun": user.pronoun,
                           "event": user.event,
-                          "date": user.date,
+                          "date_start": user.date_start,
+                          "date_end": user.date_end,
                           "hours": user.hours,
-                          "host": user.host,
+                          "role": user.role,
                           "background": user.background})
 
     # val = pd.read_sql_query("SELECT * from users", db.get_engine(app, 'users'))
@@ -339,23 +346,26 @@ def register_person(csv_table):
 
     ids = []
     for row in reader:
-        temp_id, name, username, pronoun, event, date, hours, host, background = row
+        temp_id, name, username, pronoun, event, date_start, date_end, hours, role, background = row
         new_subscription = Users(name=name,
                                  username=username,
                                  pronoun=pronoun.lower(),
                                  event=event,
-                                 date=date,
+                                 date_start=date_start,
+                                 date_end=date_end,
                                  hours=hours,
-                                 host=tf_host(host),
-                                 background=background)
+                                 role=role.lower(),
+                                 background=background,
+                                 wmb_user=WMBUser.query.get(current_user.id).username)
 
         potential_user = Users.query.filter_by(name=new_subscription.name,
                                                username=new_subscription.username,
                                                pronoun=new_subscription.pronoun,
                                                event=new_subscription.event,
-                                               date=new_subscription.date,
+                                               date_start=new_subscription.date_start,
+                                               date_end=new_subscription.date_end,
                                                hours=new_subscription.hours,
-                                               host=new_subscription.host,
+                                               role=new_subscription.role,
                                                background=new_subscription.background).first()
 
         if potential_user is None:
@@ -369,6 +379,30 @@ def register_person(csv_table):
         else:
             ids.append(potential_user.id)
     return ids
+
+
+@app.route('/update_participant', methods=["POST"])
+@login_required
+def update_participant():
+    form = request.form
+    user = Users.query.get(form["user_id"])
+    user.name = form["edit_name"]
+    user.username = form["edit_username"]
+    user.pronoun = form["edit_pronoun"]
+    user.event = form["edit_event"]
+    user.date_start = form["edit_date_start"]
+    user.date_end = form["edit_date_end"]
+    user.hours = form["edit_hours"]
+    user.role = form["edit_role"]
+    user.wmb_user = WMBUser.query.get(current_user.id).username
+
+    try:
+        db.session.commit()
+    except SQLAlchemyError as e:
+        print(str(e))
+        db.session.rollback()
+    return redirect(url_for('manage_participants'))
+
 
 
 if __name__ == '__main__':

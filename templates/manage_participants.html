@@ -12,34 +12,57 @@
         <div class="w3-container" style="text-align: center; padding:0">
             <div class="w3-row">
                 <div class="w3-container" style="padding-top:50px;width:100%">
-                    <table class="dataframe" style="margin-bottom: 50px">
-                        <thead>
-                        <tr>
-                            <th>id</th>
-                            <th>delete?</th>
-                            <th>name</th>
-                            <th>username</th>
-                            <th>pronoun</th>
-                            <th>event</th>
-                            <th>date</th>
-                            <th>hours</th>
-                            <th>host</th>
-                            <th>certificate</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <form action="{{url_for('remove_checked')}}" method="post">
+                    <form action="{{ url_for('remove_checked') }}" method="post" id="delete_form"
+                              onsubmit="return validate_delete_form()">
+                        <table class="dataframe" style="margin-bottom: 50px">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>delete?</th>
+                                    <th>edit</th>
+                                    <th>name</th>
+                                    <th>username</th>
+                                    <th>pronoun</th>
+                                    <th>event</th>
+                                    <th>date_start</th>
+                                    <th>date_end</th>
+                                    <th>hours</th>
+                                    <th>host</th>
+                                    <th>certificate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {% for user in users %}
                                     <tr>
                                         <th>{{ user.id }}</th>
-                                        <td style="text-align: center"><input type="checkbox" name="check" value="{{ user.id }}"></td>
+                                        <td style="text-align: center"><input type="checkbox" name="check"
+                                                                              value="{{ user.id }}"></td>
+                                        <td>
+                                            <a>
+                                                <button type="button"
+                                                        data-user_id="{{ user.id }}"
+                                                        data-name="{{ user.name }}"
+                                                        data-username="{{ user.username }}"
+                                                        data-pronoun="{{ user.pronoun }}"
+                                                        data-event="{{ user.event }}"
+                                                        data-date_start="{{ user.date_start }}"
+                                                        data-date_end="{{ user.date_end }}"
+                                                        data-hours="{{ user.hours }}"
+                                                        data-role="{{ user.role }}"
+                                                        data-toggle="modal"
+                                                        data-target="#editModal">
+                                                    Editar
+                                                </button>
+                                            </a>
+                                        </td>
                                         <td>{{ user.name }}</td>
                                         <td>{{ user.username }}</td>
                                         <td>{{ user.pronoun }}</td>
                                         <td>{{ user.event }}</td>
-                                        <td>{{ user.date }}</td>
+                                        <td>{{ user.date_start }}</td>
+                                        <td>{{ user.date_end }}</td>
                                         <td>{{ user.hours }}</td>
-                                        <td>{{ user.host }}</td>
+                                        <td>{{ user.role }}</td>
                                         <td>
                                             <a href="{{ url_for('gerar_certificado_individual', id=user.id) }}">
                                                 <button type="button">Download</button>
@@ -48,15 +71,107 @@
                                     </tr>
                                 {% endfor %}
                                 <tr>
-                                    <td colspan="10" style="padding: 0">
-                                        <input class="button" type="submit" style="margin: 0;width: 100%; background-color: #ff2400" value="Deletar">
+                                    <td colspan="13" style="padding: 0">
+                                        <input class="button" type="submit" id="deletar" style="margin: 0;width: 100%; background-color: #ff2400" value="Deletar">
                                     </td>
                                 </tr>
-                            </form>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal" id="editModal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modal_title"></h3>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="w3-row">
+                        <form action="{{ url_for('update_participant') }}" method="post" id="edit_form">
+                            <input type="hidden" name="user_id" id="user_id">
+                            <table class="dataframe" style="margin-bottom: 50px; table-layout: fixed">
+                                <tr>
+                                    <th><label for="edit_name">name</label></th>
+                                    <th><label for="edit_username">username</label></th>
+                                    <th><label for="edit_pronoun">pronoun</label></th>
+                                    <th><label for="edit_event">event</label></th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="edit_name" id="edit_name" maxlength="150" style="width:100%"></td>
+                                    <td><input type="text" name="edit_username" id="edit_username" maxlength="150" style="width:100%"></td>
+                                    <td><input type="text" name="edit_pronoun" id="edit_pronoun" maxlength="1" style="width:100%"></td>
+                                    <td><input type="text" name="edit_event" id="edit_event" maxlength="300" style="width:100%"></td>
+                                </tr>
+                                <tr>
+                                    <th><label for="edit_date_start">date_start</label></th>
+                                    <th><label for="edit_date_end">date_end</label></th>
+                                    <th><label for="edit_hours">hours</label></th>
+                                    <th><label for="edit_role">role</label></th>
+                                </tr>
+                                <tr>
+                                    <td><input type="date" name="edit_date_start" id="edit_date_start" style="width:100%"></td>
+                                    <td><input type="date" name="edit_date_end" id="edit_date_end" style="width:100%"></td>
+                                    <td><input type="text" name="edit_hours" id="edit_hours" maxlength="5" style="width:100%"></td>
+                                    <td><input type="text" name="edit_role" id="edit_role" style="width:100%"></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" style="background-color: #808080">Cancelar</button>
+                    <button type="submit" form="edit_form">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#editModal').on('show.bs.modal', function (event) {
+            var user_id = $(event.relatedTarget).attr('data-user_id');
+            var user_name = $(event.relatedTarget).attr('data-name');
+            var user_username = $(event.relatedTarget).attr('data-username');
+            var user_pronoun = $(event.relatedTarget).attr('data-pronoun');
+            var user_event = $(event.relatedTarget).attr('data-event');
+            var user_date_start = $(event.relatedTarget).attr('data-date_start').split("/").reverse().join("-");
+            var user_date_end = $(event.relatedTarget).attr('data-date_end').split("/").reverse().join("-");
+            var user_hours = $(event.relatedTarget).attr('data-hours');
+            var user_role = $(event.relatedTarget).attr('data-role');
+            $(this).find("#modal_title").text("Editando entrada de número "+user_id);
+            $(this).find("#user_id").val(user_id);
+            $(this).find("#edit_name").val(user_name);
+            $(this).find("#edit_username").val(user_username);
+            $(this).find("#edit_pronoun").val(user_pronoun);
+            $(this).find("#edit_event").val(user_event);
+            $(this).find("#edit_date_start").val(user_date_start);
+            $(this).find("#edit_date_end").val(user_date_end);
+            $(this).find("#edit_hours").val(user_hours);
+            $(this).find("#edit_role").val(user_role);
+        });
+
+        $('#addModal').on('hidden.bs.modal', function () {
+            $(this).find("#user_id").val('');
+            $(this).find("#edit_name").val('');
+            $(this).find("#edit_username").val('');
+            $(this).find("#edit_pronoun").val('');
+            $(this).find("#edit_event").val('');
+            $(this).find("#edit_date_start").val('');
+            $(this).find("#edit_date_end").val('');
+            $(this).find("#edit_hours").val('');
+            $(this).find("#edit_role").val('');
+        });
+
+        function validate_delete_form() {
+            if(confirm("Tem certeza que deseja excluir esta(s) entrada(s)? Isto não poderá ser desfeito!")){
+                $('form#delete_form').submit();
+            }
+            else {
+                return false;
+            }
+        }
+
+    </script>
 {% endblock %}
