@@ -41,6 +41,7 @@ login_manager.login_view = 'login'
 db = SQLAlchemy(app)
 
 key = app.config["ENCRYPTION_KEY"]
+roles = app.config["ROLES"]
 
 
 class LoginForm(FlaskForm):
@@ -197,7 +198,9 @@ def certificate():
             hour_validation = [
                 CustomElementValidation(lambda d: check_hour(d), 'valores inválidos para a coluna "hours"')]
             role_validation = [
-                CustomElementValidation(lambda d: check_role(d), 'valores inválidos para a coluna "role"')]
+                CustomElementValidation(lambda d: check_role(d, roles),
+                                        'valores inválidos para a coluna "role". Valores válidos são: ' + "/".join(
+                                            roles))]
 
             schema = Schema([
                 Column("name", allow_empty=False),
@@ -402,7 +405,6 @@ def update_participant():
         print(str(e))
         db.session.rollback()
     return redirect(url_for('manage_participants'))
-
 
 
 if __name__ == '__main__':

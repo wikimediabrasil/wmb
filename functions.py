@@ -94,13 +94,13 @@ def check_date(date_text):
     return True
 
 
-def check_role(role):
+def check_role(role, possible_values):
     """
     Function to validate the role formatting
+    :param possible_values: string from the allowed values
     :param role: string to be checked
     :return: True/False depending if the string is among the valid values
     """
-    possible_values = ["ouvinte", "palestrante", "mediador", "mediadora", "organizador", "organizadora"]
 
     try:
         if role.lower() not in possible_values:
