@@ -12,8 +12,7 @@
         <div class="w3-container" style="text-align: center; padding:0">
             <div class="w3-row">
                 <div class="w3-container" style="padding-top:50px;width:100%">
-                    <form action="{{ url_for('remove_checked') }}" method="post" id="delete_form"
-                              onsubmit="return validate_delete_form()">
+                    <form action="{{ url_for('remove_checked') }}" method="post" id="delete_form">
                         <table class="dataframe" style="margin-bottom: 50px">
                             <thead>
                                 <tr>
@@ -72,7 +71,7 @@
                                 {% endfor %}
                                 <tr>
                                     <td colspan="13" style="padding: 0">
-                                        <input class="button" type="submit" id="deletar" style="margin: 0;width: 100%; background-color: #ff2400" value="Deletar">
+                                        <input class="button" type="button" id="deletar" style="margin: 0;width: 100%; background-color: #ff2400" value="Deletar">
                                     </td>
                                 </tr>
                             </tbody>
@@ -164,14 +163,14 @@
             $(this).find("#edit_role").val('');
         });
 
-        function validate_delete_form() {
+        $('#deletar').click( function () {
             if(confirm("Tem certeza que deseja excluir esta(s) entrada(s)? Isto não poderá ser desfeito!")){
-                $('form#delete_form').submit();
+                $('#delete_form').submit();
             }
             else {
                 return false;
             }
-        }
+        });
 
     </script>
 {% endblock %}
