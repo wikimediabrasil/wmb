@@ -393,8 +393,8 @@ def update_participant():
     user.username = form["edit_username"]
     user.pronoun = form["edit_pronoun"]
     user.event = form["edit_event"]
-    user.date_start = form["edit_date_start"]
-    user.date_end = form["edit_date_end"]
+    user.date_start = format(datetime.strptime(form["edit_date_start"], "%Y-%m-%d"), "%d/%m/%Y")
+    user.date_end = format(datetime.strptime(form["edit_date_end"], "%Y-%m-%d"), "%d/%m/%Y") if form["edit_date_end"] else None
     user.hours = form["edit_hours"]
     user.role = form["edit_role"]
     user.wmb_user = WMBUser.query.get(current_user.id).username
