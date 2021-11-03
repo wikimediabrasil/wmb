@@ -9,3 +9,4 @@ backgrounds
 users.db
 wmb_admin.db
 *.pkl
+static/*.png
