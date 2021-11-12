@@ -1,0 +1,132 @@
+/*
+    Quando modificado, este arquivo deve ser copiado e colado
+    em calendar.js, dentro da tag <style> da função header().
+*/
+
+.date {
+    width: 100px;
+    height: 80px;
+    line-height: 15px;
+}
+
+#month {
+    width: 100px;
+}
+
+@font-face {
+    font-family: myFutura;
+    src: url('static/fonts/futura-medium-condensed-bt.ttf');
+}
+
+body {
+    font-family: myFutura;
+    background-color: #eee;
+    color: #006699;
+}
+
+textarea{
+    font-family: Arial !important;
+    letter-spacing: 0.5;
+}
+
+#form {
+    font-size: 18px;
+    color: #555;
+}
+
+
+#container {
+    width: 1200px;
+    height: 1200px;
+    background-image: url('images/bg.png');
+    float: left;
+    vertical-align: middle;
+    background-color: #000;
+    display: block;
+}
+
+#main {
+    margin-top: 60px !important;
+}
+
+
+.evento {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 1080px;
+    margin-left: 270px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    font-family: 'myFutura' !important;
+}
+
+.data {
+    background-color: #fff;
+    width: 145px;
+    height: 100%;
+    padding: 2px;
+    font-size: 40pt;
+    display: flex;
+    text-align: center !important;
+    align-items: center;
+    justify-content: center;
+    font-family: Futura-Bold, sans-serif;
+}
+
+.titulo {
+    width: 680px;
+    float: left !important;
+    padding: 0px;
+    font-size: 33px !important;
+    line-height: 37px;
+    color: #fff;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'myFutura';
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-left: 20px !important;
+    background-color: none !important;
+}
+
+.titulo-span {
+    line-height: 36px;
+    background-color: #9C57A2;
+}
+
+.editor {
+    float: left;
+    width: 60px;
+    margin-left: 20px;
+    font-size: 30px;
+    line-height: 40px;
+}
+
+.field {
+    white-space: pre-wrap;
+}
+
+.delete {
+    visibility: hidden;
+    color: red;
+    font-size: 30px;
+    display: flex;
+    height: 100%;
+    align-items: top;
+    border-radius: 50%;
+    width: 30px;
+    opacity: 80%;
+    margin-right: 10px !important;
+}
+
+.IOtextboxes{
+    width: 450px; 
+    height:60px; 
+    margin-bottom: 5px;
+    margin-top: 30px;
+}

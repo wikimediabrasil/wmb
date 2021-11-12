@@ -300,6 +300,12 @@ def validate_document():
         return render_template('validation.html')
 
 
+@app.route('/calendar', methods=["POST", "GET"])
+def calendar():
+    return render_template('calendar.html')
+
+
+
 @app.route('/remover', methods=["POST"])
 @login_required
 def remove_checked():

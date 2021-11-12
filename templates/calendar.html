@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block navbar %}
+    {% with lang=lang, username=username %}
+        {% include 'topnavbar.html' %}
+    {% endwith %}
+{% endblock %}
+
+{% block title %}Gerador de Calendário{% endblock %}
+{% block content %}
+    <div class="w3-row">
+      <div class="w3-quarter">&nbsp;</div>
+      <div class="w3-half">
+        <form id="submitForm">
+          <h1 id="calendar-h1">Gerador de calendários de eventos do WMB</h1>
+            <table id="form">
+              <tr>
+                <td>Mês:</td>
+                <td>
+                    <select id="month" name="month">
+                        <option value="janeiro">Janeiro</option>
+                        <option value="fevereiro">Fevereiro</option>
+                        <option value="marco">Março</option>
+                        <option value="abril">Abril</option>
+                        <option value="maio">Maio</option>
+                        <option value="junho">Junho</option>
+                        <option value="julho">Julho</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="setembro">Setembro</option>
+                        <option value="outubro">Outubro</option>
+                        <option value="novembro">Novembro</option>
+                        <option value="dezembro">Dezembro</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>01.</td>
+                <td><textarea type="text" class = "date" name ="date1" value ="date">data</textarea></td>
+                <td><textarea type="text" class="line" name ="line1" cols ="40" rows="5" class="field">título e descrição</textarea></td>
+              </tr>
+              <tr>
+                <td>02.</td>
+                <td><textarea type="text" class = "date" name ="date2"></textarea></td>
+                <td><textarea type="text" class="line" name ="line2" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>03.</td>
+                <td><textarea type="text" class = "date" name ="date3"></textarea></td>
+                <td><textarea type="text" class="line" name ="line3" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>04.</td>
+                <td><textarea type="text" class = "date" name ="date4"></textarea></td>
+                <td><textarea type="text" class="line" name ="line4" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>05.</td>
+                <td><textarea type="text" class = "date" name ="date5"></textarea></td>
+                <td><textarea type="text" class="line" name ="line5" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>06.</td>
+                <td><textarea type="text" class = "date" name ="date6"></textarea></td>
+                <td><textarea type="text" class="line" name ="line6" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>07.</td>
+                <td><textarea type="text" class = "date" name ="date7"></textarea></td>
+                <td><textarea type="text" class="line" name ="line7" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>08.</td>
+                <td><textarea type="text" class = "date" name ="date8"></textarea></td>
+                <td><textarea type="text" class="line" name ="line8" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>09.</td>
+                <td><textarea type="text" class = "date" name ="date9"></textarea></td>
+                <td><textarea type="text" class="line" name ="line9" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+              <tr>
+                <td>10.</td>
+                <td><textarea type="text" class = "date" name ="date10"></textarea></td>
+                <td><textarea type="text" class="line" name ="line10" cols ="40" rows="5" class="field"></textarea></td>
+              </tr>       
+            </table>
+        
+      <button type="submit" class='input_submit'>Gerar calendário</button>
+
+    </form>
+
+
+  <textarea class="IOtextboxes" id="export">Clique aqui depois de gerar seu  calendário</textarea><br/>
+  <button type="button" onclick="exportForm()">Exportar valores</button>
+<br/><br/>
+  <textarea class="IOtextboxes" id="import">Cole aqui um arquivo previamente exportado</textarea><br/>
+  <button type="button" onclick="importForm()">Importar valores</button>
+  <div id = "result">
+  </div>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'calendar.js')}}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename= 'html2canvas.js')}}"></script>
+
+{% endblock %}

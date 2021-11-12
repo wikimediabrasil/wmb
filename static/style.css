@@ -122,3 +122,19 @@ button, .button {
 a {
     color: var(--main-color);
 }
+
+
+/******************** CALENDAR ********************/
+#calendar-h1 {
+    color:  var(--main-color);
+    margin-top: 30px;
+    text-align: center;
+}
+
+#calendar-main {
+    width: 60%;
+}
+
+#submitForm textarea {
+    height: 60px;
+}
