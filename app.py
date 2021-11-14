@@ -123,7 +123,7 @@ def logout():
 
 
 @app.route('/usuarios/criar', methods=["GET", "POST"])
-@login_required
+# @login_required
 def create_wmbuser():
     form = SignupForm()
 
@@ -301,9 +301,9 @@ def validate_document():
 
 
 @app.route('/calendar', methods=["POST", "GET"])
+@login_required
 def calendar():
     return render_template('calendar.html')
-
 
 
 @app.route('/remover', methods=["POST"])

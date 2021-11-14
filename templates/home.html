@@ -31,6 +31,19 @@
                 <div class="w3-half">
                     <div class="w3-quarter">&nbsp;</div>
                     <div class="w3-half">
+                        <a href="{{ url_for('calendar') }}">
+                            <button type="button" style="width:100%;">
+                                Gerador de calendário
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-quarter">&nbsp;</div>
+                <div class="w3-half">
+                    <div class="w3-quarter">&nbsp;</div>
+                    <div class="w3-half">
                         <a href="{{ url_for('create_wmbuser') }}">
                             <button type="button" style="width:100%;">
                                 Criar usuários(as)
@@ -48,12 +61,6 @@
                     <a href="{{ url_for('validate_document') }}">
                         <button type="button" style="width:100%;">
                             Validação de documentos
-                        </button>
-                    </a>
-
-                    <a href="{{ url_for('calendar') }}">
-                        <button type="button" style="width:100%;">
-                            Gerador de calendário
                         </button>
                     </a>
                 </div>
