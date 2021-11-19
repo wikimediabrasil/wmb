@@ -302,7 +302,7 @@ function exportForm() {
     var formData_aux = new FormData(document.forms.submitForm);
     var formData = getFormData(formData_aux);
     for (let i = 0; i < total_boxes; i++) {
-        string += dates[i].replace(/<br>/, "") + ";" + titles[i].replace(/<br>/, "") + "\n";
+        string += dates[i] + ";" + titles[i] + "\n";
     }
     total_boxes=0;
     document.getElementById("export").value = string;
@@ -321,8 +321,8 @@ function importForm() {
         for (let i = 0; i < lines.length; i++) {
             let value = lines[i].split(";");
             if (value.length != 2) break;
-            formDates[i].value = value[0];
-            formTitles[i].value = value[1];
+            formDates[i].value = value[0].replace(/<br>/g, "\n");
+            formTitles[i].value = value[1].replace(/<br>/g, "\n");
         }
     } else {
         window.alert("Algo está errado com o texto que você tentou importar.");
