@@ -221,7 +221,7 @@ def make_pdf_of_user(user, app):
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")
     pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt="VALÉRIO ANDRADE MELO")
     pdf.set_font('Merriweather', '', 11)
-    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="Presidente eleito do Wiki Movimento Brasil")
+    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="Presidente do Wiki Movimento Brasil")
 
     user_hash = hashlib.sha1(
         bytes("Certificate " + user.name + user.event + user.hours + str(user.role), 'utf-8')).hexdigest()
