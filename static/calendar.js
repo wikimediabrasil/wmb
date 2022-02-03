@@ -191,7 +191,7 @@ function addHTML(w) {
 */
 function calculateDateFontSize(w) {
     for (let i = 0; i < total_boxes; i++) {
-        if (dates[i].length < 9) {
+        if (dates[i].length < 5) {
             datesS[i] = "33pt";
 
         }
