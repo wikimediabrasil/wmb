@@ -194,6 +194,16 @@ h1, h2, h3 {
     font-family: 'FuturaCondensed', sans-serif !important;
 }
 
+.evento:last-child {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 1080px;
+    margin-left: 270px;
+    margin-top: 20px;
+    font-family: 'FuturaCondensed', sans-serif !important;
+}
+
 
 .evento {
     width: 100%;
@@ -207,7 +217,8 @@ h1, h2, h3 {
 
 .data {
     background-color: #fff;
-    width: 150px;
+    width: 140px;
+    min-width: 140px;
     height: 100%;
     padding: 2px;
     font-size: 40pt;

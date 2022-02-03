@@ -152,13 +152,13 @@ function getFormData(formData) {
         // gets dates
         if (formData.get("date" + i) != "") {
             info = formData.get("date" + i);
-            info = info.replace(/\r?\n/g, '<br>') + "<br>";
+            info = info.replace(/\r?\n/g, '<br>');
             dates.push(info)
         }
         // gets event titles
         if (formData.get("line" + i) != "") {
             info = formData.get("line" + i);
-            info = info.replace(/\r?\n/g, '<br>') + "<br>";
+            info = info.replace(/\r?\n/g, '<br>');
             titles.push(info)
         }
     }
@@ -273,7 +273,7 @@ function addBox(w, date, title, titleH, datesS) {
     w.document.write('<div class = "evento" style="height:', titleH, 'px">\
     <div class = "data" style="font-size:', datesS, '; color:', monthColor, '">', date,
         '</div>\
-        <div class = "titulo"><div style="margin-top:40px;">\
+        <div class = "titulo"><div>\
         <span class ="titulo-span" style="background-color:', monthColor, '">', title, '</span><br>\
     </div></div>\
     </div>');
@@ -305,7 +305,7 @@ function exportForm() {
         string += dates[i] + ";" + titles[i] + "\n";
     }
     total_boxes=0;
-    document.getElementById("export").value = string;
+    document.getElementById("export").value = string.replace(/\n$/, '');;
 }
 
 /*
