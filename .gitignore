@@ -3,3 +3,4 @@ venv/
 *.pkl
 wmb/settings_local.py
 /static/images/valerio.png
+.*/__pycache__
