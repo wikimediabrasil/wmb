@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% if form.instance.pk %}{% trans "Update activity" %} - {{ form.instance }}{% else %}{% trans "Create activity" %}{% endif %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}">{{ calendar }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Create activities in bulk" %}</li>
+        </ol>
+        <h1>{% trans "Create a set of activities" %}</h1>
+        <div class="w3-container flex-center">
+            <form class="form-container" action="{% url 'calendars:activity_create_in_bulk' calendar_id=calendar.pk %}" method="post" id="activities">
+                {% csrf_token %}
+                {{ formset.management_form }}
+                <ol id="formset-container" style="padding-inline-start: 0; list-style-position: inside;">
+                    {% for form in formset %}
+                        <li class="form-row" id="formset-{{ forloop.counter0 }}-" style="margin-bottom: 2em; ">
+                            <h3 style="display: inline">{% trans "New activity" %}</h3>
+                            {{ form.calendar }}
+                            {{ form.title.label_tag }}
+                            {{ form.title }}
+                            {{ form.date_start.label_tag }}
+                            {{ form.date_start }}
+                            {{ form.hour_start.label_tag }}
+                            {{ form.hour_start }}
+                            {{ form.date_end.label_tag }}
+                            {{ form.date_end }}
+                            {{ form.custom_date.label_tag }}
+                            {{ form.custom_date }}
+                            <button class="button custom-button custom-red-button bottom-container" type="button" name="formset-{{ forloop.counter0 }}-" id="delete-{{ forloop.counter0 }}-button" onclick="delForm(this)">{% trans "Delete activity" %}</button>
+                        </li>
+                    {% endfor %}
+                </ol>
+                <div class="input-group-append" style="text-align: right; ">
+                    <button class="button custom-button bottom-container add-button" type="button" id="add-button" onclick="addForm()">{% trans "Add a new activity" %}</button>
+                </div>
+                <input type="submit" class="button custom-button submit-button" value="{% trans 'Create all activities' %}">
+            </form>
+            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      function addForm() {
+        const alert_message = "{% trans 'You can only add up to 10 forms.' %}"
+        const maxForms = 10;
+        const formsetContainer = document.getElementById("formset-container");
+        const totalForms = document.querySelector("#id_form-TOTAL_FORMS");
+        const currentForms = parseInt(totalForms.value);
+
+        if (currentForms < maxForms) {
+          const newForm = formsetContainer.firstElementChild.cloneNode(true);
+          const formRegex = /-0-/g;
+          const newFormDataId = newForm.id.replace(formRegex, `-${currentForms}-`);
+          newForm.innerHTML = newForm.innerHTML.replace(formRegex, `-${currentForms}-`);
+          newForm.id = newFormDataId;
+          newForm.querySelectorAll("input, select").forEach(input => {
+            input.value = "";
+          });
+          formsetContainer.appendChild(newForm);
+          totalForms.value = currentForms + 1;
+        } else {
+          alert(alert_message);
+        }
+      }
+
+      function delForm(button) {
+        const formsetContainer = document.getElementById('formset-container');
+        const currentForms = formsetContainer.childElementCount;
+
+        const formId = button.getAttribute('name');
+        const liElement = document.getElementById(formId);
+        const totalForms = document.querySelector("#id_form-TOTAL_FORMS");
+        if (liElement && currentForms > 1) {
+          liElement.remove();
+          totalForms.value = currentForms - 1;
+        }
+        renumberForms();
+      }
+
+      function renumberForms() {
+        const formsetContainer = document.getElementById('formset-container');
+        const formItems = formsetContainer.querySelectorAll('.form-row');
+        const formRegex = /-(\d+)-/g;
+
+        formItems.forEach((form, index) => {
+          form.id = form.id.replace(formRegex, `-${index}-`);
+          form.querySelectorAll('input, select, button').forEach(input => {
+            const oldName = input.name;
+            input.name = oldName.replace(formRegex, `-${index}-`);
+            const oldId = input.id;
+            input.id = oldId.replace(formRegex, `-${index}-`);
+          });
+          form.querySelectorAll('label').forEach(input => {
+            const oldFor = input.getAttribute("for");
+            input.setAttribute("for", oldFor.replace(formRegex, `-${index}-`));
+          });
+        });
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Create event" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Create event" %}</li>
+        </ol>
+        <h1>{% trans "Create event" %}</h1>
+        <div class="w3-container flex-center">{% trans "To issue certificates for participants of an event promoted or supported by Wiki Movimento Brasil, fill out the form:" %}</div>
+        <div class="w3-container flex-center">
+            <form action="{% url 'events:event_create' %}" method="post">
+                {% csrf_token %}
+                <label for="event_name">{% trans "Name of the event:" %}</label>
+                {{ form.event_name }}
+                <label for="date_start">{% trans "Date of the beginning of the event:" %}</label>
+                {{ form.date_start }}
+                <label for="date_end">{% trans "Date of the ending of the event:" %}</label>
+                {{ form.date_end }}
+                <label for="link">{% trans "Link(s) for the event:" %}</label>
+                {{ form.link }}
+                <input type="submit" class="button custom-button" value="{% trans 'Create event' %}">
+            </form>
+        </div>
+    </main>
+{% endblock %}

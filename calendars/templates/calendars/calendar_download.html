@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt">
+{% load static %}
+{% load i18n %}
+<head>
+    <title>Calendar</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calendar.css' %}">
+</head>
+<body>
+    <form id="submitForm">
+        <table id="form">
+            <label for="month">{% trans "Month" %}</label>
+            <input value="{{ wmb_calendar.calendar.month }}" name="month" id="month">
+        </table>
+    </form>
+    <button type="submit" id="submitForm" class='input_submit' style="width: 100%">Gerar calendário</button>
+</body>
+</html>

@@ -1,0 +1,1189 @@
+# Translation of code text
+# CC BY-SA 3.0 2025 Éder Porto Ferreira Alves
+# ÉDER PORTO FERREIRA ALVES <eder.porto@wmnobrasil.org>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-31 23:59-0300\n"
+"PO-Revision-Date: 2025-01-31 20:53-0300\n"
+"Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
+"Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
+"Language: pt-br\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\calendars\forms.py:66 .\calendars\forms.py:105
+#: .\calendars\templates\calendars\activity_create_and_update.html:30
+#: .\calendars\templates\calendars\activity_update.html:30
+msgid "Title of the activity"
+msgstr "Nome da atividade"
+
+#: .\calendars\forms.py:67 .\calendars\forms.py:106
+#: .\calendars\templates\calendars\activity_create_and_update.html:32
+#: .\calendars\templates\calendars\activity_update.html:32
+msgid "Beginning date for this activity"
+msgstr "Data inicial desta atividade"
+
+#: .\calendars\forms.py:68 .\calendars\forms.py:107
+msgid "Beginning hour for this activity (Optional)"
+msgstr "Hora de início desta atividade (Opcional)"
+
+#: .\calendars\forms.py:69 .\calendars\forms.py:108
+msgid "Ending date for this activity (Optional)"
+msgstr "Data final desta atividade (Opcional)"
+
+#: .\calendars\forms.py:70 .\calendars\forms.py:109
+msgid "Custom date for this activity (Optional)"
+msgstr "Data customizada para essa atividade (Opcional)"
+
+#: .\calendars\forms.py:77
+msgid "Keep custom date as it is?"
+msgstr "Manter a data customizada como está?"
+
+#: .\calendars\forms.py:132 .\calendars\models.py:70
+#, python-brace-format
+msgid "{d_start}"
+msgstr "{d_start}"
+
+#: .\calendars\forms.py:134 .\calendars\models.py:72
+#, python-brace-format
+msgid "{d_start} to {d_end}"
+msgstr "{d_start} a {d_end}"
+
+#: .\calendars\forms.py:136 .\calendars\models.py:74
+#, python-brace-format
+msgid "{m_start}/{d_start} to {m_end}/{d_end}"
+msgstr "{d_start}/{m_start} a {d_end}/{m_end}"
+
+#: .\calendars\models.py:9
+msgid "January"
+msgstr "janeiro"
+
+#: .\calendars\models.py:10
+msgid "February"
+msgstr "fevereiro"
+
+#: .\calendars\models.py:11
+msgid "March"
+msgstr "março"
+
+#: .\calendars\models.py:12
+msgid "April"
+msgstr "abril"
+
+#: .\calendars\models.py:13
+msgid "May"
+msgstr "maio"
+
+#: .\calendars\models.py:14
+msgid "June"
+msgstr "junho"
+
+#: .\calendars\models.py:15
+msgid "July"
+msgstr "julho"
+
+#: .\calendars\models.py:16
+msgid "August"
+msgstr "agosto"
+
+#: .\calendars\models.py:17
+msgid "September"
+msgstr "setembro"
+
+#: .\calendars\models.py:18
+msgid "October"
+msgstr "outubro"
+
+#: .\calendars\models.py:19
+msgid "November"
+msgstr "novembro"
+
+#: .\calendars\models.py:20
+msgid "December"
+msgstr "dezembro"
+
+#: .\calendars\models.py:24
+#: .\calendars\templates\calendars\calendar_download.html:12
+msgid "Month"
+msgstr "Mês"
+
+#: .\calendars\models.py:25
+#: .\calendars\templates\calendars\month_calendar_detail.html:17
+msgid "Background image"
+msgstr "Imagem de fundo"
+
+#: .\calendars\models.py:33
+msgid "Year"
+msgstr "Ano"
+
+#: .\calendars\models.py:34
+msgid "Page"
+msgstr "Página"
+
+#: .\calendars\models.py:37
+#, python-format
+msgid "%(month_name)s %(year)s"
+msgstr "%(month_name)s de %(year)s"
+
+#: .\calendars\models.py:42
+msgid "Activity title"
+msgstr "Nome da atividade"
+
+#: .\calendars\models.py:43
+msgid "Start date"
+msgstr "Data inicial"
+
+#: .\calendars\models.py:44
+msgid "End date"
+msgstr "Data final"
+
+#: .\calendars\models.py:45
+msgid "Custom date"
+msgstr "Data customizada"
+
+#: .\calendars\models.py:46
+msgid "Hour"
+msgstr "Hora de início"
+
+#: .\calendars\models.py:54
+msgid "End date must be after start date."
+msgstr "A data final precisa ser após a data inicial"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:6
+#: .\calendars\templates\calendars\activity_create_and_update.html:41
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:6
+#: .\calendars\templates\calendars\activity_update.html:6
+#: .\calendars\templates\calendars\activity_update.html:44
+msgid "Update activity"
+msgstr "Editar atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:6
+#: .\calendars\templates\calendars\activity_create_and_update.html:43
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:6
+#: .\calendars\templates\calendars\activity_update.html:6
+#: .\calendars\templates\calendars\activity_update.html:46
+msgid "Create activity"
+msgstr "Criar atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:11
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:11
+#: .\calendars\templates\calendars\activity_delete.html:11
+#: .\calendars\templates\calendars\activity_detail.html:11
+#: .\calendars\templates\calendars\activity_update.html:11
+#: .\calendars\templates\calendars\calendar_create_and_update.html:11
+#: .\calendars\templates\calendars\calendar_delete.html:11
+#: .\calendars\templates\calendars\calendar_detail.html:12
+#: .\calendars\templates\calendars\calendar_list.html:12
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:11
+#: .\calendars\templates\calendars\month_calendar_delete.html:11
+#: .\calendars\templates\calendars\month_calendar_detail.html:11
+#: .\calendars\templates\calendars\month_calendar_list.html:12
+#: .\certificates\templates\certificates\certificate_create.html:11
+#: .\certificates\templates\certificates\certificate_delete.html:11
+#: .\certificates\templates\certificates\certificate_detail.html:11
+#: .\certificates\templates\certificates\certificate_list.html:12
+#: .\certificates\templates\certificates\certificate_update.html:11
+#: .\certificates\templates\certificates\certificate_validate.html:11
+#: .\events\templates\events\event_certificate_confirm.html:11
+#: .\events\templates\events\event_certificate_upload.html:11
+#: .\events\templates\events\event_create.html:11
+#: .\events\templates\events\event_delete.html:11
+#: .\events\templates\events\event_detail.html:11
+#: .\events\templates\events\event_list.html:12
+#: .\events\templates\events\event_update.html:11
+msgid "Home"
+msgstr "Página inicial"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:12
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:12
+#: .\calendars\templates\calendars\activity_delete.html:12
+#: .\calendars\templates\calendars\activity_detail.html:12
+#: .\calendars\templates\calendars\activity_update.html:12
+#: .\calendars\templates\calendars\calendar_create_and_update.html:12
+#: .\calendars\templates\calendars\calendar_delete.html:12
+#: .\calendars\templates\calendars\calendar_detail.html:13
+#: .\calendars\templates\calendars\calendar_list.html:7
+#: .\calendars\templates\calendars\calendar_list.html:13
+#: .\calendars\templates\calendars\calendar_list.html:15
+msgid "Calendars"
+msgstr "Calendários"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:16
+#: .\calendars\templates\calendars\activity_detail.html:17
+#: .\calendars\templates\calendars\activity_detail.html:30
+#: .\calendars\templates\calendars\activity_update.html:16
+#: .\calendars\templates\calendars\calendar_create_and_update.html:15
+#: .\calendars\templates\calendars\calendar_detail.html:23
+#: .\calendars\templates\calendars\calendar_detail.html:36
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:15
+#: .\calendars\templates\calendars\month_calendar_detail.html:20
+msgid "Edit"
+msgstr "Editar"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:18
+#: .\calendars\templates\calendars\activity_create_and_update.html:24
+#: .\calendars\templates\calendars\activity_update.html:18
+#: .\calendars\templates\calendars\activity_update.html:24
+msgid "Create a new activity"
+msgstr "Criar uma nova atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:22
+#: .\calendars\templates\calendars\activity_update.html:22
+msgid "Edit activity"
+msgstr "Editar atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:34
+#: .\calendars\templates\calendars\activity_update.html:34
+msgid "Beginning hour for this activity"
+msgstr "Hora inicial desta atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:34
+#: .\calendars\templates\calendars\activity_create_and_update.html:36
+#: .\calendars\templates\calendars\activity_create_and_update.html:38
+#: .\calendars\templates\calendars\activity_update.html:34
+#: .\calendars\templates\calendars\activity_update.html:36
+#: .\calendars\templates\calendars\activity_update.html:38
+#: .\users\templates\users\update_profile.html:25
+msgid "(Optional)"
+msgstr "(Opcional)"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:36
+#: .\calendars\templates\calendars\activity_update.html:36
+msgid "Ending date for this activity"
+msgstr "Data final desta atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:38
+#: .\calendars\templates\calendars\activity_update.html:38
+msgid "Custom date(s) for this activity"
+msgstr "Data customizada desta atividade"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:46
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:45
+#: .\calendars\templates\calendars\activity_update.html:49
+#: .\users\templates\users\update_profile.html:39
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:14
+msgid "Create activities in bulk"
+msgstr "Criar atividades em lote"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:16
+msgid "Create a set of activities"
+msgstr "Criar um conjunto de atividades"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:24
+msgid "New activity"
+msgstr "Nova atividade"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:36
+#: .\calendars\templates\calendars\activity_delete.html:6
+#: .\calendars\templates\calendars\activity_delete.html:14
+msgid "Delete activity"
+msgstr "Excluir atividade"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:41
+msgid "Add a new activity"
+msgstr "Adicionar uma nova atividade"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:43
+msgid "Create all activities"
+msgstr "Criar todas as atividades"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:53
+msgid "You can only add up to 10 forms."
+msgstr "Você pode adicionar no máximo 10 atividades"
+
+#: .\calendars\templates\calendars\activity_delete.html:17
+msgid "Are you sure you want to delete this activity?"
+msgstr "Você tem certeza que quer deletar esta atividade?"
+
+#: .\calendars\templates\calendars\activity_delete.html:21
+#: .\calendars\templates\calendars\calendar_delete.html:21
+#: .\calendars\templates\calendars\month_calendar_delete.html:21
+#: .\certificates\templates\certificates\certificate_delete.html:35
+#: .\events\templates\events\event_delete.html:22
+msgid "YES"
+msgstr "SIM"
+
+#: .\calendars\templates\calendars\activity_delete.html:22
+#: .\calendars\templates\calendars\calendar_delete.html:22
+#: .\calendars\templates\calendars\month_calendar_delete.html:22
+#: .\certificates\templates\certificates\certificate_delete.html:36
+#: .\events\templates\events\event_delete.html:23
+msgid "NO"
+msgstr "NÃO"
+
+#: .\calendars\templates\calendars\activity_detail.html:6
+#: .\calendars\templates\calendars\calendar_detail.html:7
+#: .\calendars\templates\calendars\month_calendar_detail.html:6
+msgid "Detail calendar"
+msgstr "Ver calendário"
+
+#: .\calendars\templates\calendars\activity_detail.html:18
+#: .\calendars\templates\calendars\activity_detail.html:31
+#: .\calendars\templates\calendars\calendar_detail.html:24
+#: .\calendars\templates\calendars\calendar_detail.html:37
+#: .\calendars\templates\calendars\month_calendar_detail.html:21
+#: .\events\templates\events\event_delete.html:14
+#: .\events\templates\events\event_detail.html:47
+#: .\events\templates\events\event_detail.html:60
+msgid "Delete"
+msgstr "Excluir"
+
+#: .\calendars\templates\calendars\activity_detail.html:19
+#: .\calendars\templates\calendars\activity_detail.html:32
+#: .\calendars\templates\calendars\calendar_detail.html:25
+#: .\calendars\templates\calendars\month_calendar_detail.html:22
+msgid "Go back"
+msgstr "Voltar"
+
+#: .\calendars\templates\calendars\activity_update.html:41
+msgid ""
+"Click here if you want to keep the custom date as it is. Otherwise, it will "
+"be updated."
+msgstr ""
+"Clique aqui se você quiser manter a data customizada como aparece acima. "
+"Caso contrário, ela será atualizada."
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:6
+#: .\calendars\templates\calendars\calendar_create_and_update.html:35
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:33
+msgid "Update calendar"
+msgstr "Editar calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:6
+#: .\calendars\templates\calendars\calendar_create_and_update.html:37
+#: .\calendars\templates\calendars\calendar_list.html:18
+msgid "Create calendar"
+msgstr "Criar calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:17
+#: .\calendars\templates\calendars\calendar_create_and_update.html:23
+msgid "Create a new calendar"
+msgstr "Criar um novo calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:21
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:21
+msgid "Edit calendar"
+msgstr "Editar calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:28
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:28
+msgid "Month of the calendar"
+msgstr "Mês do calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:30
+msgid "Year of this calendar"
+msgstr "Ano do calendário"
+
+#: .\calendars\templates\calendars\calendar_create_and_update.html:32
+msgid "Page number of this calendar"
+msgstr "Número da página deste calendário"
+
+#: .\calendars\templates\calendars\calendar_delete.html:6
+#: .\calendars\templates\calendars\calendar_delete.html:14
+msgid "Delete calendar"
+msgstr "Excluir calendário"
+
+#: .\calendars\templates\calendars\calendar_delete.html:17
+msgid "Are you sure you want to delete this calendar?"
+msgstr "Você tem certeza que quer excluir este calendário?"
+
+#: .\calendars\templates\calendars\calendar_detail.html:18
+msgid "Add activity"
+msgstr "Adicionar atividade"
+
+#: .\calendars\templates\calendars\calendar_detail.html:19
+msgid "Add activities"
+msgstr "Adicionar atividades"
+
+#: .\calendars\templates\calendars\calendar_detail.html:20
+#: .\certificates\templates\certificates\certificate_list.html:27
+#: .\events\templates\events\event_detail.html:46
+#: .\events\templates\events\event_detail.html:59
+msgid "Download"
+msgstr "Baixar"
+
+#: .\calendars\templates\calendars\calendar_list.html:16
+#: .\calendars\templates\calendars\month_calendar_list.html:16
+msgid "Search for months.."
+msgstr "Pesquise por meses"
+
+#: .\calendars\templates\calendars\calendar_list.html:16
+#: .\calendars\templates\calendars\month_calendar_list.html:16
+msgid "Type in the month name"
+msgstr "Digite o nome do mês"
+
+#: .\calendars\templates\calendars\calendar_list.html:18
+msgid "Create new calendar"
+msgstr "Criar novo calendário"
+
+#: .\calendars\templates\calendars\calendar_list.html:25
+msgid "Activities"
+msgstr "Atividades"
+
+#: .\calendars\templates\calendars\calendar_list.html:27
+#: .\calendars\templates\calendars\month_calendar_list.html:23
+msgid "Detail"
+msgstr "Ver"
+
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:6
+msgid "Update month calendar"
+msgstr "Editar o calendário de mês"
+
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:6
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:35
+msgid "Create month calendar"
+msgstr "Criar o calendário de mês"
+
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:12
+#: .\calendars\templates\calendars\month_calendar_delete.html:12
+#: .\calendars\templates\calendars\month_calendar_detail.html:12
+#: .\calendars\templates\calendars\month_calendar_list.html:7
+#: .\calendars\templates\calendars\month_calendar_list.html:13
+#: .\calendars\templates\calendars\month_calendar_list.html:15
+msgid "Month calendars"
+msgstr "Calendários de mês"
+
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:17
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:23
+msgid "Create a new month calendar"
+msgstr "Criar um novo calendário de mês"
+
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:30
+msgid "Background image for the calendar"
+msgstr "Imagem de fundo para o calendário"
+
+#: .\calendars\templates\calendars\month_calendar_delete.html:6
+#: .\certificates\templates\certificates\certificate_delete.html:6
+#: .\certificates\templates\certificates\certificate_delete.html:14
+msgid "Delete certificate"
+msgstr "Excluir certificado"
+
+#: .\calendars\templates\calendars\month_calendar_delete.html:14
+msgid "Delete month calendar"
+msgstr "Apagar calendário de mês"
+
+#: .\calendars\templates\calendars\month_calendar_delete.html:17
+msgid "Are you sure you want to delete this month calendar?"
+msgstr "Você tem certeza que quer excluir este calendário de mês"
+
+#: .\certificates\forms.py:36
+msgid "Both certificate files are required."
+msgstr "Ambos arquivos são obrigatórios."
+
+#: .\certificates\forms.py:45
+msgid "Enter the Wikimedia username of the individual"
+msgstr "Digite o nome de usuário(a) Wikimedia do indivíduo"
+
+#: .\certificates\forms.py:56 .\certificates\tests.py:712
+msgid "Enter the real name of the individual"
+msgstr "Digite o nome real do indivíduo"
+
+#: .\certificates\forms.py:66 .\certificates\tests.py:713
+msgid "Hours worked in the event by the individual. Format: (HHhMM)"
+msgstr "Horas trabalhadas no evento pelo indivíduo. Formato: (HHhMM)"
+
+#: .\certificates\forms.py:72 .\certificates\tests.py:714
+msgid "Role of the individual in the event"
+msgstr "Atribuição do indíviduo no evento"
+
+#: .\certificates\forms.py:107 .\certificates\tests.py:687
+#: .\certificates\tests.py:708 .\certificates\tests.py:728
+#: .\certificates\tests.py:735 .\certificates\tests.py:742
+msgid "This field is required."
+msgstr "Este campo é obrigatório."
+
+#: .\certificates\forms.py:108 .\certificates\tests.py:756
+msgid "Ensure this field has at most 256 characters."
+msgstr "Garanta que este campo tenha no máximo 256 caracteres"
+
+#: .\certificates\templates\certificates\certificate_create.html:6
+#: .\certificates\templates\certificates\certificate_create.html:31
+#: .\certificates\templates\certificates\certificate_validate.html:6
+msgid "Issue certificate"
+msgstr "Emitir certificado"
+
+#: .\certificates\templates\certificates\certificate_create.html:12
+#: .\certificates\templates\certificates\certificate_delete.html:12
+#: .\certificates\templates\certificates\certificate_update.html:12
+#: .\events\templates\events\event_certificate_confirm.html:12
+#: .\events\templates\events\event_certificate_upload.html:12
+#: .\events\templates\events\event_delete.html:12
+#: .\events\templates\events\event_detail.html:12
+#: .\events\templates\events\event_list.html:13
+#: .\events\templates\events\event_update.html:12
+msgid "Events"
+msgstr "Eventos"
+
+#: .\certificates\templates\certificates\certificate_create.html:14
+#: .\certificates\templates\certificates\certificate_create.html:16
+#: .\events\templates\events\event_detail.html:33
+msgid "Issue a new certificate"
+msgstr "Emitir um novo certificado"
+
+#: .\certificates\templates\certificates\certificate_create.html:17
+msgid ""
+"To issue an individual certificate for a participant of an event promoted or "
+"supported by Wiki Movimento Brasil, fill out the form:"
+msgstr ""
+"Para emitir um certificado individual para um participante de um evento "
+"promovido ou apoiado pelo Wiki Movimento Brasil, preencha o formulário:"
+
+#: .\certificates\templates\certificates\certificate_create.html:21
+#: .\certificates\templates\certificates\certificate_update.html:20
+#: .\events\templates\events\event_certificate_upload.html:39
+msgid "Real name of the individual"
+msgstr "Nome real do indivíduo"
+
+#: .\certificates\templates\certificates\certificate_create.html:23
+#: .\certificates\templates\certificates\certificate_update.html:22
+msgid "Wikimedia username of the individual"
+msgstr "Nome de usuário(a) do indivíduo"
+
+#: .\certificates\templates\certificates\certificate_create.html:25
+#: .\certificates\templates\certificates\certificate_update.html:24
+#: .\events\templates\events\event_certificate_upload.html:41
+msgid "Pronouns for individual"
+msgstr "Pronomes do indivíduo"
+
+#: .\certificates\templates\certificates\certificate_create.html:27
+#: .\certificates\templates\certificates\certificate_update.html:26
+#: .\events\templates\events\event_certificate_upload.html:42
+msgid "Hours worked at the event by the individual"
+msgstr "Horas trabalhadas no evento pelo indivíduo"
+
+#: .\certificates\templates\certificates\certificate_create.html:29
+#: .\certificates\templates\certificates\certificate_update.html:28
+#: .\events\templates\events\event_certificate_upload.html:43
+msgid "Role of the individual on the event"
+msgstr "Atribuição do indíviduo no evento"
+
+#: .\certificates\templates\certificates\certificate_delete.html:17
+msgid "Are you sure you want to delete this certificate?"
+msgstr "Você tem certeza que quer excluir este certificado?"
+
+#: .\certificates\templates\certificates\certificate_delete.html:19
+#: .\events\templates\events\list_certificates.html:21
+msgid "Name"
+msgstr "Nome"
+
+#: .\certificates\templates\certificates\certificate_delete.html:21
+#: .\events\templates\events\list_certificates.html:22
+#: .\users\templates\users\update_profile.html:16
+msgid "Username"
+msgstr "Nome de usuário(a)"
+
+#: .\certificates\templates\certificates\certificate_delete.html:23
+#: .\events\templates\events\list_certificates.html:23
+msgid "Pronouns"
+msgstr "Pronomes"
+
+#: .\certificates\templates\certificates\certificate_delete.html:25
+msgid "Event"
+msgstr "Evento"
+
+#: .\certificates\templates\certificates\certificate_delete.html:27
+#: .\events\templates\events\event_detail.html:43
+#: .\events\templates\events\event_detail.html:56
+#: .\events\templates\events\list_certificates.html:24
+msgid "Hours"
+msgstr "Horas"
+
+#: .\certificates\templates\certificates\certificate_delete.html:29
+#: .\events\templates\events\event_detail.html:44
+#: .\events\templates\events\event_detail.html:57
+#: .\events\templates\events\list_certificates.html:25
+msgid "Role"
+msgstr "Atribuição"
+
+#: .\certificates\templates\certificates\certificate_detail.html:6
+#: .\certificates\templates\certificates\certificate_detail.html:12
+#: .\certificates\templates\certificates\certificate_validate.html:12
+#: .\certificates\templates\certificates\certificate_validate.html:14
+#: .\templates\navbar.html:54 .\templates\navbar.html:56
+#: .\users\templates\users\index.html:38 .\users\templates\users\index.html:40
+msgid "Validate certificate"
+msgstr "Validar certificado"
+
+#: .\certificates\templates\certificates\certificate_detail.html:15
+#: .\certificates\utils.py:273 .\certificates\utils.py:299
+#: .\events\tests.py:272 .\events\tests.py:303
+msgid "Certificate"
+msgstr "Certificado"
+
+#: .\certificates\templates\certificates\certificate_detail.html:17
+msgid "name"
+msgstr "nome"
+
+#: .\certificates\templates\certificates\certificate_detail.html:19
+msgid "event"
+msgstr "evento"
+
+#: .\certificates\templates\certificates\certificate_detail.html:21
+msgid "hours"
+msgstr "horas"
+
+#: .\certificates\templates\certificates\certificate_detail.html:23
+msgid "role"
+msgstr "atribuição"
+
+#: .\certificates\templates\certificates\certificate_detail.html:25
+msgid "certificate_hash"
+msgstr "hash do certificado"
+
+#: .\certificates\templates\certificates\certificate_detail.html:29
+msgid "Download certificate"
+msgstr "Baixar certificado"
+
+#: .\certificates\templates\certificates\certificate_list.html:7
+#: .\certificates\templates\certificates\certificate_list.html:13
+#: .\certificates\templates\certificates\certificate_list.html:15
+msgid "Your certificates"
+msgstr "Seus certificados"
+
+#: .\certificates\templates\certificates\certificate_list.html:16
+msgid "Search for events.."
+msgstr "Pesquise por eventos"
+
+#: .\certificates\templates\certificates\certificate_list.html:16
+msgid "Type in an event name"
+msgstr "Digite o nome do evento"
+
+#: .\certificates\templates\certificates\certificate_update.html:6
+#: .\certificates\templates\certificates\certificate_update.html:14
+msgid "Update certificate"
+msgstr "Editar certificado"
+
+#: .\certificates\templates\certificates\certificate_update.html:33
+#: .\events\templates\events\event_detail.html:17
+#: .\events\templates\events\event_update.html:6
+#: .\events\templates\events\event_update.html:28
+msgid "Update event"
+msgstr "Editar evento"
+
+#: .\certificates\templates\certificates\certificate_validate.html:15
+msgid "Type or paste the hash code of the document:"
+msgstr "Digite ou cole o código hash do documento:"
+
+#: .\certificates\templates\certificates\certificate_validate.html:19
+msgid "Hash code of the document"
+msgstr "Código hash do documento"
+
+#: .\certificates\templates\certificates\certificate_validate.html:23
+msgid "Validate"
+msgstr "Validar"
+
+#: .\certificates\tests.py:270 .\certificates\tests.py:576
+#: .\certificates\tests.py:694 .\certificates\utils.py:56
+msgid "participant"
+msgstr "participant"
+
+#: .\certificates\tests.py:286 .\certificates\utils.py:68
+#, python-brace-format
+msgid "on {m_start} {d_start}, {y_start}"
+msgstr "em {d_start} de {m_start} de {y_start}"
+
+#: .\certificates\tests.py:295 .\certificates\utils.py:78
+#, python-brace-format
+msgid "from {m_start} {d_start} to {m_end} {d_end}, {y_start}"
+msgstr "de {d_start} de {m_start} a {d_end} de {m_end} de {y_start}"
+
+#: .\certificates\tests.py:306 .\certificates\utils.py:73
+#, python-brace-format
+msgid "from {m_start} {d_start} to {d_end}, {y_start}"
+msgstr "de {d_start} a {d_end} de {m_start} de {y_start}"
+
+#: .\certificates\tests.py:316 .\certificates\utils.py:84
+#, python-brace-format
+msgid "from {m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
+msgstr "de {d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
+
+#: .\certificates\tests.py:341 .\certificates\utils.py:213
+msgid "Your CSV file is empty. Verify and submit again"
+msgstr "Seu arquivo CSV está vazio. Verifique e submeta novamente"
+
+#: .\certificates\utils.py:110
+msgid "CERTIFICATE"
+msgstr "CERTIFICADO"
+
+#: .\certificates\utils.py:114
+msgid ""
+"The user group Wiki Movement Brazil (CNPJ 29.801.908/0001-86) certifies that"
+msgstr ""
+"O grupo de usuários Wiki Movimento Brazil (CNPJ 29.801.908/0001-86) "
+"certifica que"
+
+#: .\certificates\utils.py:150
+#, python-format
+msgid "participated %(role)s in the event"
+msgstr "participou %(role)s no evento"
+
+#: .\certificates\utils.py:168
+#, python-format
+msgid "%(date)s (Credit hours: %(hours)s)."
+msgstr "%(date)s (Carga horária: %(hours)s)."
+
+#: .\certificates\utils.py:174
+msgid "VALÉRIO ANDRADE MELO"
+msgstr "VALÉRIO ANDRADE MELO"
+
+#: .\certificates\utils.py:175
+msgid "President of Wiki Movement Brazil"
+msgstr "Presidente do Wiki Movimento Brasil"
+
+#: .\certificates\utils.py:183
+#, python-format
+msgid ""
+"The validity of this document can be checked at https://wmb.toolforge.org/. "
+"The hash code for validation is: %(certificate_hash)s"
+msgstr ""
+"A validade deste documento pode ser checada em https://wmb.toolforge.org/. O "
+"código hash para validação é: %(certificate_hash)s"
+
+#: .\certificates\utils.py:200 .\events\tests.py:341 .\events\tests.py:354
+msgid "One or more required columns are missing. Verify and submit again"
+msgstr "Um ou mais colunas estão faltando. Verifique e submeta novamente"
+
+#: .\certificates\utils.py:205
+#, python-format
+msgid "Name invalid! Verify row %(row)s, column 'name'"
+msgstr "Nome inválido! Verifique a linha %(row)s da coluna 'name'"
+
+#: .\certificates\utils.py:207
+#, python-format
+msgid "Pronoun invalid! Verify row %(row)s, column 'pronoun'"
+msgstr "Pronome inválido! Verifique a linha %(row)s da coluna 'pronoun'"
+
+#: .\certificates\utils.py:209
+#, python-format
+msgid "Hours invalid! Verify row %(row)s, column 'hours'"
+msgstr "Horas inválidas! Verifique a linha %(row)s da coluna 'hours'"
+
+#: .\certificates\utils.py:211
+#, python-format
+msgid "Role invalid! Verify row %(row)s, column 'role'"
+msgstr "Atribuição inválida! Verifique a linha %(row)s da coluna 'role'"
+
+#: .\certificates\utils.py:303 .\events\tests.py:249
+msgid "Certificates"
+msgstr "Certificados"
+
+#: .\events\forms.py:14
+msgid "Enter the event name"
+msgstr "Digite o nome do evento"
+
+#: .\events\forms.py:29
+msgid "Enter link(s) for the event"
+msgstr "Cole link(s) para o evento, se houver"
+
+#: .\events\templates\events\event_certificate_confirm.html:6
+#: .\events\templates\events\event_certificate_confirm.html:14
+#: .\events\templates\events\event_certificate_upload.html:6
+#: .\events\templates\events\event_certificate_upload.html:14
+msgid "Issue certificates"
+msgstr "Emitir certificados"
+
+#: .\events\templates\events\event_certificate_confirm.html:16
+#: .\events\templates\events\event_certificate_upload.html:16
+msgid "Issuing certificates for"
+msgstr "Emitindo certificados para"
+
+#: .\events\templates\events\event_certificate_confirm.html:18
+msgid ""
+"Verify the data presented below and if you are satisfied, click in the "
+"button below to issue the certificates. If not, go back."
+msgstr ""
+"verifique a data apresentada abaixo e se você estiver satisfeito(a), clique "
+"no botão abaixo para emitir esses certificados. Se não, volte."
+
+#: .\events\templates\events\event_certificate_confirm.html:27
+msgid "Create certificates"
+msgstr "Criar certificados"
+
+#: .\events\templates\events\event_certificate_upload.html:18
+msgid ""
+"To register participants or organizers of an event promoted or supported by "
+"the Wiki Movimento Brasil, you need to upload a <code>.csv</code> file "
+"formatted as follows* and a <code>.png</code> background image for the "
+"certificates**."
+msgstr ""
+"Para registrar participantes ou organizadores de um evento promovido ou "
+"apoiado pelo Wiki Movimento Brasil, você precisa carregar um arquivo <code>."
+"csv</code> formatado como a seguir* e um arquivo <code>.png</code> de fundo "
+"para os certificados**."
+
+#: .\events\templates\events\event_certificate_upload.html:19
+msgid "name,username,pronoun,hours,role"
+msgstr "name,username,pronoun,hours,role"
+
+#: .\events\templates\events\event_certificate_upload.html:20
+#, python-format
+msgid ""
+"* A .csv example file can be downloaded <a href=\"%(csv_example)s\" aria-"
+"label=\"Example of a CSV file\" download>here</a>."
+msgstr ""
+"* Um exemplo de arquivo .csv pode ser baixado <a href=\"%(csv_example)s\" "
+"aria-label=\"Exemplo de um arquivo CSV\" download>aqui</a>."
+
+#: .\events\templates\events\event_certificate_upload.html:21
+#, python-format
+msgid ""
+"** The background image is always different for each event, as it is "
+"composed by partners logos and event's own visual identities. Models for the "
+"construction of such images are available <a target=\"_blank\" "
+"href=\"%(background_link)s\" aria-label=\"Link for the presentation of "
+"models of background images\">here</a>."
+msgstr ""
+"** A imagen de fundo é diferente para cada evento, pois é composta de logos "
+"de parceiros e a própria identidade visual. Modelos para a construção de "
+"tais imagens estão disponíveis <a target=\"_blank\" "
+"href=\"%(background_link)s\" aria-label=\"Link para a apresentação de "
+"modelos de imagens de fundo\">aqui</a>."
+
+#: .\events\templates\events\event_certificate_upload.html:26
+msgid "Choose the event you want to issue certificates"
+msgstr "Escolha o evneto para o qual você quer emitir certificados"
+
+#: .\events\templates\events\event_certificate_upload.html:30
+msgid "Choose a .csv file"
+msgstr "Escolha um arquivo .csv"
+
+#: .\events\templates\events\event_certificate_upload.html:31
+#: .\events\templates\events\event_certificate_upload.html:33
+msgid "Choose a file"
+msgstr "Escolha um arquivo"
+
+#: .\events\templates\events\event_certificate_upload.html:32
+msgid "Choose a .png file"
+msgstr "Escolha um arquivo .png"
+
+#: .\events\templates\events\event_certificate_upload.html:38
+msgid "Description of the .csv columns"
+msgstr "Descrição das colunas do .csv"
+
+#: .\events\templates\events\event_certificate_upload.html:40
+msgid "Wikimedia username of the individual (optional)"
+msgstr "Nome de usuário(a) do indivíduo (opcional)"
+
+#: .\events\templates\events\event_create.html:6
+#: .\events\templates\events\event_create.html:12
+#: .\events\templates\events\event_create.html:14
+#: .\events\templates\events\event_create.html:27
+msgid "Create event"
+msgstr "Criar evento"
+
+#: .\events\templates\events\event_create.html:15
+msgid ""
+"To issue certificates for participants of an event promoted or supported by "
+"Wiki Movimento Brasil, fill out the form:"
+msgstr ""
+"Para emitir certificados para participantes de um evento promovido ou "
+"apoiado pelo Wiki Movimento Brasil, preencha o formulário:"
+
+#: .\events\templates\events\event_create.html:19
+msgid "Name of the event:"
+msgstr "Nome do evento:"
+
+#: .\events\templates\events\event_create.html:21
+msgid "Date of the beginning of the event:"
+msgstr "Data inicial do evento:"
+
+#: .\events\templates\events\event_create.html:23
+msgid "Date of the ending of the event:"
+msgstr "Data final do evento:"
+
+#: .\events\templates\events\event_create.html:25
+msgid "Link(s) for the event:"
+msgstr "Link(s) para o evento:"
+
+#: .\events\templates\events\event_delete.html:6
+#: .\events\templates\events\event_detail.html:18
+msgid "Delete event"
+msgstr "Excluir evento"
+
+#: .\events\templates\events\event_delete.html:17
+msgid "Are you sure you want to delete this event?"
+msgstr "Você tem certeza que quer excluir este evento?"
+
+#: .\events\templates\events\event_delete.html:18
+msgid "All the certificates will be deleted and invalidated"
+msgstr "Todos os certificados serão excluídos e invalidados"
+
+#: .\events\templates\events\event_detail.html:6
+msgid "Detail event"
+msgstr "Ver evento"
+
+#: .\events\templates\events\event_detail.html:21
+msgid "Date of the start of the event"
+msgstr "Data inicial do evento"
+
+#: .\events\templates\events\event_detail.html:23
+msgid "Date of the end of the event"
+msgstr "Data final do evento"
+
+#: .\events\templates\events\event_detail.html:26
+msgid "Links for the event"
+msgstr "Links para o evento"
+
+#: .\events\templates\events\event_detail.html:29
+msgid "Number of certificates"
+msgstr "Número de certificados"
+
+#: .\events\templates\events\event_detail.html:34
+msgid "Issue more than one certificate"
+msgstr "Emitir mais de um certificado"
+
+#: .\events\templates\events\event_detail.html:35
+#: .\events\templates\events\list_certificates.html:12
+#: .\events\templates\events\list_certificates.html:14
+msgid "Download all certificates"
+msgstr "Baixar todos os certificados"
+
+#: .\events\templates\events\event_detail.html:40
+#: .\events\templates\events\event_detail.html:53
+#: .\users\templates\users\update_profile.html:20
+msgid "Full name"
+msgstr "Nome completo"
+
+#: .\events\templates\events\event_detail.html:41
+#: .\events\templates\events\event_detail.html:54
+msgid "Wiki username"
+msgstr "Nome de usuário"
+
+#: .\events\templates\events\event_detail.html:42
+#: .\events\templates\events\event_detail.html:55
+msgid "Pronoun"
+msgstr "Pronome"
+
+#: .\events\templates\events\event_detail.html:45
+#: .\events\templates\events\event_detail.html:58
+#: .\events\templates\events\event_update.html:14
+#: .\users\templates\users\update_profile.html:37
+msgid "Update"
+msgstr "Editar"
+
+#: .\events\templates\events\event_list.html:7 .\templates\navbar.html:28
+#: .\templates\navbar.html:30
+msgid "List events"
+msgstr "Listar eventos"
+
+#: .\events\templates\events\event_list.html:15
+msgid "WMB events"
+msgstr "Eventos WMB"
+
+#: .\events\templates\events\event_list.html:16
+msgid "Search for names.."
+msgstr "Pesquise por nome"
+
+#: .\events\templates\events\event_list.html:20
+msgid "Details of the event"
+msgstr "Detalhes do evento"
+
+#: .\events\templates\events\event_list.html:22
+msgid "certificates"
+msgstr "certificados"
+
+#: .\events\templates\events\event_list.html:23
+msgid "Created by"
+msgstr "Criado por"
+
+#: .\events\templates\events\event_update.html:20
+msgid "Name of the event"
+msgstr "Nome do evento"
+
+#: .\events\templates\events\event_update.html:22
+msgid "Date of the beginning of the event"
+msgstr "Data inicial do evento"
+
+#: .\events\templates\events\event_update.html:24
+msgid "Date of the ending of the event"
+msgstr "Data final do evento"
+
+#: .\events\templates\events\event_update.html:26
+msgid "Link(s) for the event"
+msgstr "Link(s) para o evento"
+
+#: .\events\templatetags\custom_tags.py:17 .\events\tests.py:412
+#, python-brace-format
+msgid "{m_start} {d_start}, {y_start}"
+msgstr "{d_start} de {m_start} de {y_start}"
+
+#: .\events\templatetags\custom_tags.py:22 .\events\tests.py:419
+#, python-brace-format
+msgid "{m_start} {d_start} to {d_end}, {y_start}"
+msgstr "{d_start} a {d_end} de {m_start} de {y_start}"
+
+#: .\events\templatetags\custom_tags.py:27 .\events\tests.py:427
+#, python-brace-format
+msgid "{m_start} {d_start} to {m_end} {d_end}, {y_start}"
+msgstr "{d_start} de {m_start} a {d_end} de {m_end} de {y_start}"
+
+#: .\events\templatetags\custom_tags.py:33 .\events\tests.py:436
+#, python-brace-format
+msgid "{m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
+msgstr "{d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
+
+#: .\events\views.py:90
+msgid "Errors in the CSV file:"
+msgstr "Erros no arquivo CSV:"
+
+#: .\templates\base.html:30 .\templates\navbar.html:8
+msgid "Logo for the project"
+msgstr "Logo do projeto"
+
+#: .\templates\base.html:31
+msgid "Wiki Movimento Brasil"
+msgstr "Wiki Movimento Brasil"
+
+#: .\templates\base.html:37
+msgid "This app was developed by Wiki Movimento Brasil."
+msgstr "Este aplicativo foi desenvolvido pelo Wiki Movimento Brasil"
+
+#: .\templates\i18n.html:7
+msgid "Language"
+msgstr "Idioma"
+
+#: .\templates\navbar.html:7 .\users\templates\users\index.html:6
+msgid "Homepage"
+msgstr "Página inicial"
+
+#: .\templates\navbar.html:9
+msgid "WMB"
+msgstr "WMB"
+
+#: .\templates\navbar.html:19 .\templates\navbar.html:21
+#: .\users\templates\users\index.html:18 .\users\templates\users\index.html:20
+msgid "Generate certificates"
+msgstr "Gerar certificados"
+
+#: .\templates\navbar.html:37 .\users\templates\users\index.html:25
+msgid "Generate events calendar"
+msgstr "Gerar calendários de eventos"
+
+#: .\templates\navbar.html:39 .\users\templates\users\index.html:27
+msgid "Generate calendar"
+msgstr "Gerar calendário"
+
+#: .\templates\navbar.html:46 .\templates\navbar.html:48
+#: .\users\templates\users\index.html:32 .\users\templates\users\index.html:34
+msgid "See your certificates"
+msgstr "Veja seus certificados"
+
+#: .\templates\navbar.html:64 .\templates\navbar.html:66
+#: .\users\templates\users\index.html:50 .\users\templates\users\index.html:52
+msgid "Login"
+msgstr "Entrar"
+
+#: .\templates\navbar.html:71 .\templates\navbar.html:73
+#: .\users\templates\users\index.html:44 .\users\templates\users\index.html:46
+msgid "Logout"
+msgstr "Sair"
+
+#: .\users\models.py:7 .\users\models.py:20
+msgid "full name"
+msgstr "nome completo"
+
+#: .\users\models.py:9 .\users\models.py:21
+msgid "username"
+msgstr "nome de usuário(a)"
+
+#: .\users\models.py:13
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+"Obrigatório. 150 caracteres ou menos. Somente letras, dígitos e @/./+/-/_."
+
+#: .\users\models.py:14
+msgid "A user with that username already exists."
+msgstr "Um usuário com esse nome de usuário já existe."
+
+#: .\users\models.py:22
+msgid "number of certificates"
+msgstr "número de certificados"
+
+#: .\users\models.py:24
+msgid "date created"
+msgstr "data de criação"
+
+#: .\users\models.py:25
+msgid "date modified"
+msgstr "data de modificação"
+
+#: .\users\templates\users\index.html:10
+#, python-format
+msgid "Hello, %(user)s!"
+msgstr "Olá, %(user)s!"
+
+#: .\users\templates\users\index.html:11 .\users\templates\users\index.html:14
+msgid "Here's what you can do in this space:"
+msgstr "Aqui está o que você pode fazer neste espaço:"
+
+#: .\users\templates\users\index.html:13
+msgid "Hello!"
+msgstr "Olá!"
+
+#: .\users\templates\users\update_profile.html:5
+msgid "Update profile"
+msgstr "Editar perfil"
+
+#: .\users\templates\users\update_profile.html:11
+msgid "Update your profile"
+msgstr "Editar seu perfil"
+
+#: .\users\templates\users\update_profile.html:22
+msgid ""
+"Your full name is required to issue the certificate correctly at the end of "
+"the course. That information is not publicly available. <b>Attention:</b> "
+"Any modification will render previously issued certificates void, and you "
+"will need to download them again."
+msgstr ""
+"Seu nome completo é obrigatório para emitir o certificado corretamente ao "
+"final do evento. Esta informação não estará disponível publicamente. "
+"<b>Atenção:</b> Qualquer modificação irá tornar seus certificados "
+"anteriormente emitidos inválidos, e você  terá que baixá-los novamente."
+
+#: .\users\templates\users\update_profile.html:25
+msgid "Email"
+msgstr "E-mail"
+
+#: .\users\templates\users\update_profile.html:27
+msgid ""
+"Please provide the email address where you would like us to send your "
+"certificate at the end of the course."
+msgstr ""
+"Por favor, digite o endereço de e-mail para o qual você gostaria que "
+"enviássemos seu certificado ao final do evento."
+
+#: .\users\templates\users\update_profile.html:30
+msgid "Privacy Policy"
+msgstr "Política de Privacidade"
+
+#: .\users\templates\users\update_profile.html:33
+#, python-format
+msgid ""
+"By submitting this form, you agree to the collection and use of the "
+"information you provided for managing your enrollment and issuing "
+"certificates. This is in accordance with the Brazilian General Data "
+"Protection Law (LGPD). For more information, please read our <a "
+"href=\"%(privacy_url)s\" title=\"our Privacy Policy\">Privacy Policy</a>."
+msgstr ""
+"Ao submeter este formulário, você concorda com a coleta e uso da informação "
+"que você proveu para gerenciar a sua inscrição e emissão de certificados. "
+"Isto está acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD). Para "
+"mais informações, por favor, leia nossa <a href=\"%(privacy_url)s\" "
+"title=\"Nossa Política de Privacidade\">Política de Privacidade</a>."
+
+#: .\wmb\settings.py:140
+msgid "English"
+msgstr "Inglês"
+
+#: .\wmb\settings.py:141
+msgid "Brazilian Portuguese"
+msgstr "Português brasileiro"

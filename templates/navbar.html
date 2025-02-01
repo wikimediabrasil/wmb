@@ -1,0 +1,78 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="nav_wrapper">
+    <div class="nav_section">
+        <div class="nav_subsection">
+            <a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">
+                <img class="nav_logo" src="{% static 'images/logo.svg' %}" alt="{% trans "Logo for the project" %}">
+                <span class="nav_title"><b>{% trans "WMB" %}</b></span>
+            </a>
+        </div>
+        <div class="nav_separator"></div>
+        <div class="nav_subsection">
+            {% include 'i18n.html' %}
+        </div>
+        <div class="nav_separator"></div>
+        {% if perms.events.add_event %}
+            <div class="nav_subsection">
+                <a href="{% url 'events:event_create' %}" aria-label="{% trans 'Generate certificates' %}">
+                    <i class="nav_icon fa-solid fa-print"></i>
+                    <span class="nav_title">{% trans "Generate certificates" %}</span>
+                </a>
+            </div>
+            <div class="nav_separator"></div>
+        {% endif %}
+        {% if perms.events.view_event %}
+            <div class="nav_subsection">
+                <a href="{% url 'events:event_list' %}" aria-label="{% trans 'List events' %}">
+                    <i class="nav_icon fa-solid fa-certificate"></i>
+                    <span class="nav_title">{% trans "List events" %}</span>
+                </a>
+            </div>
+            <div class="nav_separator"></div>
+        {% endif %}
+        {% if perms.events.view_event %}
+            <div class="nav_subsection">
+                <a href="{% url 'calendars:calendar_list' %}" aria-label="{% trans 'Generate events calendar' %}">
+                    <i class="nav_icon fa-solid fa-calendar-days"></i>
+                    <span class="nav_title">{% trans "Generate calendar" %}</span>
+                </a>
+            </div>
+            <div class="nav_separator"></div>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <div class="nav_subsection">
+                <a href="{% url 'certificates:certificate_list' %}" aria-label="{% trans 'See your certificates' %}">
+                    <i class="nav_icon fa-solid fa-medal"></i>
+                    <span class="nav_title">{% trans "See your certificates" %}</span>
+                </a>
+            </div>
+            <div class="nav_separator"></div>
+        {% endif %}
+        <div class="nav_subsection">
+            <a href="{% url 'certificates:certificate_validate' %}" aria-label="{% trans 'Validate certificate' %}">
+                <i class="nav_icon fa-solid fa-circle-check"></i>
+                <span class="nav_title">{% trans "Validate certificate" %}</span>
+            </a>
+        </div>
+    </div>
+    <div class="nav_section nav_bottom">
+        <div class="nav_separator"></div>
+        {% if not user.is_authenticated %}
+            <div class="nav_subsection">
+                <a href="{% url 'users:social:begin' 'mediawiki' %}" aria-label="{% trans 'Login' %}">
+                    <i class="nav_icon fa-solid fa-right-to-bracket"></i>
+                    <span class="nav_title">{% trans "Login" %}</span>
+                </a>
+            </div>
+        {% else %}
+            <div class="nav_subsection">
+                <a href="{% url 'users:logout' %}" aria-label="{% trans 'Logout' %}">
+                    <i class="nav_icon fa-solid fa-right-from-bracket"></i>
+                    <span class="nav_title">{% trans "Logout" %}</span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</nav>

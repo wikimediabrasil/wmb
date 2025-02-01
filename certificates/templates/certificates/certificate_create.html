@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Issue certificate" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Issue a new certificate" %}</li>
+        </ol>
+        <h1>{% trans "Issue a new certificate" %}</h1>
+        <div class="w3-container flex-center">{% trans "To issue an individual certificate for a participant of an event promoted or supported by Wiki Movimento Brasil, fill out the form:" %}</div>
+        <div class="w3-container flex-center">
+            <form action="{% url 'events:event_certificate_manually' event.id %}" method="post">
+                {% csrf_token %}
+                <label class="field_title" for="name">{% trans "Real name of the individual" %}</label>
+                {{ form.name }}
+                <label class="field_title" for="username">{% trans "Wikimedia username of the individual" %}</label>
+                {{ form.username }}
+                <label class="field_title" for="pronoun">{% trans "Pronouns for individual" %}</label>
+                {{ form.pronoun }}
+                <label class="field_title" for="hours">{% trans "Hours worked at the event by the individual" %}</label>
+                {{ form.hours }}
+                <label class="field_title" for="role">{% trans "Role of the individual on the event" %}</label>
+                {{ form.role }}
+                <input type="submit" class="button custom-button" value="{% trans 'Issue certificate' %}">
+            </form>
+        </div>
+    </main>
+{% endblock %}

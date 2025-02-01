@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}{% trans "List events" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Events" %}</li>
+        </ol>
+        <h1 class="w3-row">{% trans "WMB events" %}</h1>
+        <input type="text" id="search-input" onkeyup="searchFunction()" placeholder="{% trans 'Search for names..' %}" title="Type in a name">
+        <div class="flex-container" id="events">
+            {% for event in events %}
+                <div class="flex-item" data-name="{{ event }}">
+                    <h2><a href="{% url 'events:event_detail' event.id %}" aria-label="{% trans 'Details of the event' %}">{{ event }}</a></h2>
+                    <span>{{ event.date_start|format_date:event.date_end }}</span>
+                    <span>{{ event.event_certificates.count }} {% trans "certificates" %}</span>
+                    <span>{% trans "Created by" %} {{ event.created_by }} ({{ event.created_on }})</span>
+                    <span></span>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      function searchFunction() {
+        let input = document.getElementById("search-input").value.toUpperCase();
+        let events = document.getElementById("events");
+        let eventList = events.getElementsByClassName("flex-item");
+        for (let i = 0; i < eventList.length; i++) {
+          let textValue = eventList[i].getAttribute("data-name").toUpperCase()
+          if (textValue.indexOf(input) > -1) {
+            eventList[i].style.display = "";
+          } else {
+            eventList[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+{% endblock %}

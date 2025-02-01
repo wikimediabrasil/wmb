@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Detail calendar" %} - {{ calendar }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item">{% trans "Calendars" %}</li>
+            <li class="breadcrumb-item active">{{ calendar }}</li>
+        </ol>
+        <h1>{{ calendar }}</h1>
+        <div class="button-container flex-center bottom-container">
+            <a href="{% url 'calendars:calendar_update' pk=calendar.id %}"><button class="custom-button">{% trans "Edit" %}</button></a>
+            <a href="{% url 'calendars:calendar_delete' pk=calendar.id %}"><button class="custom-button custom-red-button">{% trans "Delete" %}</button></a>
+            <a href="{% url 'calendars:calendar_list' %}"><button class="custom-button custom-grey-button">{% trans "Go back" %}</button></a>
+        </div>
+        {% for activity in calendar.activities.all %}
+            <div class="w3-container flex-center">
+                <span>{{ activity.title }}</span>
+                <span>{{ date_start }}</span>
+                <span>{{ date_end }}</span>
+                <span>{{ hour_start }}</span>
+            </div>
+        {% endfor %}
+        <div class="button-container flex-center bottom-container">
+            <a href="{% url 'calendars:calendar_update' pk=calendar.id %}"><button class="custom-button">{% trans "Edit" %}</button></a>
+            <a href="{% url 'calendars:calendar_delete' pk=calendar.id %}"><button class="custom-button custom-red-button">{% trans "Delete" %}</button></a>
+            <a href="{% url 'calendars:calendar_list' %}"><button class="custom-button custom-grey-button">{% trans "Go back" %}</button></a>
+        </div>
+    </main>
+{% endblock %}

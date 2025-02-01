@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}{% trans "Detail calendar" %} - {{ calendar }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item active">{{ calendar }}</li>
+        </ol>
+        <h1>{{ calendar }}</h1>
+        <div class="button-container flex-center">
+            <a href="{% url 'calendars:activity_create' calendar_id=calendar.id %}"><button class="custom-button">{% trans "Add activity" %}</button></a>
+            <a href="{% url 'calendars:activity_create_in_bulk' calendar_id=calendar.id %}"><button class="custom-button">{% trans "Add activities" %}</button></a>
+            <a href="#" id="downloadCalendarBtn"><button class="custom-button">{% trans "Download" %}</button></a>
+        </div>
+        <div class="button-container flex-center bottom-container">
+            <a href="{% url 'calendars:calendar_update' pk=calendar.id %}"><button class="custom-button">{% trans "Edit" %}</button></a>
+            <a href="{% url 'calendars:calendar_delete' pk=calendar.id %}"><button class="custom-button custom-red-button">{% trans "Delete" %}</button></a>
+            <a href="{% url 'calendars:calendar_list' %}"><button class="custom-button custom-grey-button">{% trans "Go back" %}</button></a>
+        </div>
+         <div class="flex-container" id="activities">
+            {% for activity in calendar.activities.all|dictsort:"date_start" %}
+                <div class="flex-item" data-name="{{ activity }}" style="justify-content: space-between; ">
+                    <div style="display: flex; flex-direction: column; ">
+                        <h2>{{ activity.title }} ({{ activity.custom_date }})</h2>
+                        <span>{{ activity.date_start }}{% if activity.hour_start %} ({{ activity.hour_start }}){% endif %}</span>
+                        <span>{{ activity.date_end }}</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; justify-content: space-between">
+                        <a href="{% url 'calendars:activity_update' calendar_id=calendar.id pk=activity.pk %}">{% trans "Edit" %}</a>
+                        <a href="{% url 'calendars:activity_delete' calendar_id=calendar.id pk=activity.pk %}">{% trans "Delete" %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        const activitiesData = {{ activities|safe }};
+        const month = "{{ calendar.calendar.month|get_month_name }}";
+        const media_url = {{ media_url }};
+        const static_url = {{ static_url }};
+    </script>
+    <script type="text/javascript" src="{% static 'js/calendar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/html2canvas.js' %}"></script>
+{% endblock %}

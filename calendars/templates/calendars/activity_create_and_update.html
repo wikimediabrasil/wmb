@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% if form.instance.pk %}{% trans "Update activity" %} - {{ form.instance }}{% else %}{% trans "Create activity" %}{% endif %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}">{{ calendar }}</a></li>
+            {% if form.instance.pk %}
+                <li class="breadcrumb-item active">{{ form.instance }}</li>
+                <li class="breadcrumb-item active">{% trans "Edit" %}</li>
+            {% else %}
+                <li class="breadcrumb-item active">{% trans "Create a new activity" %}</li>
+            {% endif %}
+        </ol>
+        {% if form.instance.pk %}
+            <h1>{% trans "Edit activity" %} - {{ form.instance }}</h1>
+        {% else %}
+            <h1>{% trans "Create a new activity" %}</h1>
+        {% endif %}
+        <div class="w3-container flex-center">
+            <form class="form-container" action="{% if form.instance.pk %}{% url 'calendars:activity_update' calendar_id=calendar.pk pk=form.instance.pk %}{% else %}{% url 'calendars:activity_create' calendar_id=calendar.pk %}{% endif %}" method="post" id="activity">
+                {% csrf_token %}
+                {{ form.calendar }}
+                <label class="field_title" for="title">{% trans "Title of the activity" %}</label>
+                {{ form.title }}
+                <label class="field_title" for="date_start">{% trans "Beginning date for this activity" %}</label>
+                <input type="date" name="date_start" value="{{ form.instance.date_start|date:'Y-m-d'}}" class="form-control form_value" required="" id="date_start">
+                <label class="field_title" for="hour_start">{% trans "Beginning hour for this activity" %} {% trans "(Optional)" %}</label>
+                {{ form.hour_start }}
+                <label class="field_title" for="date_end">{% trans "Ending date for this activity" %} {% trans "(Optional)" %}</label>
+                <input type="date" name="date_end" value="{{ form.instance.date_end|date:'Y-m-d'}}" class="form-control form_value" id="date_end">
+                <label class="field_title" for="custom_date">{% trans "Custom date(s) for this activity" %} {% trans "(Optional)" %}</label>
+                {{ form.custom_date }}
+                {% if form.instance.pk %}
+                    <input type="submit" class="button custom-button submit-button" value="{% trans 'Update activity' %}" form="activity">
+                {% else %}
+                    <input type="submit" class="button custom-button submit-button" value="{% trans 'Create activity' %}" form="activity">
+                {% endif %}
+            </form>
+            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Update event" %} - {{ form.instance }}{% endblock %}
+{% block banner %}{% endblock %}
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Update" %}</li>
+        </ol>
+        <h1>{{ event }}</h1>
+        <div class="w3-container flex-center">
+            <form action="{% url 'events:event_update' event.id %}" method="post">
+                {% csrf_token %}
+                <label for="event_name">{% trans "Name of the event" %}</label>
+                {{ form.event_name }}
+                <label for="date_start">{% trans "Date of the beginning of the event" %}</label>
+                {{ form.date_start }}
+                <label for="date_end">{% trans "Date of the ending of the event" %}</label>
+                {{ form.date_end }}
+                <label for="link">{% trans "Link(s) for the event" %}</label>
+                {{ form.link }}
+                <input type="submit" class="button custom-button" value="{% trans 'Update event' %}">
+            </form>
+        </div>
+    </main>
+{% endblock %}

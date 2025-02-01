@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Detail calendar" %} - {{ month_calendar }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item">{% trans "Month calendars" %}</li>
+            <li class="breadcrumb-item active">{{ month_calendar }}</li>
+        </ol>
+        <h1>{{ month_calendar }}</h1>
+        <div class="w3-container flex-center">
+            <img src="{{ month_calendar.background_image.url }}" alt="{% trans 'Background image' %}" width="600px" height="auto">
+        </div>
+        <div class="button-container flex-center bottom-container">
+            <a href="{% url 'calendars:month_calendar_update' pk=month_calendar.id %}"><button class="custom-button">{% trans "Edit" %}</button></a>
+            <a href="{% url 'calendars:month_calendar_delete' pk=month_calendar.id %}"><button class="custom-button custom-red-button">{% trans "Delete" %}</button></a>
+            <a href="{% url 'calendars:month_calendar_list' %}"><button class="custom-button custom-grey-button">{% trans "Go back" %}</button></a>
+        </div>
+    </main>
+{% endblock %}

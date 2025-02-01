@@ -1,0 +1,51 @@
+@font-face { font-family: FuturaCondensed; src: url('../fonts/FuturaBoldCondensedBT.ttf'); }
+@font-face { font-family: FuturaBold; src: url('../fonts/FuturaBold.ttf'); }
+
+#canvas-container {
+    display: flex;
+    width: 1200px;
+    height: 1200px;
+    background-size: 1200px;
+    background-repeat: no-repeat;
+}
+
+.calendar-main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+    padding: 58px 58px 58px 270px;
+    width: 100%;
+}
+
+.event { width: 90%; display: flex; flex: 1 }
+.event:first-child, .event:last-child { width: 70%; }
+.date {
+    display: flex;
+    width: 130px;
+    height: 100%;
+    min-width: 130px;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+    text-align: center !important;
+    font-weight: bold;
+    font-size: 40pt;
+    font-family: FuturaBold, sans-serif;
+    background-color: #fff;
+}
+
+.title {
+    display: flex;
+    line-height: 37px;
+    color: #fff;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Futura', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-left: 50px !important;
+    text-transform: uppercase;
+}
+
+.title-span { width: 100%; }

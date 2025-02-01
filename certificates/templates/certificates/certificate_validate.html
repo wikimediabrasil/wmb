@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Issue certificate" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Validate certificate" %}</li>
+        </ol>
+        <h1>{% trans "Validate certificate" %}</h1>
+        <div class="w3-container flex-center">{% trans "Type or paste the hash code of the document:" %}</div>
+        <div class="w3-container flex-center">
+            <form action="{% url 'certificates:certificate_validate' %}" method="post" style="margin-bottom: 2em;" id="validation_form">
+                {% csrf_token %}
+                <label class="field_title" for="certificate_hash">{% trans "Hash code of the document" %}</label>
+                <input class="form-control form_field" type="text" name="certificate_hash" id="certificate_hash" placeholder="Hash code of the document" required>
+            </form>
+        </div>
+        <div class="button-container flex-center"><input type="submit" class="button custom-button" value="{% trans 'Validate' %}" form="validation_form"></div>
+    </main>
+{% endblock %}

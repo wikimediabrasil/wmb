@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Update certificate" %} - {{ form.instance }}{% endblock %}
+{% block banner %}{% endblock %}
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Update certificate" %}</li>
+        </ol>
+        <h1>{{ certificate }}</h1>
+        <div class="w3-container flex-center">
+            <form action="{% url 'events:certificate_update' event_id=event.id certificate_id=certificate.id %}" method="post" id="certificate_update_form">
+                {% csrf_token %}
+                <label for="name">{% trans "Real name of the individual" %}</label>
+                {{ form.name }}
+                <label for="username_string">{% trans "Wikimedia username of the individual" %}</label>
+                <input type="text" name="username_string" class="form-control form_value" placeholder="Enter the Wikimedia username of the individual" maxlength="150" id="username_string" value="{{ form.instance.username }}">
+                <label for="pronoun">{% trans "Pronouns for individual" %}</label>
+                {{ form.pronoun }}
+                <label for="hours">{% trans "Hours worked at the event by the individual" %}</label>
+                {{ form.hours }}
+                <label for="role">{% trans "Role of the individual on the event" %}</label>
+                {{ form.role }}
+            </form>
+        </div>
+        <div class="button-container flex-center">
+            <input type="submit" class="button custom-button" value="{% trans 'Update event' %}" form="certificate_update_form">
+        </div>
+    </main>
+{% endblock %}

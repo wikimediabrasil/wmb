@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Detail event" %} - {{ event }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item active truncate">{{ event }}</li>
+        </ol>
+        <h1 class="w3-row"><span>{{ event }}</span></h1>
+        <div class="flex-center button-container">
+            <a href="{% url 'events:event_update' event.id %}"><button class="custom-button">{% trans "Update event" %}</button></a>
+            <a href="{% url 'events:event_delete' event.id %}"><button class="custom-red-button">{% trans "Delete event" %}</button></a>
+        </div>
+        <div class="w3-container flex-center">
+            <p class="field_title">{% trans "Date of the start of the event" %}</p>
+            <p class="field_value">{{ event.date_start|date:"d \d\e F \d\e Y" }}</p>
+            <p class="field_title">{% trans "Date of the end of the event" %}</p>
+            <p class="field_value">{{ event.date_end|date:"d \d\e F \d\e Y" }}</p>
+            {% if event.link %}
+                <p class="field_title">{% trans "Links for the event" %}</p>
+                <p class="field_value">{{ event.link }}</p>
+            {% endif %}
+            <p class="field_title">{% trans "Number of certificates" %}</p>
+            <p class="field_value">{{ event.event_certificates.count }}</p>
+        </div>
+        <div class="flex-center button-container">
+            <a href="{% url 'events:event_certificate_manually' event.id %}"><button class="custom-button">{% trans "Issue a new certificate" %}</button></a>
+            <a href="{% url 'events:event_certificate' event.id %}"><button class="custom-button">{% trans "Issue more than one certificate" %}</button></a>
+            <a href="{% url 'events:event_download_all' event.id %}"><button class="custom-button">{% trans "Download all certificates" %}</button></a>
+        </div>
+        <table class="dataframe">
+            <thead>
+            <tr>
+                <th>{% trans "Full name" %}</th>
+                <th>{% trans "Wiki username" %}</th>
+                <th>{% trans "Pronoun" %}</th>
+                <th>{% trans "Hours" %}</th>
+                <th>{% trans "Role" %}</th>
+                <th>{% trans "Update" %}</th>
+                <th>{% trans "Download" %}</th>
+                <th>{% trans "Delete" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for certificate in event.event_certificates.all %}
+                    <tr>
+                        <td data-label="{% trans 'Full name' %}">{{ certificate.name }}</td>
+                        <td data-label="{% trans 'Wiki username' %}">{{ certificate.username|default:"-" }}</td>
+                        <td data-label="{% trans 'Pronoun' %}">{{ certificate.pronoun }}</td>
+                        <td data-label="{% trans 'Hours' %}">{{ certificate.hours }}</td>
+                        <td data-label="{% trans 'Role' %}">{{ certificate.role }}</td>
+                        <td data-label="{% trans 'Update' %}"><a href="{% url 'events:certificate_update' event_id=event.id certificate_id=certificate.id %}">{% trans "Update" %}</a></td>
+                        <td data-label="{% trans 'Download' %}"><a href="{% url 'events:event_download' event_id=event.id certificate_id=certificate.id %}">{% trans "Download" %}</a></td>
+                        <td data-label="{% trans 'Delete' %}"><a href="{% url 'events:certificate_delete' event_id=event.id certificate_id=certificate.id %}">{% trans "Delete" %}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

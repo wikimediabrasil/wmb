@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Update profile" %}{% endblock %}
+{% block banner %}{% endblock %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/forms.css' %}">
+{% endblock %}
+{% block content %}
+    <h1>{% trans "Update your profile" %}</h1>
+    <form class="user_form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="username" id="username" value="{{ form.username.value }}">
+        <div class="form_field">
+            <label class="form_label" for="username_show">{% trans "Username" %}</label>
+            <input class="form_input" type="text" name="username_show" id="username_show" value="{{ form.username.value }}" disabled readonly>
+        </div>
+        <div class="form_field">
+            <label class="form_label" for="full_name">{% trans "Full name" %}</label>
+            <input class="form_input" type="text" name="full_name" id="full_name" maxlength="300" value="{{ form.full_name.value }}" required>
+            <span class="form_helper">{% blocktrans %}Your full name is required to issue the certificate correctly at the end of the course. That information is not publicly available. <b>Attention:</b> Any modification will render previously issued certificates void, and you will need to download them again.{% endblocktrans %}</span>
+        </div>
+        <div class="form_field">
+            <label class="form_label" for="email">{% trans "Email" %} {% trans "(Optional)" %}</label>
+            <input class="form_input" type="email" name="email" id="email" value="{{ form.email.value }}">
+            <span class="form_helper">{% blocktrans %}Please provide the email address where you would like us to send your certificate at the end of the course.{% endblocktrans %}</span>
+        </div>
+        <div class="form_field">
+            <label class="form_label" for="consent">{% trans "Privacy Policy" %}</label>
+            <div class="form_checkbox">
+                <input class="form_input" type="checkbox" name="consent" id="consent" checked required>
+                <span class="form_helper">{% url 'users:profile' as privacy_url %}{% blocktrans %}By submitting this form, you agree to the collection and use of the information you provided for managing your enrollment and issuing certificates. This is in accordance with the Brazilian General Data Protection Law (LGPD). For more information, please read our <a href="{{privacy_url}}" title="our Privacy Policy">Privacy Policy</a>.{% endblocktrans %}</span>
+            </div>
+        </div>
+        <div class="form_buttons">
+            <button class="form_progress_button" type="submit">{% trans "Update" %}</button>
+            <a href="{% url 'users:profile' %}">
+                <button class="form_neutral_button" type="button">{% trans "Cancel" %}</button>
+            </a>
+        </div>
+    </form>
+{% endblock %}

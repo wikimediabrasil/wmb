@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Homepage" %}{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>{% blocktrans %}Hello, {{ user }}!{% endblocktrans %}</p>
+        <p>{% trans "Here's what you can do in this space:" %}</p>
+    {% else %}
+        <p>{% trans 'Hello!' %}</p>
+        <p>{% trans "Here's what you can do in this space:" %}</p>
+    {% endif %}
+    <div class="button-vertical-container">
+        {% if perms.events.add_event %}
+            <a href="{% url 'events:event_create' %}" aria-label="{% trans 'Generate certificates' %}">
+                <button class="custom-button">
+                    {% trans "Generate certificates" %}
+                </button>
+            </a>
+        {% endif %}
+        {% if perms.events.view_event %}
+            <a href="{% url 'users:index' %}" aria-label="{% trans 'Generate events calendar' %}">
+                <button class="custom-button">
+                    {% trans "Generate calendar" %}
+                </button>
+            </a>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'certificates:certificate_list' %}" aria-label="{% trans 'See your certificates' %}">
+                <button class="custom-button">
+                    {% trans "See your certificates" %}
+                </button>
+            </a>
+        {% endif %}
+        <a href="{% url 'certificates:certificate_validate' %}" aria-label="{% trans 'Validate certificate' %}">
+            <button class="custom-button">
+                {% trans "Validate certificate" %}
+            </button>
+        </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:logout' %}" aria-label="{% trans 'Logout' %}">
+                <button class="custom-red-button">
+                    {% trans "Logout" %}
+                </button>
+            </a>
+        {% else %}
+            <a href="{% url 'users:login' %}" aria-label="{% trans 'Login' %}">
+                <button class="custom-button">
+                    {% trans "Login" %}
+                </button>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

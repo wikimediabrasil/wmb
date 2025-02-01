@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}{% trans "Calendars" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Calendars" %}</li>
+        </ol>
+        <h1 class="w3-row">{% trans "Calendars" %}</h1>
+        <input type="text" id="search-input" onkeyup="searchFunction()" placeholder="{% trans 'Search for months..' %}" title="{% trans 'Type in the month name' %}">
+        <div class="button-container">
+            <a href="{% url 'calendars:calendar_create' %}" aria-label="{% trans 'Create calendar' %}"><button class="custom-button">{% trans "Create new calendar" %}</button></a>
+        </div>
+        <div class="flex-container" id="calendars">
+            {% for calendar in calendars %}
+                <div class="flex-item" data-name="{{ calendar }}" style="justify-content: space-between; ">
+                    <div style="display: flex; flex-direction: column; ">
+                        <h2>{{ calendar }}</h2>
+                        <span>{% trans "Activities" %}: {{ calendar.activities.count }}</span>
+                    </div>
+                    <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}">{% trans "Detail" %}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      function searchFunction() {
+        let input = document.getElementById("search-input").value.toUpperCase();
+        let list_div = document.getElementById("calendars");
+        let element_list = list_div.getElementsByClassName("flex-item");
+        for (let i = 0; i < element_list.length; i++) {
+          let textValue = element_list[i].getAttribute("data-name").toUpperCase()
+          if (textValue.indexOf(input) > -1) {
+            element_list[i].style.display = "";
+          } else {
+            element_list[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{{ event }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <h1 class="w3-row"><span>{{ event }}</span></h1>
+        <p>
+            <a href="{% url 'users:index' %}" aria-label="{% trans 'Download all certificates' %}">
+                <button class="custom-button">
+                    {% trans "Download all certificates" %}
+                </button>
+            </a>
+        </p>
+        <table class="dataframe">
+            <thead>
+            <tr>
+                <th>{% trans "Name" %}</th>
+                <th>{% trans "Username" %}</th>
+                <th>{% trans "Pronouns" %}</th>
+                <th>{% trans "Hours" %}</th>
+                <th>{% trans "Role" %}</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for certificate in certificates %}
+                    <tr>
+                        <td>{{ certificate.name }}</td>
+                        <td>{{ certificate.username }}</td>
+                        <td>{{ certificate.pronoun }}</td>
+                        <td>{{ certificate.hours }}</td>
+                        <td>{{ certificate.role }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

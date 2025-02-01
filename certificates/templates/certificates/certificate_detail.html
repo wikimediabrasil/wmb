@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Validate certificate" %} - {{ certificate }}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'certificates:certificate_validate' %}">{% trans "Validate certificate" %}</a></li>
+            <li class="breadcrumb-item active truncate">{{ certificate }}</li>
+        </ol>
+        <h1 class="w3-row">{% trans "Certificate" %} - {{ certificate }}</h1>
+        <div class="w3-container flex-center">
+            <p class="field_title">{% trans "name" %}</p>
+            <p class="field_value">{{ certificate.name }}</p>
+            <p class="field_title">{% trans "event" %}</p>
+            <p class="field_value">{{ certificate.event }}</p>
+            <p class="field_title">{% trans "hours" %}</p>
+            <p class="field_value">{{ certificate.hours }}</p>
+            <p class="field_title">{% trans "role" %}</p>
+            <p class="field_value">{{ certificate.role }}</p>
+            <p class="field_title">{% trans "certificate_hash" %}</p>
+            <p class="field_value">{{ certificate.certificate_hash }}</p>
+        </div>
+        <div class="flex-center button-container" style="margin-top: 2em; ">
+            <a href="{% url 'certificates:download_by_hash' certificate_hash=certificate.certificate_hash %}"><button class="custom-button">{% trans "Download certificate" %}</button></a>
+        </div>
+    </main>
+{% endblock %}

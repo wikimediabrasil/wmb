@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Delete event" %}{% endblock %}
+{% block banner %}{% endblock %}
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Delete" %}</li>
+        </ol>
+        <div class="w3-container flex-center">
+            <h1>{% trans "Are you sure you want to delete this event?" %}</h1>
+            <p>{% trans "All the certificates will be deleted and invalidated" %}</p>
+        </div>
+        <form action="{% url 'events:event_delete' event.id %}" method="post" id="event_delete_form">{% csrf_token %}</form>
+        <div class="flex-center button-container">
+            <input type="submit" class="button custom-red-button" value="{% trans 'YES' %}" form="event_delete_form">
+            <a href="{% url 'events:event_detail' event.id %}"><button class="custom-grey-button">{% trans "NO" %}</button></a>
+        </div>
+    </main>
+{% endblock %}

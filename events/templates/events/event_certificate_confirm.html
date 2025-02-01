@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Issue certificates" %} - {{ event }}{% endblock %}
+{% block banner %}{% endblock %}
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item active">{% trans "Issue certificates" %}</li>
+        </ol>
+        <h1>{% trans "Issuing certificates for" %} {{ event }}</h1>
+        <div class="w3-container flex-center">
+            <p>{% trans "Verify the data presented below and if you are satisfied, click in the button below to issue the certificates. If not, go back." %}</p>
+            <form action="{% url 'events:event_confirm_certificate' event.id %}" method="post" id="certificates_form">
+                {% csrf_token %}
+                <input type="hidden" name="csv_table" value="{{ csv_table }}">
+                <input type="hidden" name="background" value="{{ background }}">
+                <input type="hidden" name="event_id" value="{{ event.id }}">
+            </form>
+        </div>
+        <div class="button-container flex-center">
+            <input type="submit" class="button custom-button" value="{% trans 'Create certificates' %}" form="certificates_form">
+        </div>
+        <div class="table-container">{{ table|safe }}</div>
+    </main>
+{% endblock %}

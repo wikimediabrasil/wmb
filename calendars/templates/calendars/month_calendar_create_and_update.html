@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% if form.instance.pk %}{% trans "Update month calendar" %} - {{ form.instance }}{% else %}{% trans "Create month calendar" %}{% endif %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:month_calendar_list' %}">{% trans "Month calendars" %}</a></li>
+            {% if form.instance.pk %}
+                <li class="breadcrumb-item"><a href="{% url 'calendars:month_calendar_detail' pk=form.instance.pk %}">{{ form.instance }}</a></li>
+                <li class="breadcrumb-item active">{% trans "Edit" %}</li>
+            {% else %}
+                <li class="breadcrumb-item">{% trans "Create a new month calendar" %}</li>
+            {% endif %}
+        </ol>
+        {% if form.instance.pk %}
+            <h1>{% trans "Edit calendar" %} - {{ form.instance }}</h1>
+        {% else %}
+            <h1>{% trans "Create a new month calendar" %}</h1>
+        {% endif %}
+        <div class="w3-container flex-center">
+            <form class="form-container" action="{% if form.instance.pk %}{% url 'calendars:month_calendar_update' pk=form.instance.pk %}{% else %}{% url 'calendars:month_calendar_create' %}{% endif %}" method="post" id="month_calendar" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="field_title" for="name">{% trans "Month of the calendar" %}</label>
+                {{ form.month }}
+                <label class="field_title" for="background_image">{% trans "Background image for the calendar" %}</label>
+                {{ form.background_image }}
+                {% if form.instance.pk %}
+                    <input type="submit" class="button custom-button submit-button" value="{% trans 'Update calendar' %}" form="month_calendar">
+                {% else %}
+                    <input type="submit" class="button custom-button submit-button" value="{% trans 'Create month calendar' %}" form="month_calendar">
+                {% endif %}
+            </form>
+        </div>
+    </main>
+{% endblock %}

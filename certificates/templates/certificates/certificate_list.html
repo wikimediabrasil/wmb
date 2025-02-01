@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load custom_tags %}
+
+{% block title %}{% trans "Your certificates" %}{% endblock %}
+
+{% block main_content %}
+    <main class="table-container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item active">{% trans "Your certificates" %}</li>
+        </ol>
+        <h1 class="w3-row">{% trans "Your certificates" %}</h1>
+        <input type="text" id="search-input" onkeyup="searchFunction()" placeholder="{% trans 'Search for events..' %}" title="{% trans 'Type in an event name' %}">
+        <div class="flex-container" id="certificates">
+            {% for certificate in certificates %}
+                <div class="flex-item" data-name="{{ certificate.event }}" style="justify-content: space-between; ">
+                    <div style="display: flex; flex-direction: column; ">
+                        <h2>{{ certificate.event }}</h2>
+                        <span>{{ certificate.event.date_start|format_date:certificate.event.date_end }}</span>
+                        <span>{{ certificate.name }}</span>
+                        <span>{{ certificate.role }}</span>
+                        <span>{{ certificate.hours }}</span>
+                    </div>
+                    <a href="{% url 'events:event_download' event_id=certificate.event.id certificate_id=certificate.id %}">{% trans "Download" %}</a>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+      function searchFunction() {
+        let input = document.getElementById("search-input").value.toUpperCase();
+        let certificates = document.getElementById("certificates");
+        let certificateList = certificates.getElementsByClassName("flex-item");
+        for (let i = 0; i < certificateList.length; i++) {
+          let textValue = certificateList[i].getAttribute("data-name").toUpperCase()
+          if (textValue.indexOf(input) > -1) {
+            certificateList[i].style.display = "";
+          } else {
+            certificateList[i].style.display = "none";
+          }
+        }
+      }
+    </script>
+{% endblock %}
