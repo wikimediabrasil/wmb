@@ -1,35 +1,42 @@
+{% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} | WMB</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Josefin+Sans' type='text/css'>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css') }}" type='text/css'>
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" SameSite=None></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-{#    <script type="text/javascript" src="{{ url_for('static', filename= 'js/bootstrap-filestyle.min.js')}}"></script>#}
-
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="preconnect" href="https://tools-static.wmflabs.org/">
+    <link rel="stylesheet" type="text/css" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/w3-css/4.1.0/3/w3.css">
+    <link rel='stylesheet' type='text/css' href='https://tools-static.wmflabs.org/fontcdn/css?family=Poppins:400,700,800,900'>
+    <link rel="stylesheet" type="text/css" href="https://tools-static.wmflabs.org/cdnjs/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    {% block styles %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/popper.js/2.11.6/umd/popper.js"></script>
+    <script src="https://tools-static.wmflabs.org/cdnjs/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-{% block navbar %}{% endblock %}
-{% block content %}{% endblock %}
-{% block script %}
-    <script>
-        function menuFunction() {
-            var x = document.getElementById("topnavbar");
-            if (x.className === "topnav") {
-                x.className += " responsive";
-            } else {
-                x.className = "topnav";
-            }
-        }
-    </script>
-{% endblock %}
+<div class="wrapper">
+    {% block navbar %}{% include 'navbar.html' %}{% endblock %}
+    <div class="content-container">
+        {% block main_content %}
+            <main class="w3-container">
+                <div class="breadcrumb">{% block breadcrumbs %}{% endblock %}</div>
+                {% block banner %}
+                    <h1 class="w3-row logo">
+                        <img class="disappear" src="{% static 'images/logo2.svg' %}" alt="{% trans "Logo for the project" %}" width="3em">
+                        <span>{% trans "Wiki Movimento Brasil" %}</span>
+                    </h1>
+                {% endblock %}
+                {% block content %}{% endblock %}
+            </main>
+        {% endblock %}
+        <footer>{% block footer %}{% trans "This app was developed by Wiki Movimento Brasil." %}{% endblock %}</footer>
+    </div>
+    {% block scripts %}{% endblock %}
+</div>
 </body>
 </html>

@@ -1,9 +1,0 @@
-SECRET_KEY: "<SECRET_KEY>"
-APPLICATION_ROOT: "wmb/"
-OAUTH_MWURI: "https://meta.wikimedia.org/w/index.php"
-ENCRYPTION_KEY: "<ENCRYPTION_KEY>"
-UPLOAD_FOLDER: "<UPLOAD_FOLDER>/"
-LINK_BACKGROUND: "https://docs.google.com/presentation/d/192WTZcHt_oCpDsa7AR9Sp9AupgfajV5DhzCnXZ4MZh8/edit?usp=sharing"
-SQLALCHEMY_TRACK_MODIFICATIONS: False
-SIGNATURE: "<PRESIDENT_SIGNATURE>.png"
-ROLES: ["ouvinte", "palestrante", "mediador", "mediadora", "organizador", "organizadora"]
