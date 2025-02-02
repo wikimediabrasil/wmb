@@ -684,7 +684,7 @@ msgstr "Validar"
 #: .\certificates\tests.py:270 .\certificates\tests.py:576
 #: .\certificates\tests.py:694 .\certificates\utils.py:56
 msgid "participant"
-msgstr "participant"
+msgstr "ouvinte"
 
 #: .\certificates\tests.py:286 .\certificates\utils.py:68
 #, python-brace-format
