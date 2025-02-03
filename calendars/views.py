@@ -99,7 +99,7 @@ def format_hour(hour):
 
 
 def calendar_list(request):
-    calendars = Calendar.objects.all()
+    calendars = Calendar.objects.all().order_by('-year', '-calendar__id', '-page')
     context = {"calendars": calendars}
     return render(request, 'calendars/calendar_list.html', context)
 

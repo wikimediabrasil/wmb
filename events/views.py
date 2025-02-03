@@ -35,7 +35,7 @@ def event_create(request):
 
 @permission_required('events.view_event', raise_exception=True)
 def event_list(request):
-    events = Event.objects.all()
+    events = Event.objects.all().order_by("-date_start")
     context = {"events": events}
     return render(request, "events/event_list.html", context)
 
