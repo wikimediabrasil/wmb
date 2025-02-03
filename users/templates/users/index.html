@@ -22,7 +22,7 @@
             </a>
         {% endif %}
         {% if perms.events.view_event %}
-            <a href="{% url 'users:index' %}" aria-label="{% trans 'Generate events calendar' %}">
+            <a href="{% url 'calendars:calendar_list' %}" aria-label="{% trans 'Generate events calendar' %}">
                 <button class="custom-button">
                     {% trans "Generate calendar" %}
                 </button>

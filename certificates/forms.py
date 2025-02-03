@@ -56,6 +56,11 @@ class CertificateForm(forms.ModelForm):
                 "placeholder": _("Enter the real name of the individual"),
                 "required": "required",
             }),
+            "username": forms.TextInput(attrs={
+                "type": "text",
+                "class": "form-control form_value",
+                "placeholder": _("Enter the Wikimedia username of the individual"),
+            }),
             "pronoun": forms.Select(attrs={
                 "class": "form-control form_value",
                 "required": "required"
@@ -73,13 +78,6 @@ class CertificateForm(forms.ModelForm):
                 "required": "required"
             }),
         }
-    # def clean_username(self):
-    #     username = self.cleaned_data.get('username', None)
-    #     if username:
-    #         participant, created = Participant.objects.get_or_create(participant_username=username)
-    #         return participant
-    #     else:
-    #         return None
 
     def clean_name(self):
         name = self.cleaned_data['name'] or ""
