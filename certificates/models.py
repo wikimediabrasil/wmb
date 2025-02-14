@@ -24,6 +24,10 @@ class Certificate(models.Model):
                                    blank=True,
                                    null=True)
 
+    permissions = [
+        ("download_all", "Can download all certificates"),
+    ]
+
 
     def save(self, *args, **kwargs):
         if self.name and self.event and self.hours and self.role:
