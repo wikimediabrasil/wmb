@@ -23,6 +23,7 @@ function getMonthValues() {
         janeiro: "#000000",
         fevereiro: "#5f174a",
         marco: "#242856",
+        março: "#242856",
         abril: "#2c70b7",
         maio: "#23772d",
         junho: "#e6520f",

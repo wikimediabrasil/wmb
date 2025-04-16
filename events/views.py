@@ -27,7 +27,9 @@ def event_create(request):
 
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+            event = form.save(commit=False)
+            event.created_by = request.user
+            event.save()
             return redirect(reverse("events:event_detail", kwargs={"event_id": form.instance.pk}))
 
     return render(request, "events/event_create.html", context)
