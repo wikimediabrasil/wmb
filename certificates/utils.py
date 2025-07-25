@@ -111,7 +111,7 @@ def make_pdf_of_certificate(certificate):
     locale.setlocale(locale.LC_TIME, "pt_BR")  # Setting the language to portuguese for the date
     pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(title_phrase))
 
-    identification_phrase = _('The user group Wiki Movement Brazil (CNPJ 29.801.908/0001-86) certifies that')
+    identification_phrase = _('The Wikimedia Brasil chapter (CNPJ 29.801.908/0001-86) certifies that')
     pdf.set_font('Merriweather', '', 13)
     pdf.cell(w=0, h=5, ln=1)  # New line
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(identification_phrase))
@@ -172,7 +172,7 @@ def make_pdf_of_certificate(certificate):
 
     y = pdf.get_y()
     president = _("VALÉRIO ANDRADE MELO")
-    president_role = _("President of Wiki Movement Brazil")
+    president_role = _("President of Wikimedia Brasil")
     pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', settings.SIGNATURE)), x=131, y=y-5, w=35, h=16)
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")
     pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(president))

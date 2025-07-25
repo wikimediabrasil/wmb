@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-31 23:59-0300\n"
+"POT-Creation-Date: 2025-07-25 18:23-0300\n"
 "PO-Revision-Date: 2025-01-31 20:53-0300\n"
 "Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
 "Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
@@ -45,113 +45,113 @@ msgstr "Data customizada para essa atividade (Opcional)"
 msgid "Keep custom date as it is?"
 msgstr "Manter a data customizada como está?"
 
-#: .\calendars\forms.py:132 .\calendars\models.py:70
+#: .\calendars\forms.py:132 .\calendars\models.py:86
 #, python-brace-format
 msgid "{d_start}"
 msgstr "{d_start}"
 
-#: .\calendars\forms.py:134 .\calendars\models.py:72
+#: .\calendars\forms.py:134 .\calendars\models.py:88
 #, python-brace-format
 msgid "{d_start} to {d_end}"
 msgstr "{d_start} a {d_end}"
 
-#: .\calendars\forms.py:136 .\calendars\models.py:74
+#: .\calendars\forms.py:136 .\calendars\models.py:90
 #, python-brace-format
 msgid "{m_start}/{d_start} to {m_end}/{d_end}"
 msgstr "{d_start}/{m_start} a {d_end}/{m_end}"
 
-#: .\calendars\models.py:9
+#: .\calendars\models.py:12
 msgid "January"
 msgstr "janeiro"
 
-#: .\calendars\models.py:10
+#: .\calendars\models.py:13
 msgid "February"
 msgstr "fevereiro"
 
-#: .\calendars\models.py:11
+#: .\calendars\models.py:14
 msgid "March"
 msgstr "março"
 
-#: .\calendars\models.py:12
+#: .\calendars\models.py:15
 msgid "April"
 msgstr "abril"
 
-#: .\calendars\models.py:13
+#: .\calendars\models.py:16
 msgid "May"
 msgstr "maio"
 
-#: .\calendars\models.py:14
+#: .\calendars\models.py:17
 msgid "June"
 msgstr "junho"
 
-#: .\calendars\models.py:15
+#: .\calendars\models.py:18
 msgid "July"
 msgstr "julho"
 
-#: .\calendars\models.py:16
+#: .\calendars\models.py:19
 msgid "August"
 msgstr "agosto"
 
-#: .\calendars\models.py:17
+#: .\calendars\models.py:20
 msgid "September"
 msgstr "setembro"
 
-#: .\calendars\models.py:18
+#: .\calendars\models.py:21
 msgid "October"
 msgstr "outubro"
 
-#: .\calendars\models.py:19
+#: .\calendars\models.py:22
 msgid "November"
 msgstr "novembro"
 
-#: .\calendars\models.py:20
+#: .\calendars\models.py:23
 msgid "December"
 msgstr "dezembro"
 
-#: .\calendars\models.py:24
+#: .\calendars\models.py:27
 #: .\calendars\templates\calendars\calendar_download.html:12
 msgid "Month"
 msgstr "Mês"
 
-#: .\calendars\models.py:25
+#: .\calendars\models.py:28
 #: .\calendars\templates\calendars\month_calendar_detail.html:17
 msgid "Background image"
 msgstr "Imagem de fundo"
 
-#: .\calendars\models.py:33
+#: .\calendars\models.py:49
 msgid "Year"
 msgstr "Ano"
 
-#: .\calendars\models.py:34
+#: .\calendars\models.py:50
 msgid "Page"
 msgstr "Página"
 
-#: .\calendars\models.py:37
+#: .\calendars\models.py:53
 #, python-format
 msgid "%(month_name)s %(year)s"
 msgstr "%(month_name)s de %(year)s"
 
-#: .\calendars\models.py:42
+#: .\calendars\models.py:58
 msgid "Activity title"
 msgstr "Nome da atividade"
 
-#: .\calendars\models.py:43
+#: .\calendars\models.py:59
 msgid "Start date"
 msgstr "Data inicial"
 
-#: .\calendars\models.py:44
+#: .\calendars\models.py:60
 msgid "End date"
 msgstr "Data final"
 
-#: .\calendars\models.py:45
+#: .\calendars\models.py:61
 msgid "Custom date"
 msgstr "Data customizada"
 
-#: .\calendars\models.py:46
+#: .\calendars\models.py:62
 msgid "Hour"
 msgstr "Hora de início"
 
-#: .\calendars\models.py:54
+#: .\calendars\models.py:70
 msgid "End date must be after start date."
 msgstr "A data final precisa ser após a data inicial"
 
@@ -479,7 +479,7 @@ msgstr "Você tem certeza que quer excluir este calendário de mês"
 msgid "Both certificate files are required."
 msgstr "Ambos arquivos são obrigatórios."
 
-#: .\certificates\forms.py:45
+#: .\certificates\forms.py:45 .\certificates\forms.py:62
 msgid "Enter the Wikimedia username of the individual"
 msgstr "Digite o nome de usuário(a) Wikimedia do indivíduo"
 
@@ -487,21 +487,21 @@ msgstr "Digite o nome de usuário(a) Wikimedia do indivíduo"
 msgid "Enter the real name of the individual"
 msgstr "Digite o nome real do indivíduo"
 
-#: .\certificates\forms.py:66 .\certificates\tests.py:713
+#: .\certificates\forms.py:71 .\certificates\tests.py:713
 msgid "Hours worked in the event by the individual. Format: (HHhMM)"
 msgstr "Horas trabalhadas no evento pelo indivíduo. Formato: (HHhMM)"
 
-#: .\certificates\forms.py:72 .\certificates\tests.py:714
+#: .\certificates\forms.py:77 .\certificates\tests.py:714
 msgid "Role of the individual in the event"
 msgstr "Atribuição do indíviduo no evento"
 
-#: .\certificates\forms.py:107 .\certificates\tests.py:687
+#: .\certificates\forms.py:105 .\certificates\tests.py:687
 #: .\certificates\tests.py:708 .\certificates\tests.py:728
 #: .\certificates\tests.py:735 .\certificates\tests.py:742
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: .\certificates\forms.py:108 .\certificates\tests.py:756
+#: .\certificates\forms.py:106 .\certificates\tests.py:756
 msgid "Ensure this field has at most 256 characters."
 msgstr "Garanta que este campo tenha no máximo 256 caracteres"
 
@@ -532,10 +532,10 @@ msgstr "Emitir um novo certificado"
 #: .\certificates\templates\certificates\certificate_create.html:17
 msgid ""
 "To issue an individual certificate for a participant of an event promoted or "
-"supported by Wiki Movimento Brasil, fill out the form:"
+"supported by Wikimedia Brasil, fill out the form:"
 msgstr ""
 "Para emitir um certificado individual para um participante de um evento "
-"promovido ou apoiado pelo Wiki Movimento Brasil, preencha o formulário:"
+"promovido ou apoiado pela Wikimedia Brasil, preencha o formulário:"
 
 #: .\certificates\templates\certificates\certificate_create.html:21
 #: .\certificates\templates\certificates\certificate_update.html:20
@@ -715,11 +715,8 @@ msgid "CERTIFICATE"
 msgstr "CERTIFICADO"
 
 #: .\certificates\utils.py:114
-msgid ""
-"The user group Wiki Movement Brazil (CNPJ 29.801.908/0001-86) certifies that"
-msgstr ""
-"O grupo de usuários Wiki Movimento Brazil (CNPJ 29.801.908/0001-86) "
-"certifica que"
+msgid "The Wikimedia Brasil chapter (CNPJ 29.801.908/0001-86) certifies that"
+msgstr "A Wikimedia Brasil (CNPJ 29.801.908/0001-86) certifica que"
 
 #: .\certificates\utils.py:150
 #, python-format
@@ -736,8 +733,8 @@ msgid "VALÉRIO ANDRADE MELO"
 msgstr "VALÉRIO ANDRADE MELO"
 
 #: .\certificates\utils.py:175
-msgid "President of Wiki Movement Brazil"
-msgstr "Presidente do Wiki Movimento Brasil"
+msgid "President of Wikimedia Brasil"
+msgstr "Presidente da Wikimedia Brasil"
 
 #: .\certificates\utils.py:183
 #, python-format
@@ -811,14 +808,13 @@ msgstr "Criar certificados"
 #: .\events\templates\events\event_certificate_upload.html:18
 msgid ""
 "To register participants or organizers of an event promoted or supported by "
-"the Wiki Movimento Brasil, you need to upload a <code>.csv</code> file "
-"formatted as follows* and a <code>.png</code> background image for the "
-"certificates**."
+"the Wikimedia Brasil, you need to upload a <code>.csv</code> file formatted "
+"as follows* and a <code>.png</code> background image for the certificates**."
 msgstr ""
 "Para registrar participantes ou organizadores de um evento promovido ou "
-"apoiado pelo Wiki Movimento Brasil, você precisa carregar um arquivo <code>."
-"csv</code> formatado como a seguir* e um arquivo <code>.png</code> de fundo "
-"para os certificados**."
+"apoiado pela Wikimedia Brasil, você precisa carregar um arquivo <code>.csv</"
+"code> formatado como a seguir* e um arquivo <code>.png</code> de fundo para "
+"os certificados**."
 
 #: .\events\templates\events\event_certificate_upload.html:19
 msgid "name,username,pronoun,hours,role"
@@ -883,10 +879,10 @@ msgstr "Criar evento"
 #: .\events\templates\events\event_create.html:15
 msgid ""
 "To issue certificates for participants of an event promoted or supported by "
-"Wiki Movimento Brasil, fill out the form:"
+"Wikimedia Brasil, fill out the form:"
 msgstr ""
 "Para emitir certificados para participantes de um evento promovido ou "
-"apoiado pelo Wiki Movimento Brasil, preencha o formulário:"
+"apoiado pela Wikimedia Brasil, preencha o formulário:"
 
 #: .\events\templates\events\event_create.html:19
 msgid "Name of the event:"
@@ -1031,7 +1027,7 @@ msgstr "{d_start} de {m_start} a {d_end} de {m_end} de {y_start}"
 msgid "{m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
 msgstr "{d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
 
-#: .\events\views.py:90
+#: .\events\views.py:92
 msgid "Errors in the CSV file:"
 msgstr "Erros no arquivo CSV:"
 
@@ -1040,12 +1036,12 @@ msgid "Logo for the project"
 msgstr "Logo do projeto"
 
 #: .\templates\base.html:31
-msgid "Wiki Movimento Brasil"
-msgstr "Wiki Movimento Brasil"
+msgid "Wikimedia Brasil"
+msgstr "Wikimedia Brasil"
 
 #: .\templates\base.html:37
-msgid "This app was developed by Wiki Movimento Brasil."
-msgstr "Este aplicativo foi desenvolvido pelo Wiki Movimento Brasil"
+msgid "This app was developed by Wikimedia Brasil."
+msgstr "Este aplicativo foi desenvolvido pela Wikimedia Brasil"
 
 #: .\templates\i18n.html:7
 msgid "Language"
@@ -1180,10 +1176,10 @@ msgstr ""
 "mais informações, por favor, leia nossa <a href=\"%(privacy_url)s\" "
 "title=\"Nossa Política de Privacidade\">Política de Privacidade</a>."
 
-#: .\wmb\settings.py:140
+#: .\wmb\settings.py:130
 msgid "English"
 msgstr "Inglês"
 
-#: .\wmb\settings.py:141
+#: .\wmb\settings.py:131
 msgid "Brazilian Portuguese"
 msgstr "Português brasileiro"

@@ -14,7 +14,7 @@
             <li class="breadcrumb-item active">{% trans "Issue a new certificate" %}</li>
         </ol>
         <h1>{% trans "Issue a new certificate" %}</h1>
-        <div class="w3-container flex-center">{% trans "To issue an individual certificate for a participant of an event promoted or supported by Wiki Movimento Brasil, fill out the form:" %}</div>
+        <div class="w3-container flex-center">{% trans "To issue an individual certificate for a participant of an event promoted or supported by Wikimedia Brasil, fill out the form:" %}</div>
         <div class="w3-container flex-center">
             <form action="{% url 'events:event_certificate_manually' event.id %}" method="post">
                 {% csrf_token %}
