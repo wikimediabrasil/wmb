@@ -19,7 +19,7 @@
 }
 
 .event { width: 90%; display: flex; flex: 1 }
-.event:first-child, .event:last-child { width: 70%; }
+.event:first-child, .event:nth-last-child(-n+2) { width: 70%; }
 .date {
     display: flex;
     width: 130px;
