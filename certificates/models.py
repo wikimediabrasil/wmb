@@ -14,6 +14,7 @@ class Certificate(models.Model):
     pronoun = models.CharField(max_length=200, choices=PRONOUN_CHOICES, default='o')
     event = models.ForeignKey(Event, on_delete=models.SET_NULL, related_name='event_certificates', null=True)
     hours = models.CharField(max_length=10, validators=[RegexValidator(regex=r"^\d+[h,H]\d+$")])
+    with_hours = models.BooleanField(default=True)
     role = models.CharField(max_length=200, default='ouvinte')
     background = models.ImageField(upload_to=settings.UPLOAD_FOLDER)
     certificate_hash = models.CharField(max_length=500, blank=True, null=True)

@@ -46,9 +46,19 @@ class CertificateForm(forms.ModelForm):
         required=False
     )
 
+    with_hours = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(attrs={
+            "class": "form_value",
+            "style": "display: inline-block;"
+        }),
+        label=_("With hours?")
+    )
+
     class Meta:
         model = Certificate
-        exclude = ['event', 'background', 'certificate_hash', 'emitted_by', 'emitted_at', 'username']
+        exclude = ['event', 'background', 'certificate_hash', 'emitted_by', 'emitted_at']
         widgets = {
             "name": forms.TextInput(attrs={
                 "type": "text",

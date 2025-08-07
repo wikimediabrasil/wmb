@@ -97,7 +97,11 @@ def event_certificate(request, event_id):
             else:
                 # Format the dataframe
                 df.fillna("-", inplace=True)
-                new_df = df[["name", "username", "pronoun", "hours", "role"]]
+                if "with_hours" in df.columns:
+                    df["with_hours"] = df["with_hours"].apply(lambda x: bool(x and str(x).strip() != "-" and str(x).lower() != "false"))
+                    new_df = df[["name", "username", "pronoun", "hours", "role", "with_hours"]]
+                else:
+                    new_df = df[["name", "username", "pronoun", "hours", "role"]]
 
                 # Save the background image
                 png_file = request.FILES['certificate_background']

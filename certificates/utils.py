@@ -165,7 +165,10 @@ def make_pdf_of_certificate(certificate):
     pdf.set_font('Merriweather', '', 13)
 
     phrase_date = format_certificate_date(certificate.event.date_start, certificate.event.date_end)
-    phrase_time = _("%(date)s (Credit hours: %(hours)s).") % {"date": phrase_date, "hours": certificate.hours}
+    if certificate.with_hours:
+        phrase_time = _("%(date)s.") % {"date": phrase_date}
+    else:
+        phrase_time = _("%(date)s (Credit hours: %(hours)s).") % {"date": phrase_date, "hours": certificate.hours}
 
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(phrase_time))
     pdf.cell(w=0, h=15, ln=1)  # New line
@@ -214,7 +217,7 @@ def validate_csv(df):
     return errors
 
 
-def certificate_create(data, event, background, emitted_by):
+def certificate_create(data, event, background, emitted_by, with_hours=True):
     if "username_string" in data:
         certificate_user = data["username_string"]
     else:
@@ -250,6 +253,7 @@ def certificate_create(data, event, background, emitted_by):
     certificate_data["pronoun"] = data["pronoun"].strip()
     certificate_data["event"] = event
     certificate_data["hours"] = data["hours"].strip()
+    certificate_data["with_hours"] = with_hours
     certificate_data["role"] = data["role"].strip()
     certificate_data["background"] = background
     certificate_data["certificate_hash"] = certificate_hash

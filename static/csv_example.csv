@@ -1,2 +1,2 @@
-name,username,pronoun,hours,role
-Éder Porto,Ederporto,O,07h00,palestrante
+name,username,pronoun,hours,role,with_hours
+Éder Porto,Ederporto,O,07h00,palestrante,True

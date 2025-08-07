@@ -26,7 +26,7 @@ def certificate_create_manually(request, event_id):
 
             if form.is_valid():
                 background = Certificate.objects.filter(event=event).first().background
-                certificate_create(form.cleaned_data, event, background, request.user)
+                certificate_create(form.cleaned_data, event, background, request.user, form.cleaned_data["with_hours"])
                 return redirect(reverse("events:event_detail", kwargs={"event_id": event.id}))
         return render(request, "certificates/certificate_create.html", context)
     else:
