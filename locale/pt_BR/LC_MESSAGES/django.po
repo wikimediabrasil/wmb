@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-25 18:23-0300\n"
+"POT-Creation-Date: 2025-08-07 21:51-0300\n"
 "PO-Revision-Date: 2025-01-31 20:53-0300\n"
 "Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
 "Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
@@ -479,34 +479,38 @@ msgstr "Você tem certeza que quer excluir este calendário de mês"
 msgid "Both certificate files are required."
 msgstr "Ambos arquivos são obrigatórios."
 
-#: .\certificates\forms.py:45 .\certificates\forms.py:62
+#: .\certificates\forms.py:45 .\certificates\forms.py:72
 msgid "Enter the Wikimedia username of the individual"
 msgstr "Digite o nome de usuário(a) Wikimedia do indivíduo"
 
-#: .\certificates\forms.py:56 .\certificates\tests.py:712
+#: .\certificates\forms.py:56
+msgid "With hours?"
+msgstr "Declarar horas?"
+
+#: .\certificates\forms.py:66 .\certificates\tests.py:779
 msgid "Enter the real name of the individual"
 msgstr "Digite o nome real do indivíduo"
 
-#: .\certificates\forms.py:71 .\certificates\tests.py:713
+#: .\certificates\forms.py:81 .\certificates\tests.py:780
 msgid "Hours worked in the event by the individual. Format: (HHhMM)"
 msgstr "Horas trabalhadas no evento pelo indivíduo. Formato: (HHhMM)"
 
-#: .\certificates\forms.py:77 .\certificates\tests.py:714
+#: .\certificates\forms.py:87 .\certificates\tests.py:781
 msgid "Role of the individual in the event"
 msgstr "Atribuição do indíviduo no evento"
 
-#: .\certificates\forms.py:105 .\certificates\tests.py:687
-#: .\certificates\tests.py:708 .\certificates\tests.py:728
-#: .\certificates\tests.py:735 .\certificates\tests.py:742
+#: .\certificates\forms.py:115 .\certificates\tests.py:754
+#: .\certificates\tests.py:775 .\certificates\tests.py:795
+#: .\certificates\tests.py:802 .\certificates\tests.py:809
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: .\certificates\forms.py:106 .\certificates\tests.py:756
+#: .\certificates\forms.py:116 .\certificates\tests.py:823
 msgid "Ensure this field has at most 256 characters."
 msgstr "Garanta que este campo tenha no máximo 256 caracteres"
 
 #: .\certificates\templates\certificates\certificate_create.html:6
-#: .\certificates\templates\certificates\certificate_create.html:31
+#: .\certificates\templates\certificates\certificate_create.html:35
 #: .\certificates\templates\certificates\certificate_validate.html:6
 msgid "Issue certificate"
 msgstr "Emitir certificado"
@@ -539,7 +543,7 @@ msgstr ""
 
 #: .\certificates\templates\certificates\certificate_create.html:21
 #: .\certificates\templates\certificates\certificate_update.html:20
-#: .\events\templates\events\event_certificate_upload.html:39
+#: .\events\templates\events\event_certificate_upload.html:40
 msgid "Real name of the individual"
 msgstr "Nome real do indivíduo"
 
@@ -550,19 +554,24 @@ msgstr "Nome de usuário(a) do indivíduo"
 
 #: .\certificates\templates\certificates\certificate_create.html:25
 #: .\certificates\templates\certificates\certificate_update.html:24
-#: .\events\templates\events\event_certificate_upload.html:41
+#: .\events\templates\events\event_certificate_upload.html:42
 msgid "Pronouns for individual"
 msgstr "Pronomes do indivíduo"
 
 #: .\certificates\templates\certificates\certificate_create.html:27
 #: .\certificates\templates\certificates\certificate_update.html:26
-#: .\events\templates\events\event_certificate_upload.html:42
+#: .\events\templates\events\event_certificate_upload.html:43
 msgid "Hours worked at the event by the individual"
 msgstr "Horas trabalhadas no evento pelo indivíduo"
 
-#: .\certificates\templates\certificates\certificate_create.html:29
-#: .\certificates\templates\certificates\certificate_update.html:28
-#: .\events\templates\events\event_certificate_upload.html:43
+#: .\certificates\templates\certificates\certificate_create.html:30
+#: .\certificates\templates\certificates\certificate_update.html:29
+msgid "Does this certificate need to declare hours?"
+msgstr "Deve declarar horas nesse certificado?"
+
+#: .\certificates\templates\certificates\certificate_create.html:32
+#: .\certificates\templates\certificates\certificate_update.html:31
+#: .\events\templates\events\event_certificate_upload.html:44
 msgid "Role of the individual on the event"
 msgstr "Atribuição do indíviduo no evento"
 
@@ -614,7 +623,7 @@ msgid "Validate certificate"
 msgstr "Validar certificado"
 
 #: .\certificates\templates\certificates\certificate_detail.html:15
-#: .\certificates\utils.py:273 .\certificates\utils.py:299
+#: .\certificates\utils.py:277 .\certificates\utils.py:303
 #: .\events\tests.py:272 .\events\tests.py:303
 msgid "Certificate"
 msgstr "Certificado"
@@ -662,12 +671,9 @@ msgstr "Digite o nome do evento"
 msgid "Update certificate"
 msgstr "Editar certificado"
 
-#: .\certificates\templates\certificates\certificate_update.html:33
-#: .\events\templates\events\event_detail.html:17
-#: .\events\templates\events\event_update.html:6
-#: .\events\templates\events\event_update.html:28
-msgid "Update event"
-msgstr "Editar evento"
+#: .\certificates\templates\certificates\certificate_update.html:37
+msgid "Update participant"
+msgstr "Editar participante"
 
 #: .\certificates\templates\certificates\certificate_validate.html:15
 msgid "Type or paste the hash code of the document:"
@@ -681,32 +687,32 @@ msgstr "Código hash do documento"
 msgid "Validate"
 msgstr "Validar"
 
-#: .\certificates\tests.py:270 .\certificates\tests.py:576
-#: .\certificates\tests.py:694 .\certificates\utils.py:56
+#: .\certificates\tests.py:336 .\certificates\tests.py:642
+#: .\certificates\tests.py:761 .\certificates\utils.py:56
 msgid "participant"
 msgstr "ouvinte"
 
-#: .\certificates\tests.py:286 .\certificates\utils.py:68
+#: .\certificates\tests.py:352 .\certificates\utils.py:68
 #, python-brace-format
 msgid "on {m_start} {d_start}, {y_start}"
 msgstr "em {d_start} de {m_start} de {y_start}"
 
-#: .\certificates\tests.py:295 .\certificates\utils.py:78
+#: .\certificates\tests.py:361 .\certificates\utils.py:78
 #, python-brace-format
 msgid "from {m_start} {d_start} to {m_end} {d_end}, {y_start}"
 msgstr "de {d_start} de {m_start} a {d_end} de {m_end} de {y_start}"
 
-#: .\certificates\tests.py:306 .\certificates\utils.py:73
+#: .\certificates\tests.py:372 .\certificates\utils.py:73
 #, python-brace-format
 msgid "from {m_start} {d_start} to {d_end}, {y_start}"
 msgstr "de {d_start} a {d_end} de {m_start} de {y_start}"
 
-#: .\certificates\tests.py:316 .\certificates\utils.py:84
+#: .\certificates\tests.py:382 .\certificates\utils.py:84
 #, python-brace-format
 msgid "from {m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
 msgstr "de {d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
 
-#: .\certificates\tests.py:341 .\certificates\utils.py:213
+#: .\certificates\tests.py:407 .\certificates\utils.py:216
 msgid "Your CSV file is empty. Verify and submit again"
 msgstr "Seu arquivo CSV está vazio. Verifique e submeta novamente"
 
@@ -723,20 +729,25 @@ msgstr "A Wikimedia Brasil (CNPJ 29.801.908/0001-86) certifica que"
 msgid "participated %(role)s in the event"
 msgstr "participou %(role)s no evento"
 
-#: .\certificates\utils.py:168
+#: .\certificates\utils.py:169
 #, python-format
 msgid "%(date)s (Credit hours: %(hours)s)."
 msgstr "%(date)s (Carga horária: %(hours)s)."
 
-#: .\certificates\utils.py:174
+#: .\certificates\utils.py:171
+#, python-format
+msgid "%(date)s."
+msgstr "%(date)s"
+
+#: .\certificates\utils.py:177
 msgid "VALÉRIO ANDRADE MELO"
 msgstr "VALÉRIO ANDRADE MELO"
 
-#: .\certificates\utils.py:175
+#: .\certificates\utils.py:178
 msgid "President of Wikimedia Brasil"
 msgstr "Presidente da Wikimedia Brasil"
 
-#: .\certificates\utils.py:183
+#: .\certificates\utils.py:186
 #, python-format
 msgid ""
 "The validity of this document can be checked at https://wmb.toolforge.org/. "
@@ -745,31 +756,31 @@ msgstr ""
 "A validade deste documento pode ser checada em https://wmb.toolforge.org/. O "
 "código hash para validação é: %(certificate_hash)s"
 
-#: .\certificates\utils.py:200 .\events\tests.py:341 .\events\tests.py:354
+#: .\certificates\utils.py:203 .\events\tests.py:341 .\events\tests.py:354
 msgid "One or more required columns are missing. Verify and submit again"
 msgstr "Um ou mais colunas estão faltando. Verifique e submeta novamente"
 
-#: .\certificates\utils.py:205
+#: .\certificates\utils.py:208
 #, python-format
 msgid "Name invalid! Verify row %(row)s, column 'name'"
 msgstr "Nome inválido! Verifique a linha %(row)s da coluna 'name'"
 
-#: .\certificates\utils.py:207
+#: .\certificates\utils.py:210
 #, python-format
 msgid "Pronoun invalid! Verify row %(row)s, column 'pronoun'"
 msgstr "Pronome inválido! Verifique a linha %(row)s da coluna 'pronoun'"
 
-#: .\certificates\utils.py:209
+#: .\certificates\utils.py:212
 #, python-format
 msgid "Hours invalid! Verify row %(row)s, column 'hours'"
 msgstr "Horas inválidas! Verifique a linha %(row)s da coluna 'hours'"
 
-#: .\certificates\utils.py:211
+#: .\certificates\utils.py:214
 #, python-format
 msgid "Role invalid! Verify row %(row)s, column 'role'"
 msgstr "Atribuição inválida! Verifique a linha %(row)s da coluna 'role'"
 
-#: .\certificates\utils.py:303 .\events\tests.py:249
+#: .\certificates\utils.py:307 .\events\tests.py:249
 msgid "Certificates"
 msgstr "Certificados"
 
@@ -817,8 +828,8 @@ msgstr ""
 "os certificados**."
 
 #: .\events\templates\events\event_certificate_upload.html:19
-msgid "name,username,pronoun,hours,role"
-msgstr "name,username,pronoun,hours,role"
+msgid "name,username,pronoun,hours,role,with_hours***"
+msgstr "name,username,pronoun,hours,role,with_hours***"
 
 #: .\events\templates\events\event_certificate_upload.html:20
 #, python-format
@@ -844,30 +855,38 @@ msgstr ""
 "href=\"%(background_link)s\" aria-label=\"Link para a apresentação de "
 "modelos de imagens de fundo\">aqui</a>."
 
-#: .\events\templates\events\event_certificate_upload.html:26
+#: .\events\templates\events\event_certificate_upload.html:22
+msgid "*** Optional"
+msgstr "*** Opcional"
+
+#: .\events\templates\events\event_certificate_upload.html:27
 msgid "Choose the event you want to issue certificates"
 msgstr "Escolha o evneto para o qual você quer emitir certificados"
 
-#: .\events\templates\events\event_certificate_upload.html:30
+#: .\events\templates\events\event_certificate_upload.html:31
 msgid "Choose a .csv file"
 msgstr "Escolha um arquivo .csv"
 
-#: .\events\templates\events\event_certificate_upload.html:31
-#: .\events\templates\events\event_certificate_upload.html:33
+#: .\events\templates\events\event_certificate_upload.html:32
+#: .\events\templates\events\event_certificate_upload.html:34
 msgid "Choose a file"
 msgstr "Escolha um arquivo"
 
-#: .\events\templates\events\event_certificate_upload.html:32
+#: .\events\templates\events\event_certificate_upload.html:33
 msgid "Choose a .png file"
 msgstr "Escolha um arquivo .png"
 
-#: .\events\templates\events\event_certificate_upload.html:38
+#: .\events\templates\events\event_certificate_upload.html:39
 msgid "Description of the .csv columns"
 msgstr "Descrição das colunas do .csv"
 
-#: .\events\templates\events\event_certificate_upload.html:40
+#: .\events\templates\events\event_certificate_upload.html:41
 msgid "Wikimedia username of the individual (optional)"
 msgstr "Nome de usuário(a) do indivíduo (opcional)"
+
+#: .\events\templates\events\event_certificate_upload.html:45
+msgid "If the certificate should include hours"
+msgstr "Se o certificado deve declarar horas"
 
 #: .\events\templates\events\event_create.html:6
 #: .\events\templates\events\event_create.html:12
@@ -916,6 +935,12 @@ msgstr "Todos os certificados serão excluídos e invalidados"
 #: .\events\templates\events\event_detail.html:6
 msgid "Detail event"
 msgstr "Ver evento"
+
+#: .\events\templates\events\event_detail.html:17
+#: .\events\templates\events\event_update.html:6
+#: .\events\templates\events\event_update.html:28
+msgid "Update event"
+msgstr "Editar evento"
 
 #: .\events\templates\events\event_detail.html:21
 msgid "Date of the start of the event"
