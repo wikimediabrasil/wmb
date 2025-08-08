@@ -166,9 +166,9 @@ def make_pdf_of_certificate(certificate):
 
     phrase_date = format_certificate_date(certificate.event.date_start, certificate.event.date_end)
     if certificate.with_hours:
-        phrase_time = _("%(date)s.") % {"date": phrase_date}
-    else:
         phrase_time = _("%(date)s (Credit hours: %(hours)s).") % {"date": phrase_date, "hours": certificate.hours}
+    else:
+        phrase_time = _("%(date)s.") % {"date": phrase_date}
 
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(phrase_time))
     pdf.cell(w=0, h=15, ln=1)  # New line

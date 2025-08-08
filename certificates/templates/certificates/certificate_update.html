@@ -20,7 +20,7 @@
                 <label for="name">{% trans "Real name of the individual" %}</label>
                 {{ form.name }}
                 <label for="username_string">{% trans "Wikimedia username of the individual" %}</label>
-                <input type="text" name="username_string" class="form-control form_value" placeholder="Enter the Wikimedia username of the individual" maxlength="150" id="username_string" value="{{ form.instance.username }}">
+                <input type="text" name="username_string" class="form-control form_value" placeholder="Enter the Wikimedia username of the individual" maxlength="150" id="username_string" value="{% if form.instance.username %}{{ form.instance.username }}{% endif %}">
                 <label for="pronoun">{% trans "Pronouns for individual" %}</label>
                 {{ form.pronoun }}
                 <label for="hours">{% trans "Hours worked at the event by the individual" %}</label>

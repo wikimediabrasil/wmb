@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import permission_required
 
@@ -47,14 +48,18 @@ def certificate_update(request, event_id, certificate_id):
             username_string = form.cleaned_data.get('username_string')
             if username_string:
                 participant = Participant.objects.filter(participant_username=username_string).first()
-            else:
-                participant = None
-
-            if participant:
-                certificate.username = participant
-            else:
-                certificate.username.participant_username = username_string
-            certificate.username.save()
+                if participant:
+                    certificate.username = participant
+                    certificate.save()
+                else:
+                    participant = Participant.objects.create(participant_full_name = form.cleaned_data.get('name'),
+                                                             participant_username = username_string,
+                                                             enrolled_at = datetime.datetime.today(),
+                                                             created_by = request.user,
+                                                             modified_by = request.user)
+                    participant.save()
+                    certificate.username = participant
+                    certificate.save()
 
             return redirect(reverse("events:event_detail", kwargs={"event_id": event_id}))
 
@@ -95,7 +100,7 @@ def certificate_validate(request):
 
 
 def certificate_download_by_hash(request, certificate_hash):
-    certificate = Certificate.objects.get(certificate_hash=certificate_hash)
+    certificate = Certificate.objects.filter(certificate_hash=certificate_hash).first()
 
     if certificate:
         return make_one_certificate_pdf(certificate)

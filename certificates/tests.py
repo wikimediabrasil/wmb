@@ -1,8 +1,10 @@
 import os
 import calendar
 import hashlib
+import tempfile
 import pandas as pd
 from io import BytesIO
+from PIL import Image
 
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -131,7 +133,7 @@ class CertificateViewsTest(TestCase):
         url = reverse("events:certificate_update", kwargs={"event_id": self.event.id, "certificate_id": self.certificate.id})
         data = {
             "name": "Test Name",
-            "username": self.participant.participant_username,
+            "username_string": self.participant.participant_username,
             "pronoun": "a",
             "hours": "02h09",
             "role": "ouvinte"
@@ -142,6 +144,28 @@ class CertificateViewsTest(TestCase):
         self.certificate.refresh_from_db()
         self.assertEqual(response.status_code, 302)
         self.assertEqual(self.certificate.pronoun, "a")
+
+    def test_certificate_update_post_method_creates_new_participant_if_none_exists(self):
+        data = {
+            "name": "Test Name",
+            "username_string": self.participant.participant_username + " (New)",
+            "pronoun": "a",
+            "hours": "02h09",
+            "role": "ouvinte",
+            "with_hours": "10h53"
+        }
+        url = reverse("events:certificate_update", kwargs={"event_id": self.event.id, "certificate_id": self.certificate.id})
+        response = self.client.post(url, data)
+
+        self.assertRedirects(response, reverse("events:event_detail", kwargs={"event_id": self.event.id}))
+
+        self.certificate.refresh_from_db()
+        participant = Participant.objects.get(participant_username="newuser123")
+
+        self.assertEqual(self.certificate.username, participant)
+        self.assertEqual(participant.participant_full_name, "New Participant")
+        self.assertEqual(participant.created_by, self.user)
+        self.assertEqual(participant.modified_by, self.user)
 
     def test_certificate_update_for_a_non_existent_event_fails (self):
         url = reverse("events:certificate_update", kwargs={"event_id": 9999, "certificate_id": self.certificate.id})
@@ -250,6 +274,48 @@ class CertificateViewsTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "certificates/certificate_validate.html")
 
+
+def generate_valid_image():
+    image = Image.new("RGB", (100, 100), color="white")
+    temp_file = tempfile.NamedTemporaryFile(suffix=".jpg", delete=False)
+    image.save(temp_file, format="JPEG")
+    temp_file.seek(0)
+    return SimpleUploadedFile("background.jpg", temp_file.read(), content_type="image/jpeg")
+
+
+class CertificateDownloadByHashTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="admin", password="admin")
+        self.participant = Participant.objects.create(participant_username="johndoe")
+        self.event = Event.objects.create(event_name="Test Event", date_start=date(2024, 1, 1))
+        self.fake_image = self.fake_image = generate_valid_image()
+
+        self.certificate = Certificate.objects.create(
+            name="Test Name",
+            username=self.participant,
+            pronoun="O",
+            event=self.event,
+            hours="10h30",
+            with_hours=True,
+            role="ouvinte",
+            background=self.fake_image,
+            emitted_by=self.user,
+        )
+
+    def test_download_by_hash_of_existing_certificate(self):
+        url = reverse("certificates:download_by_hash", kwargs={"certificate_hash":self.certificate.certificate_hash})
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "application/pdf")
+
+    def test_download_by_hash_of_non_existing_certificate_redirects(self):
+        url = reverse("certificates:download_by_hash", kwargs={"certificate_hash":"qwertyuiopasdfghjklzxcvbnm"})
+        response = self.client.get(url)
+
+        expected_redirect_url = reverse("certificates:certificate_validate")
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, expected_redirect_url)
 
 class CertificateUtilsTest(TestCase):
     def test_clean_string_with_string_with_invalid_characters(self):
@@ -655,10 +721,11 @@ class CertificateFormTests(TestCase):
         self.participant = Participant.objects.create(participant_full_name=self.participant_full_name, participant_username=self.participant_username)
         self.valid_data = {
             "name": "Test Name",
-            "username": self.participant.participant_username,
+            "username": self.participant,
             "pronoun": "o",
             "hours": "10h30",
             "role": "ouvinte",
+            "with_hours": "true"
         }
 
     def test_form_valid_data(self):
