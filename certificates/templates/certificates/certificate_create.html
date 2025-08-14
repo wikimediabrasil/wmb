@@ -20,8 +20,8 @@
                 {% csrf_token %}
                 <label class="field_title" for="name">{% trans "Real name of the individual" %}</label>
                 {{ form.name }}
-                <label class="field_title" for="username">{% trans "Wikimedia username of the individual" %}</label>
-                {{ form.username }}
+                <label class="field_title" for="username_string">{% trans "Wikimedia username of the individual" %}</label>
+                {{ form.username_string }}
                 <label class="field_title" for="pronoun">{% trans "Pronouns for individual" %}</label>
                 {{ form.pronoun }}
                 <label class="field_title" for="hours">{% trans "Hours worked at the event by the individual" %}</label>
