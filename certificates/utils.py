@@ -180,7 +180,7 @@ def make_pdf_of_certificate(certificate):
         signature = settings.VALERIOS_SIGNATURE
     else:
         president = _("ÉRICA CAMILLO AZZELLINI")
-        signature = settings.ÉRICAS_SIGNATURE
+        signature = settings.ERICAS_SIGNATURE
     president_role = _("President of Wikimedia Brasil")
     pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', signature)), x=131, y=y-5, w=35, h=16)
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")
