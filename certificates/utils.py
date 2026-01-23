@@ -177,10 +177,12 @@ def make_pdf_of_certificate(certificate):
     target_date = datetime.date(2025, 11, 8)
     if certificate.event.date_end < target_date:
         president = _("VALÉRIO ANDRADE MELO")
+        signature = settings.VALERIOS_SIGNATURE
     else:
         president = _("ÉRICA CAMILLO AZZELLINI")
+        signature = settings.ÉRICAS_SIGNATURE
     president_role = _("President of Wikimedia Brasil")
-    pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', settings.SIGNATURE)), x=131, y=y-5, w=35, h=16)
+    pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', signature)), x=131, y=y-5, w=35, h=16)
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")
     pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(president))
     pdf.set_font('Merriweather', '', 11)
