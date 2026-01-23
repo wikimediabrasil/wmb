@@ -174,7 +174,11 @@ def make_pdf_of_certificate(certificate):
     pdf.cell(w=0, h=15, ln=1)  # New line
 
     y = pdf.get_y()
-    president = _("VALÉRIO ANDRADE MELO")
+    target_date = datetime.date(2025, 11, 8)
+    if certificate.event.date_end < target_date:
+        president = _("VALÉRIO ANDRADE MELO")
+    else:
+        president = _("ÉRICA CAMILLO AZZELLINI")
     president_role = _("President of Wikimedia Brasil")
     pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', settings.SIGNATURE)), x=131, y=y-5, w=35, h=16)
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")

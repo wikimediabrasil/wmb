@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-07 21:51-0300\n"
+"POT-Creation-Date: 2026-01-23 13:08-0300\n"
 "PO-Revision-Date: 2025-01-31 20:53-0300\n"
 "Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
 "Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
@@ -623,7 +623,7 @@ msgid "Validate certificate"
 msgstr "Validar certificado"
 
 #: .\certificates\templates\certificates\certificate_detail.html:15
-#: .\certificates\utils.py:277 .\certificates\utils.py:303
+#: .\certificates\utils.py:281 .\certificates\utils.py:307
 #: .\events\tests.py:272 .\events\tests.py:303
 msgid "Certificate"
 msgstr "Certificado"
@@ -712,7 +712,7 @@ msgstr "de {d_start} a {d_end} de {m_start} de {y_start}"
 msgid "from {m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
 msgstr "de {d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
 
-#: .\certificates\tests.py:407 .\certificates\utils.py:216
+#: .\certificates\tests.py:407 .\certificates\utils.py:220
 msgid "Your CSV file is empty. Verify and submit again"
 msgstr "Seu arquivo CSV está vazio. Verifique e submeta novamente"
 
@@ -739,15 +739,19 @@ msgstr "%(date)s (Carga horária: %(hours)s)."
 msgid "%(date)s."
 msgstr "%(date)s"
 
-#: .\certificates\utils.py:177
+#: .\certificates\utils.py:179
 msgid "VALÉRIO ANDRADE MELO"
 msgstr "VALÉRIO ANDRADE MELO"
 
-#: .\certificates\utils.py:178
+#: .\certificates\utils.py:181
+msgid "ÉRICA CAMILLO AZZELLINI"
+msgstr "ÉRICA CAMILLO AZZELLINI"
+
+#: .\certificates\utils.py:182
 msgid "President of Wikimedia Brasil"
 msgstr "Presidente da Wikimedia Brasil"
 
-#: .\certificates\utils.py:186
+#: .\certificates\utils.py:190
 #, python-format
 msgid ""
 "The validity of this document can be checked at https://wmb.toolforge.org/. "
@@ -756,31 +760,31 @@ msgstr ""
 "A validade deste documento pode ser checada em https://wmb.toolforge.org/. O "
 "código hash para validação é: %(certificate_hash)s"
 
-#: .\certificates\utils.py:203 .\events\tests.py:341 .\events\tests.py:354
+#: .\certificates\utils.py:207 .\events\tests.py:341 .\events\tests.py:354
 msgid "One or more required columns are missing. Verify and submit again"
 msgstr "Um ou mais colunas estão faltando. Verifique e submeta novamente"
 
-#: .\certificates\utils.py:208
+#: .\certificates\utils.py:212
 #, python-format
 msgid "Name invalid! Verify row %(row)s, column 'name'"
 msgstr "Nome inválido! Verifique a linha %(row)s da coluna 'name'"
 
-#: .\certificates\utils.py:210
+#: .\certificates\utils.py:214
 #, python-format
 msgid "Pronoun invalid! Verify row %(row)s, column 'pronoun'"
 msgstr "Pronome inválido! Verifique a linha %(row)s da coluna 'pronoun'"
 
-#: .\certificates\utils.py:212
+#: .\certificates\utils.py:216
 #, python-format
 msgid "Hours invalid! Verify row %(row)s, column 'hours'"
 msgstr "Horas inválidas! Verifique a linha %(row)s da coluna 'hours'"
 
-#: .\certificates\utils.py:214
+#: .\certificates\utils.py:218
 #, python-format
 msgid "Role invalid! Verify row %(row)s, column 'role'"
 msgstr "Atribuição inválida! Verifique a linha %(row)s da coluna 'role'"
 
-#: .\certificates\utils.py:307 .\events\tests.py:249
+#: .\certificates\utils.py:311 .\events\tests.py:249
 msgid "Certificates"
 msgstr "Certificados"
 
