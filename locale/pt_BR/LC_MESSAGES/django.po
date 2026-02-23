@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-23 13:08-0300\n"
+"POT-Creation-Date: 2026-02-23 05:10-0300\n"
 "PO-Revision-Date: 2025-01-31 20:53-0300\n"
 "Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
 "Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
@@ -190,6 +190,46 @@ msgstr "Criar atividade"
 #: .\certificates\templates\certificates\certificate_list.html:12
 #: .\certificates\templates\certificates\certificate_update.html:11
 #: .\certificates\templates\certificates\certificate_validate.html:11
+#: .\credentials\templates\credentials\credential_create.html:11
+#: .\credentials\templates\credentials\credential_delete.html:13
+#: .\credentials\templates\credentials\credential_detail.html:12
+#: .\credentials\templates\credentials\credential_list.html:12
+#: .\credentials\templates\credentials\credential_update.html:12
+#: .\events\templates\events\event_certificate_confirm.html:11
+#: .\events\templates\events\event_certificate_upload.html:11
+#: .\events\templates\events\event_create.html:11
+#: .\events\templates\events\event_delete.html:11
+#: .\events\templates\events\event_detail.html:11
+#: .\events\templates\events\event_list.html:12
+#: .\events\templates\events\event_update.html:11 .\templates\navbar.html:7
+#: .\users\templates\users\index.html:6
+msgid "Homepage"
+msgstr "Página inicial"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:11
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:11
+#: .\calendars\templates\calendars\activity_delete.html:11
+#: .\calendars\templates\calendars\activity_detail.html:11
+#: .\calendars\templates\calendars\activity_update.html:11
+#: .\calendars\templates\calendars\calendar_create_and_update.html:11
+#: .\calendars\templates\calendars\calendar_delete.html:11
+#: .\calendars\templates\calendars\calendar_detail.html:12
+#: .\calendars\templates\calendars\calendar_list.html:12
+#: .\calendars\templates\calendars\month_calendar_create_and_update.html:11
+#: .\calendars\templates\calendars\month_calendar_delete.html:11
+#: .\calendars\templates\calendars\month_calendar_detail.html:11
+#: .\calendars\templates\calendars\month_calendar_list.html:12
+#: .\certificates\templates\certificates\certificate_create.html:11
+#: .\certificates\templates\certificates\certificate_delete.html:11
+#: .\certificates\templates\certificates\certificate_detail.html:11
+#: .\certificates\templates\certificates\certificate_list.html:12
+#: .\certificates\templates\certificates\certificate_update.html:11
+#: .\certificates\templates\certificates\certificate_validate.html:11
+#: .\credentials\templates\credentials\credential_create.html:11
+#: .\credentials\templates\credentials\credential_delete.html:13
+#: .\credentials\templates\credentials\credential_detail.html:12
+#: .\credentials\templates\credentials\credential_list.html:12
+#: .\credentials\templates\credentials\credential_update.html:12
 #: .\events\templates\events\event_certificate_confirm.html:11
 #: .\events\templates\events\event_certificate_upload.html:11
 #: .\events\templates\events\event_create.html:11
@@ -199,6 +239,10 @@ msgstr "Criar atividade"
 #: .\events\templates\events\event_update.html:11
 msgid "Home"
 msgstr "Página inicial"
+
+#: .\calendars\templates\calendars\activity_create_and_update.html:12
+msgid "List of calendars issued"
+msgstr "Lista de calendários criados"
 
 #: .\calendars\templates\calendars\activity_create_and_update.html:12
 #: .\calendars\templates\calendars\activity_create_in_bulk.html:12
@@ -214,6 +258,15 @@ msgstr "Página inicial"
 msgid "Calendars"
 msgstr "Calendários"
 
+#: .\calendars\templates\calendars\activity_create_and_update.html:13
+#: .\calendars\templates\calendars\activity_create_and_update.html:46
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:13
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:45
+#: .\calendars\templates\calendars\activity_delete.html:13
+#: .\calendars\templates\calendars\activity_delete.html:22
+msgid "Details of specific calendar"
+msgstr "Detalhes de um calendário específico"
+
 #: .\calendars\templates\calendars\activity_create_and_update.html:16
 #: .\calendars\templates\calendars\activity_detail.html:17
 #: .\calendars\templates\calendars\activity_detail.html:30
@@ -223,6 +276,9 @@ msgstr "Calendários"
 #: .\calendars\templates\calendars\calendar_detail.html:36
 #: .\calendars\templates\calendars\month_calendar_create_and_update.html:15
 #: .\calendars\templates\calendars\month_calendar_detail.html:20
+#: .\credentials\templates\credentials\credential_detail.html:49
+#: .\credentials\templates\credentials\credential_list.html:35
+#: .\credentials\templates\credentials\credential_update.html:15
 msgid "Edit"
 msgstr "Editar"
 
@@ -266,9 +322,16 @@ msgstr "Data customizada desta atividade"
 #: .\calendars\templates\calendars\activity_create_and_update.html:46
 #: .\calendars\templates\calendars\activity_create_in_bulk.html:45
 #: .\calendars\templates\calendars\activity_update.html:49
+#: .\credentials\templates\credentials\credential_create.html:40
+#: .\credentials\templates\credentials\credential_delete.html:36
+#: .\credentials\templates\credentials\credential_update.html:41
 #: .\users\templates\users\update_profile.html:39
 msgid "Cancel"
 msgstr "Cancelar"
+
+#: .\calendars\templates\calendars\activity_create_in_bulk.html:12
+msgid "List of calendar"
+msgstr "Lista de calendários"
 
 #: .\calendars\templates\calendars\activity_create_in_bulk.html:14
 msgid "Create activities in bulk"
@@ -299,6 +362,10 @@ msgstr "Criar todas as atividades"
 #: .\calendars\templates\calendars\activity_create_in_bulk.html:53
 msgid "You can only add up to 10 forms."
 msgstr "Você pode adicionar no máximo 10 atividades"
+
+#: .\calendars\templates\calendars\activity_delete.html:12
+msgid "List of calendars"
+msgstr "Lista de calendários"
 
 #: .\calendars\templates\calendars\activity_delete.html:17
 msgid "Are you sure you want to delete this activity?"
@@ -331,6 +398,9 @@ msgstr "Ver calendário"
 #: .\calendars\templates\calendars\calendar_detail.html:24
 #: .\calendars\templates\calendars\calendar_detail.html:37
 #: .\calendars\templates\calendars\month_calendar_detail.html:21
+#: .\credentials\templates\credentials\credential_delete.html:16
+#: .\credentials\templates\credentials\credential_detail.html:54
+#: .\credentials\templates\credentials\credential_list.html:36
 #: .\events\templates\events\event_delete.html:14
 #: .\events\templates\events\event_detail.html:47
 #: .\events\templates\events\event_detail.html:60
@@ -487,25 +557,25 @@ msgstr "Digite o nome de usuário(a) Wikimedia do indivíduo"
 msgid "With hours?"
 msgstr "Declarar horas?"
 
-#: .\certificates\forms.py:66 .\certificates\tests.py:779
+#: .\certificates\forms.py:66 .\certificates\tests.py:786
 msgid "Enter the real name of the individual"
 msgstr "Digite o nome real do indivíduo"
 
-#: .\certificates\forms.py:81 .\certificates\tests.py:780
+#: .\certificates\forms.py:81 .\certificates\tests.py:787
 msgid "Hours worked in the event by the individual. Format: (HHhMM)"
 msgstr "Horas trabalhadas no evento pelo indivíduo. Formato: (HHhMM)"
 
-#: .\certificates\forms.py:87 .\certificates\tests.py:781
+#: .\certificates\forms.py:87 .\certificates\tests.py:788
 msgid "Role of the individual in the event"
 msgstr "Atribuição do indíviduo no evento"
 
-#: .\certificates\forms.py:115 .\certificates\tests.py:754
-#: .\certificates\tests.py:775 .\certificates\tests.py:795
-#: .\certificates\tests.py:802 .\certificates\tests.py:809
+#: .\certificates\forms.py:115 .\certificates\tests.py:761
+#: .\certificates\tests.py:782 .\certificates\tests.py:802
+#: .\certificates\tests.py:809 .\certificates\tests.py:816
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: .\certificates\forms.py:116 .\certificates\tests.py:823
+#: .\certificates\forms.py:116 .\certificates\tests.py:830
 msgid "Ensure this field has at most 256 characters."
 msgstr "Garanta que este campo tenha no máximo 256 caracteres"
 
@@ -543,12 +613,16 @@ msgstr ""
 
 #: .\certificates\templates\certificates\certificate_create.html:21
 #: .\certificates\templates\certificates\certificate_update.html:20
+#: .\credentials\templates\credentials\credential_create.html:22
+#: .\credentials\templates\credentials\credential_update.html:23
 #: .\events\templates\events\event_certificate_upload.html:40
 msgid "Real name of the individual"
 msgstr "Nome real do indivíduo"
 
 #: .\certificates\templates\certificates\certificate_create.html:23
 #: .\certificates\templates\certificates\certificate_update.html:22
+#: .\credentials\templates\credentials\credential_create.html:20
+#: .\credentials\templates\credentials\credential_update.html:21
 msgid "Wikimedia username of the individual"
 msgstr "Nome de usuário(a) do indivíduo"
 
@@ -585,6 +659,8 @@ msgid "Name"
 msgstr "Nome"
 
 #: .\certificates\templates\certificates\certificate_delete.html:21
+#: .\credentials\templates\credentials\credential_delete.html:22
+#: .\credentials\templates\credentials\credential_detail.html:20
 #: .\events\templates\events\list_certificates.html:22
 #: .\users\templates\users\update_profile.html:16
 msgid "Username"
@@ -596,6 +672,9 @@ msgid "Pronouns"
 msgstr "Pronomes"
 
 #: .\certificates\templates\certificates\certificate_delete.html:25
+#: .\credentials\templates\credentials\credential_delete.html:26
+#: .\credentials\templates\credentials\credential_detail.html:38
+#: .\credentials\templates\credentials\credential_list.html:25
 msgid "Event"
 msgstr "Evento"
 
@@ -617,13 +696,14 @@ msgstr "Atribuição"
 #: .\certificates\templates\certificates\certificate_detail.html:12
 #: .\certificates\templates\certificates\certificate_validate.html:12
 #: .\certificates\templates\certificates\certificate_validate.html:14
+#: .\credentials\templates\credentials\credential_validate.html:17
 #: .\templates\navbar.html:54 .\templates\navbar.html:56
 #: .\users\templates\users\index.html:38 .\users\templates\users\index.html:40
 msgid "Validate certificate"
 msgstr "Validar certificado"
 
 #: .\certificates\templates\certificates\certificate_detail.html:15
-#: .\certificates\utils.py:281 .\certificates\utils.py:307
+#: .\certificates\utils.py:283 .\certificates\utils.py:309
 #: .\events\tests.py:272 .\events\tests.py:303
 msgid "Certificate"
 msgstr "Certificado"
@@ -684,35 +764,36 @@ msgid "Hash code of the document"
 msgstr "Código hash do documento"
 
 #: .\certificates\templates\certificates\certificate_validate.html:23
+#: .\credentials\templates\credentials\credential_validate.html:53
 msgid "Validate"
 msgstr "Validar"
 
-#: .\certificates\tests.py:336 .\certificates\tests.py:642
-#: .\certificates\tests.py:761 .\certificates\utils.py:56
+#: .\certificates\tests.py:339 .\certificates\tests.py:645
+#: .\certificates\tests.py:768 .\certificates\utils.py:56
 msgid "participant"
 msgstr "ouvinte"
 
-#: .\certificates\tests.py:352 .\certificates\utils.py:68
+#: .\certificates\tests.py:355 .\certificates\utils.py:68
 #, python-brace-format
 msgid "on {m_start} {d_start}, {y_start}"
 msgstr "em {d_start} de {m_start} de {y_start}"
 
-#: .\certificates\tests.py:361 .\certificates\utils.py:78
+#: .\certificates\tests.py:364 .\certificates\utils.py:78
 #, python-brace-format
 msgid "from {m_start} {d_start} to {m_end} {d_end}, {y_start}"
 msgstr "de {d_start} de {m_start} a {d_end} de {m_end} de {y_start}"
 
-#: .\certificates\tests.py:372 .\certificates\utils.py:73
+#: .\certificates\tests.py:375 .\certificates\utils.py:73
 #, python-brace-format
 msgid "from {m_start} {d_start} to {d_end}, {y_start}"
 msgstr "de {d_start} a {d_end} de {m_start} de {y_start}"
 
-#: .\certificates\tests.py:382 .\certificates\utils.py:84
+#: .\certificates\tests.py:385 .\certificates\utils.py:84
 #, python-brace-format
 msgid "from {m_start} {d_start}, {y_start} to {m_end} {d_end}, {y_end}"
 msgstr "de {d_start} de {m_start} de {y_start} a {d_end} de {m_end} de {y_end}"
 
-#: .\certificates\tests.py:407 .\certificates\utils.py:220
+#: .\certificates\tests.py:410 .\certificates\utils.py:222
 msgid "Your CSV file is empty. Verify and submit again"
 msgstr "Seu arquivo CSV está vazio. Verifique e submeta novamente"
 
@@ -743,15 +824,15 @@ msgstr "%(date)s"
 msgid "VALÉRIO ANDRADE MELO"
 msgstr "VALÉRIO ANDRADE MELO"
 
-#: .\certificates\utils.py:181
+#: .\certificates\utils.py:182
 msgid "ÉRICA CAMILLO AZZELLINI"
 msgstr "ÉRICA CAMILLO AZZELLINI"
 
-#: .\certificates\utils.py:182
+#: .\certificates\utils.py:184
 msgid "President of Wikimedia Brasil"
 msgstr "Presidente da Wikimedia Brasil"
 
-#: .\certificates\utils.py:190
+#: .\certificates\utils.py:192
 #, python-format
 msgid ""
 "The validity of this document can be checked at https://wmb.toolforge.org/. "
@@ -760,33 +841,280 @@ msgstr ""
 "A validade deste documento pode ser checada em https://wmb.toolforge.org/. O "
 "código hash para validação é: %(certificate_hash)s"
 
-#: .\certificates\utils.py:207 .\events\tests.py:341 .\events\tests.py:354
+#: .\certificates\utils.py:209 .\events\tests.py:341 .\events\tests.py:354
 msgid "One or more required columns are missing. Verify and submit again"
 msgstr "Um ou mais colunas estão faltando. Verifique e submeta novamente"
 
-#: .\certificates\utils.py:212
+#: .\certificates\utils.py:214
 #, python-format
 msgid "Name invalid! Verify row %(row)s, column 'name'"
 msgstr "Nome inválido! Verifique a linha %(row)s da coluna 'name'"
 
-#: .\certificates\utils.py:214
+#: .\certificates\utils.py:216
 #, python-format
 msgid "Pronoun invalid! Verify row %(row)s, column 'pronoun'"
 msgstr "Pronome inválido! Verifique a linha %(row)s da coluna 'pronoun'"
 
-#: .\certificates\utils.py:216
+#: .\certificates\utils.py:218
 #, python-format
 msgid "Hours invalid! Verify row %(row)s, column 'hours'"
 msgstr "Horas inválidas! Verifique a linha %(row)s da coluna 'hours'"
 
-#: .\certificates\utils.py:218
+#: .\certificates\utils.py:220
 #, python-format
 msgid "Role invalid! Verify row %(row)s, column 'role'"
 msgstr "Atribuição inválida! Verifique a linha %(row)s da coluna 'role'"
 
-#: .\certificates\utils.py:311 .\events\tests.py:249
+#: .\certificates\utils.py:313 .\events\tests.py:249
 msgid "Certificates"
 msgstr "Certificados"
+
+#: .\credentials\forms.py:16
+msgid "Enter the username"
+msgstr "Digite o nome de usuário(a)"
+
+#: .\credentials\forms.py:21
+msgid "Enter the full name"
+msgstr "Digite o nome completo"
+
+#: .\credentials\forms.py:26
+msgid "Enter the CPF (numbers only)"
+msgstr "Digite o CPF (somente números)"
+
+#: .\credentials\forms.py:30
+msgid "Enter the CIN"
+msgstr "Digite o CIN"
+
+#: .\credentials\forms.py:34
+msgid "Enter the photograph URL"
+msgstr "Digite ou cole a URL da fotografia"
+
+#: .\credentials\forms.py:39
+msgid "Enter event name"
+msgstr "Digite o nome do evento"
+
+#: .\credentials\forms.py:65 .\credentials\tests.py:494
+msgid "Valid until date cannot be before valid from date."
+msgstr "A data 'válido até' não pode ser anterior à data 'válido desde'"
+
+#: .\credentials\models.py:10
+msgid "Wikimedia username"
+msgstr "Nome de usuário(a)"
+
+#: .\credentials\models.py:10
+msgid "Username of the user whose credentials are being created."
+msgstr "Nome de usuário(a) da pessoa cuja credencial está sendo criada."
+
+#: .\credentials\models.py:11
+#: .\credentials\templates\credentials\credential_delete.html:24
+#: .\credentials\templates\credentials\credential_detail.html:24
+#: .\events\templates\events\event_detail.html:40
+#: .\events\templates\events\event_detail.html:53
+#: .\users\templates\users\update_profile.html:20
+msgid "Full name"
+msgstr "Nome completo"
+
+#: .\credentials\models.py:11
+msgid "Full name of user."
+msgstr "Nome completo"
+
+#: .\credentials\models.py:12
+#: .\credentials\templates\credentials\credential_detail.html:30
+msgid "CPF"
+msgstr "CPF"
+
+#: .\credentials\models.py:12
+msgid "CPF of user."
+msgstr "CPF da pessoa."
+
+#: .\credentials\models.py:13
+#: .\credentials\templates\credentials\credential_detail.html:34
+msgid "CIN"
+msgstr "CIN"
+
+#: .\credentials\models.py:13
+msgid "CIN of user."
+msgstr "CIN da pessoa."
+
+#: .\credentials\models.py:14
+msgid "Photograph URL"
+msgstr "URL da fotografia"
+
+#: .\credentials\models.py:14
+msgid "Photograph URL."
+msgstr "URL da fotografia"
+
+#: .\credentials\models.py:15
+msgid "Meta-Wiki Profile URL"
+msgstr "URL do perfil do Meta-Wiki"
+
+#: .\credentials\models.py:15
+msgid "Meta-Wiki Profile URL."
+msgstr "URL do perfil do Meta-Wiki"
+
+#: .\credentials\models.py:17
+#: .\credentials\templates\credentials\credential_create.html:30
+#: .\credentials\templates\credentials\credential_update.html:31
+msgid "Event name"
+msgstr "Nome do evento"
+
+#: .\credentials\models.py:17
+msgid "Event which credentials are being created."
+msgstr "Evento para o qual a credencial está sendo criada."
+
+#: .\credentials\models.py:18
+#: .\credentials\templates\credentials\credential_detail.html:42
+#: .\credentials\templates\credentials\credential_validate.html:40
+msgid "Verification code"
+msgstr "Código de verificação"
+
+#: .\credentials\models.py:20
+#: .\credentials\templates\credentials\credential_list.html:29
+msgid "Issued at"
+msgstr "Emitido em"
+
+#: .\credentials\models.py:21
+#: .\credentials\templates\credentials\credential_list.html:31
+msgid "Issued by"
+msgstr "Emitido por"
+
+#: .\credentials\models.py:22
+msgid "Valid from"
+msgstr "Válido desde"
+
+#: .\credentials\models.py:23
+#: .\credentials\templates\credentials\credential_detail.html:40
+#: .\credentials\templates\credentials\credential_list.html:27
+msgid "Valid until"
+msgstr "Válido até"
+
+#: .\credentials\templates\credentials\credential_create.html:6
+#: .\credentials\templates\credentials\credential_create.html:38
+msgid "Issue new credential"
+msgstr "Emitir uma nova credencial"
+
+#: .\credentials\templates\credentials\credential_create.html:12
+#: .\credentials\templates\credentials\credential_create.html:39
+#: .\credentials\templates\credentials\credential_delete.html:14
+#: .\credentials\templates\credentials\credential_detail.html:13
+#: .\credentials\templates\credentials\credential_update.html:13
+msgid "List of credentials"
+msgstr "Lista de credenciais"
+
+#: .\credentials\templates\credentials\credential_create.html:12
+#: .\credentials\templates\credentials\credential_delete.html:14
+#: .\credentials\templates\credentials\credential_detail.html:13
+#: .\credentials\templates\credentials\credential_list.html:7
+#: .\credentials\templates\credentials\credential_list.html:13
+#: .\credentials\templates\credentials\credential_update.html:13
+msgid "Credentials"
+msgstr "Credenciais"
+
+#: .\credentials\templates\credentials\credential_create.html:13
+#: .\credentials\templates\credentials\credential_create.html:15
+#: .\credentials\templates\credentials\credential_list.html:18
+msgid "Issue a new credential"
+msgstr "Emitir uma nova credencial"
+
+#: .\credentials\templates\credentials\credential_create.html:16
+msgid "To issue a credential for a wikimedian to an event, fill out the form:"
+msgstr "Para emitir credenciais para wikimedistas em um evento, preencha o formulário:"
+
+#: .\credentials\templates\credentials\credential_create.html:24
+#: .\credentials\templates\credentials\credential_update.html:25
+msgid "CPF number of the individual"
+msgstr "Número do CPF da pessoa"
+
+#: .\credentials\templates\credentials\credential_create.html:26
+#: .\credentials\templates\credentials\credential_update.html:27
+msgid "National Identity Card number of the individual"
+msgstr "Número do Registro Nacional da pessoa"
+
+#: .\credentials\templates\credentials\credential_create.html:28
+#: .\credentials\templates\credentials\credential_update.html:29
+msgid "URL of the individual's image for the credentials"
+msgstr "URL da imagem da pessoa para as credenciais"
+
+#: .\credentials\templates\credentials\credential_create.html:32
+#: .\credentials\templates\credentials\credential_update.html:33
+msgid "Validity start date"
+msgstr "Início da validade"
+
+#: .\credentials\templates\credentials\credential_create.html:34
+#: .\credentials\templates\credentials\credential_update.html:35
+msgid "Validity end date"
+msgstr "Fim da validade"
+
+#: .\credentials\templates\credentials\credential_delete.html:8
+msgid "Delete credential"
+msgstr "Excluir evento"
+
+#: .\credentials\templates\credentials\credential_delete.html:15
+#: .\credentials\templates\credentials\credential_detail.html:14
+#: .\credentials\templates\credentials\credential_update.html:14
+#, python-format
+msgid "%(username)s credential for %(event)s"
+msgstr "Credencial de %(username)s para %(event)s"
+
+#: .\credentials\templates\credentials\credential_delete.html:18
+msgid "Are you sure you want to delete credential for:"
+msgstr "Você tem certeza que quer excluir esta credencial?"
+
+#: .\credentials\templates\credentials\credential_delete.html:30
+msgid "This action cannot be undone!"
+msgstr "Esta ação não pode ser desfeita!"
+
+#: .\credentials\templates\credentials\credential_delete.html:34
+msgid "Yes, delete"
+msgstr "Sim, exclua"
+
+#: .\credentials\templates\credentials\credential_detail.html:6
+#: .\credentials\templates\credentials\credential_validate.html:6
+msgid "Verify credential"
+msgstr "Verificar credencial"
+
+#: .\credentials\templates\credentials\credential_list.html:15
+msgid "All credentials"
+msgstr "Todas as credenciais"
+
+#: .\credentials\templates\credentials\credential_list.html:16
+msgid "Search for credentials.."
+msgstr "Pesquise por credenciais.."
+
+#: .\credentials\templates\credentials\credential_list.html:16
+msgid "Type in a username"
+msgstr "Digite o nome de usuário(a)"
+
+#: .\credentials\templates\credentials\credential_update.html:6
+#: .\credentials\templates\credentials\credential_update.html:17
+msgid "Edit credential"
+msgstr "Editar credencial"
+
+#: .\credentials\templates\credentials\credential_update.html:39
+msgid "Save"
+msgstr "Salvar"
+
+#: .\credentials\templates\credentials\credential_validate.html:13
+#: .\templates\navbar.html:61 .\templates\navbar.html:63
+#: .\users\templates\users\index.html:43 .\users\templates\users\index.html:45
+msgid "Validate credential"
+msgstr "Validar credencial"
+
+#: .\credentials\templates\credentials\credential_validate.html:20
+msgid "Type or paste the verification code of the credential:"
+msgstr "Digite ou cole o código de verificação da credencial:"
+
+#: .\credentials\templates\credentials\credential_validate.html:47
+msgid "e.g. X1Y2Z3W4"
+msgstr "e.g. X1Y2Z3W4"
+
+#: .\credentials\tests.py:225 .\credentials\views.py:107
+msgid "Invalid verification code."
+msgstr "Código de verificação inválido."
+
+#: .\credentials\tests.py:246 .\credentials\views.py:101
+msgid "This credential verification code has expired."
+msgstr "A credencial com este código de verificação expirou."
 
 #: .\events\forms.py:14
 msgid "Enter the event name"
@@ -928,6 +1256,18 @@ msgstr "Link(s) para o evento:"
 msgid "Delete event"
 msgstr "Excluir evento"
 
+#: .\events\templates\events\event_delete.html:12
+#: .\events\templates\events\event_detail.html:12
+#: .\events\templates\events\event_update.html:12
+msgid "List of events"
+msgstr "Lista de eventos"
+
+#: .\events\templates\events\event_delete.html:13
+#: .\events\templates\events\event_delete.html:23
+#: .\events\templates\events\event_update.html:13
+msgid "Details of specific event"
+msgstr "Detalhes de um evento específico"
+
 #: .\events\templates\events\event_delete.html:17
 msgid "Are you sure you want to delete this event?"
 msgstr "Você tem certeza que quer excluir este evento?"
@@ -971,12 +1311,6 @@ msgstr "Emitir mais de um certificado"
 #: .\events\templates\events\list_certificates.html:14
 msgid "Download all certificates"
 msgstr "Baixar todos os certificados"
-
-#: .\events\templates\events\event_detail.html:40
-#: .\events\templates\events\event_detail.html:53
-#: .\users\templates\users\update_profile.html:20
-msgid "Full name"
-msgstr "Nome completo"
 
 #: .\events\templates\events\event_detail.html:41
 #: .\events\templates\events\event_detail.html:54
@@ -1076,10 +1410,6 @@ msgstr "Este aplicativo foi desenvolvido pela Wikimedia Brasil"
 msgid "Language"
 msgstr "Idioma"
 
-#: .\templates\navbar.html:7 .\users\templates\users\index.html:6
-msgid "Homepage"
-msgstr "Página inicial"
-
 #: .\templates\navbar.html:9
 msgid "WMB"
 msgstr "WMB"
@@ -1102,13 +1432,13 @@ msgstr "Gerar calendário"
 msgid "See your certificates"
 msgstr "Veja seus certificados"
 
-#: .\templates\navbar.html:64 .\templates\navbar.html:66
-#: .\users\templates\users\index.html:50 .\users\templates\users\index.html:52
+#: .\templates\navbar.html:71 .\templates\navbar.html:73
+#: .\users\templates\users\index.html:55 .\users\templates\users\index.html:57
 msgid "Login"
 msgstr "Entrar"
 
-#: .\templates\navbar.html:71 .\templates\navbar.html:73
-#: .\users\templates\users\index.html:44 .\users\templates\users\index.html:46
+#: .\templates\navbar.html:78 .\templates\navbar.html:80
+#: .\users\templates\users\index.html:49 .\users\templates\users\index.html:51
 msgid "Logout"
 msgstr "Sair"
 
@@ -1205,10 +1535,10 @@ msgstr ""
 "mais informações, por favor, leia nossa <a href=\"%(privacy_url)s\" "
 "title=\"Nossa Política de Privacidade\">Política de Privacidade</a>."
 
-#: .\wmb\settings.py:130
+#: .\wmb\settings.py:131
 msgid "English"
 msgstr "Inglês"
 
-#: .\wmb\settings.py:131
+#: .\wmb\settings.py:132
 msgid "Brazilian Portuguese"
 msgstr "Português brasileiro"
