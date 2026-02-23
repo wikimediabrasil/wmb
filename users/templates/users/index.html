@@ -29,7 +29,7 @@
             </a>
         {% endif %}
         {% if perms.credentials.add_credential %}
-            <a href="{% url 'credentials:credential_add' %}" aria-label="{% trans 'Generate credential' %}">
+            <a href="{% url 'credentials:credential_create' %}" aria-label="{% trans 'Generate credential' %}">
                 <button class="custom-button">
                     {% trans "Generate credential" %}
                 </button>
