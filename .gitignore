@@ -5,3 +5,4 @@ wmb/settings_local.py
 /static/images/valerio.png
 .*/__pycache__
 media/
+/.env

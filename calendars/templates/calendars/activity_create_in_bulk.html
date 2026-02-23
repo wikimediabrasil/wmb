@@ -8,9 +8,9 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}">{{ calendar }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}" aria-label="{% trans 'List of calendar' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}" aria-label="{% trans 'Details of specific calendar' %}">{{ calendar }}</a></li>
             <li class="breadcrumb-item active">{% trans "Create activities in bulk" %}</li>
         </ol>
         <h1>{% trans "Create a set of activities" %}</h1>
@@ -42,7 +42,7 @@
                 </div>
                 <input type="submit" class="button custom-button submit-button" value="{% trans 'Create all activities' %}">
             </form>
-            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
+            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}" aria-label="{% trans 'Details of specific calendar' %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
         </div>
     </main>
 {% endblock %}

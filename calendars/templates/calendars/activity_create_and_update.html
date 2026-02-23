@@ -8,9 +8,9 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}">{{ calendar }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}" aria-label="{% trans 'List of calendars issued' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.pk %}" aria-label="{% trans 'Details of specific calendar' %}">{{ calendar }}</a></li>
             {% if form.instance.pk %}
                 <li class="breadcrumb-item active">{{ form.instance }}</li>
                 <li class="breadcrumb-item active">{% trans "Edit" %}</li>
@@ -43,7 +43,7 @@
                     <input type="submit" class="button custom-button submit-button" value="{% trans 'Create activity' %}" form="activity">
                 {% endif %}
             </form>
-            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
+            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}" aria-label="{% trans 'Details of specific calendar' %}"><button class="button custom-grey-button bottom-container">{% trans "Cancel" %}</button></a>
         </div>
     </main>
 {% endblock %}

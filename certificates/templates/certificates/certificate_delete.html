@@ -8,7 +8,7 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
             <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
             <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
             <li class="breadcrumb-item active">{% trans "Delete certificate" %}</li>

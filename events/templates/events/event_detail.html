@@ -8,14 +8,14 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}" aria-label="{% trans 'List of events' %}">{% trans "Events" %}</a></li>
             <li class="breadcrumb-item active truncate">{{ event }}</li>
         </ol>
         <h1 class="w3-row"><span>{{ event }}</span></h1>
         <div class="flex-center button-container">
-            <a href="{% url 'events:event_update' event.id %}"><button class="custom-button">{% trans "Update event" %}</button></a>
-            <a href="{% url 'events:event_delete' event.id %}"><button class="custom-red-button">{% trans "Delete event" %}</button></a>
+            <a href="{% url 'events:event_update' event.id %}"><button class="custom-button" aria-label="{% trans 'Update event' %}">{% trans "Update event" %}</button></a>
+            <a href="{% url 'events:event_delete' event.id %}"><button class="custom-red-button" aria-label="{% trans 'Delete event' %}">{% trans "Delete event" %}</button></a>
         </div>
         <div class="w3-container flex-center">
             <p class="field_title">{% trans "Date of the start of the event" %}</p>

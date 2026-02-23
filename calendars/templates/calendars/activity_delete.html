@@ -8,9 +8,9 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}">{% trans "Calendars" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.id %}">{{ calendar }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_list' %}" aria-label="{% trans 'List of calendars' %}">{% trans "Calendars" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'calendars:calendar_detail' pk=calendar.id %}" aria-label="{% trans 'Details of specific calendar' %}">{{ calendar }}</a></li>
             <li class="breadcrumb-item active">{% trans "Delete activity" %}</li>
         </ol>
         <div class="w3-container flex-center">
@@ -19,7 +19,7 @@
         <form id="delete_activity_form" class="flex-center button-container" action="{% url 'calendars:activity_delete' calendar_id=calendar.id pk=activity.pk %}" method="post">{% csrf_token %}</form>
         <div class="flex-center button-container">
             <input type="submit" class="button custom-red-button" value="{% trans 'YES' %}" form="delete_activity_form">
-            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}"><button class="button custom-grey-button">{% trans "NO" %}</button></a>
+            <a href="{% url 'calendars:calendar_detail' pk=calendar.id %}" aria-label="{% trans 'Details of specific calendar' %}"><button class="button custom-grey-button">{% trans "NO" %}</button></a>
         </div>
     </main>
 {% endblock %}

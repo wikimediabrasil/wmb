@@ -38,10 +38,12 @@ class CertificateViewsTest(TestCase):
         self.participant_username = "Test Participant Username"
 
         content_type = ContentType.objects.get_for_model(Certificate)
+        event_content_type = ContentType.objects.get_for_model(Event)
 
         self.add_permission = Permission.objects.get(codename="add_certificate", name="Can add certificate", content_type=content_type)
         self.delete_permission = Permission.objects.get(codename="delete_certificate", name="Can delete certificate", content_type=content_type)
         self.change_permission = Permission.objects.get(codename="change_certificate", name="Can change certificate", content_type=content_type)
+        self.view_event_permission = Permission.objects.get(codename="view_event", content_type=event_content_type)
         self.user = User.objects.create_user(username=self.username, password=self.password)
         self.event = Event.objects.create(event_name="Test Event", date_start=date(2024,1,1))
         self.background = "Test Background.png"
@@ -53,6 +55,7 @@ class CertificateViewsTest(TestCase):
         self.user.user_permissions.add(self.add_permission)
         self.user.user_permissions.add(self.delete_permission)
         self.user.user_permissions.add(self.change_permission)
+        self.user.user_permissions.add(self.view_event_permission)
         self.client.login(username=self.username, password=self.password)
 
     def test_certificate_create_manually_without_existing_certificates_redirects_to_bulk_upload(self):
@@ -160,10 +163,10 @@ class CertificateViewsTest(TestCase):
         self.assertRedirects(response, reverse("events:event_detail", kwargs={"event_id": self.event.id}))
 
         self.certificate.refresh_from_db()
-        participant = Participant.objects.get(participant_username="newuser123")
+        participant = Participant.objects.get(participant_username="Test Participant Username (New)")
 
         self.assertEqual(self.certificate.username, participant)
-        self.assertEqual(participant.participant_full_name, "New Participant")
+        self.assertEqual(participant.participant_full_name, "Test Name")
         self.assertEqual(participant.created_by, self.user)
         self.assertEqual(participant.modified_by, self.user)
 
@@ -632,8 +635,8 @@ class CertificateUtilsTest(TestCase):
     def mock_structure(self, mock_image, certificate_name, expected_name):
         event = MagicMock()
         event.__str__.return_value = "Test Event"
-        event.date_start = datetime(2024, 1, 1)
-        event.date_end = datetime(2024, 12, 31)
+        event.date_start = date(2024, 1, 1)
+        event.date_end = date(2024, 12, 31)
 
         file_mock = MagicMock(spec=File, name='FileMock')
         file_mock.name = 'test1.jpg'
@@ -648,7 +651,7 @@ class CertificateUtilsTest(TestCase):
         pdf = make_pdf_of_certificate(certificate)
 
         mock_image.assert_any_call('/media/test1.jpg', x=0, y=0, w=297, h=210)
-        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', settings.SIGNATURE)
+        image_path = os.path.join(settings.BASE_DIR, 'static', 'images', settings.VALERIOS_SIGNATURE)
         mock_image.assert_any_call(image_path, x=131, y=95, w=35, h=16)
 
         pdf_output = pdf.output(dest='S').encode('latin-1')
@@ -662,12 +665,16 @@ class CertificateUtilsTest(TestCase):
         self.assertIn('Test Event', pdf_content)
         self.assertIn('05h00', pdf_content)
 
-    @patch.object(FPDF, 'image')
+    @patch('certificates.utils.settings.VALERIOS_SIGNATURE', 'fake_signature.png')
+    @patch('certificates.utils.settings.ERICAS_SIGNATURE', 'fake_signature2.png')
+    @patch('certificates.utils.FPDF.image')
     def test_make_pdf_of_certificate(self, mock_image):
         certificate_name = expected_name = "Mock Name"
         self.mock_structure(mock_image, certificate_name, expected_name)
 
-    @patch.object(FPDF, 'image')
+    @patch('certificates.utils.settings.VALERIOS_SIGNATURE', 'fake_signature.png')
+    @patch('certificates.utils.settings.ERICAS_SIGNATURE', 'fake_signature2.png')
+    @patch('certificates.utils.FPDF.image')
     def test_make_pdf_of_certificate_with_participant_with_long_name(self, mock_image):
         certificate_name = "Mock Name"*66
         expected_name = "Mock " + "N. "*65 + "Name"

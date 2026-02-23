@@ -40,6 +40,11 @@
                 {% trans "Validate certificate" %}
             </button>
         </a>
+        <a href="{% url 'credentials:credential_validate' %}" aria-label="{% trans 'Validate credential' %}">
+            <button class="custom-button">
+                {% trans "Validate credential" %}
+            </button>
+        </a>
         {% if user.is_authenticated %}
             <a href="{% url 'users:logout' %}" aria-label="{% trans 'Logout' %}">
                 <button class="custom-red-button">

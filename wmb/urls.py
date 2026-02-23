@@ -29,6 +29,7 @@ urlpatterns = [
     path('certificates/', include(('certificates.urls', 'certificates'), namespace='certificates')),
     path('events/', include(('events.urls', 'events'), namespace='events')),
     path('calendars/', include(('calendars.urls', 'calendars'), namespace='calendars')),
+    path('credentials/', include(('credentials.urls', 'credentials'), namespace='credentials')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

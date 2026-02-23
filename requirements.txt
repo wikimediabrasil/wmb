@@ -5,3 +5,5 @@ Pillow
 social-auth-app-django
 sorl-thumbnail
 mysqlclient
+cryptography
+django-localflavor

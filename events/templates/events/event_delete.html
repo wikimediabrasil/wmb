@@ -8,9 +8,9 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
-            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}" aria-label="{% trans 'List of events' %}">{% trans "Events" %}</a></li>
+            <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}" aria-label="{% trans 'Details of specific event' %}">{{ event }}</a></li>
             <li class="breadcrumb-item active">{% trans "Delete" %}</li>
         </ol>
         <div class="w3-container flex-center">
@@ -20,7 +20,7 @@
         <form action="{% url 'events:event_delete' event.id %}" method="post" id="event_delete_form">{% csrf_token %}</form>
         <div class="flex-center button-container">
             <input type="submit" class="button custom-red-button" value="{% trans 'YES' %}" form="event_delete_form">
-            <a href="{% url 'events:event_detail' event.id %}"><button class="custom-grey-button">{% trans "NO" %}</button></a>
+            <a href="{% url 'events:event_detail' event.id %}" aria-label="{% trans 'Details of specific event' %}"><button class="custom-grey-button">{% trans "NO" %}</button></a>
         </div>
     </main>
 {% endblock %}

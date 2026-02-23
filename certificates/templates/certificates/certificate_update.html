@@ -8,7 +8,7 @@
 {% block main_content %}
     <main class="table-container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{% url 'users:index' %}">{% trans "Home" %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'users:index' %}" aria-label="{% trans 'Homepage' %}">{% trans "Home" %}</a></li>
             <li class="breadcrumb-item"><a href="{% url 'events:event_list' %}">{% trans "Events" %}</a></li>
             <li class="breadcrumb-item truncate"><a href="{% url 'events:event_detail' event.id %}">{{ event }}</a></li>
             <li class="breadcrumb-item active">{% trans "Update certificate" %}</li>
@@ -17,18 +17,18 @@
         <div class="w3-container flex-center">
             <form action="{% url 'events:certificate_update' event_id=event.id certificate_id=certificate.id %}" method="post" id="certificate_update_form">
                 {% csrf_token %}
-                <label for="name">{% trans "Real name of the individual" %}</label>
+                <label class="field_title" for="name">{% trans "Real name of the individual" %}</label>
                 {{ form.name }}
-                <label for="username_string">{% trans "Wikimedia username of the individual" %}</label>
+                <label class="field_title" for="username_string">{% trans "Wikimedia username of the individual" %}</label>
                 <input type="text" name="username_string" class="form-control form_value" placeholder="Enter the Wikimedia username of the individual" maxlength="150" id="username_string" value="{% if form.instance.username %}{{ form.instance.username }}{% endif %}">
-                <label for="pronoun">{% trans "Pronouns for individual" %}</label>
+                <label class="field_title" for="pronoun">{% trans "Pronouns for individual" %}</label>
                 {{ form.pronoun }}
-                <label for="hours">{% trans "Hours worked at the event by the individual" %}</label>
+                <label class="field_title" for="hours">{% trans "Hours worked at the event by the individual" %}</label>
                 {{ form.hours }}
                 <label class="field_title" for="with_hours">
                     {{ form.with_hours }} {% trans "Does this certificate need to declare hours?" %}
                 </label>
-                <label for="role">{% trans "Role of the individual on the event" %}</label>
+                <label class="field_title" for="role">{% trans "Role of the individual on the event" %}</label>
                 {{ form.role }}
             </form>
         </div>
