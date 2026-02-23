@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'calendars.apps.CalendarsConfig',
     'sorl.thumbnail',
     'credentials.apps.CredentialsConfig',
-    'encrypted_model_fields'
 ]
 
 USE_L10N = True
