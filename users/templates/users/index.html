@@ -28,6 +28,18 @@
                 </button>
             </a>
         {% endif %}
+        {% if perms.credentials.add_credential %}
+            <a href="{% url 'credentials:credential_add' %}" aria-label="{% trans 'Generate credential' %}">
+                <button class="custom-button">
+                    {% trans "Generate credential" %}
+                </button>
+            </a>
+            <a href="{% url 'credentials:credential_list' %}" aria-label="{% trans 'List credentials' %}">
+                <button class="custom-button">
+                    {% trans "List credentials" %}
+                </button>
+            </a>
+        {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'certificates:certificate_list' %}" aria-label="{% trans 'See your certificates' %}">
                 <button class="custom-button">
