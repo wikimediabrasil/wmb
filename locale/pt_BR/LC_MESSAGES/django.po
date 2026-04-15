@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 05:10-0300\n"
+"POT-Creation-Date: 2026-04-15 20:51-0300\n"
 "PO-Revision-Date: 2025-01-31 20:53-0300\n"
 "Last-Translator: Éder Porto <eder.porto@wmnobrasil.org>\n"
 "Language-Team: Éder Porto <eder.porto@wmnobrasil.org>\n"
@@ -698,7 +698,7 @@ msgstr "Atribuição"
 #: .\certificates\templates\certificates\certificate_validate.html:14
 #: .\credentials\templates\credentials\credential_validate.html:17
 #: .\templates\navbar.html:54 .\templates\navbar.html:56
-#: .\users\templates\users\index.html:38 .\users\templates\users\index.html:40
+#: .\users\templates\users\index.html:50 .\users\templates\users\index.html:52
 msgid "Validate certificate"
 msgstr "Validar certificado"
 
@@ -1018,7 +1018,9 @@ msgstr "Emitir uma nova credencial"
 
 #: .\credentials\templates\credentials\credential_create.html:16
 msgid "To issue a credential for a wikimedian to an event, fill out the form:"
-msgstr "Para emitir credenciais para wikimedistas em um evento, preencha o formulário:"
+msgstr ""
+"Para emitir credenciais para wikimedistas em um evento, preencha o "
+"formulário:"
 
 #: .\credentials\templates\credentials\credential_create.html:24
 #: .\credentials\templates\credentials\credential_update.html:25
@@ -1096,7 +1098,7 @@ msgstr "Salvar"
 
 #: .\credentials\templates\credentials\credential_validate.html:13
 #: .\templates\navbar.html:61 .\templates\navbar.html:63
-#: .\users\templates\users\index.html:43 .\users\templates\users\index.html:45
+#: .\users\templates\users\index.html:55 .\users\templates\users\index.html:57
 msgid "Validate credential"
 msgstr "Validar credencial"
 
@@ -1428,17 +1430,17 @@ msgid "Generate calendar"
 msgstr "Gerar calendário"
 
 #: .\templates\navbar.html:46 .\templates\navbar.html:48
-#: .\users\templates\users\index.html:32 .\users\templates\users\index.html:34
+#: .\users\templates\users\index.html:44 .\users\templates\users\index.html:46
 msgid "See your certificates"
 msgstr "Veja seus certificados"
 
 #: .\templates\navbar.html:71 .\templates\navbar.html:73
-#: .\users\templates\users\index.html:55 .\users\templates\users\index.html:57
+#: .\users\templates\users\index.html:67 .\users\templates\users\index.html:69
 msgid "Login"
 msgstr "Entrar"
 
 #: .\templates\navbar.html:78 .\templates\navbar.html:80
-#: .\users\templates\users\index.html:49 .\users\templates\users\index.html:51
+#: .\users\templates\users\index.html:61 .\users\templates\users\index.html:63
 msgid "Logout"
 msgstr "Sair"
 
@@ -1483,6 +1485,14 @@ msgstr "Aqui está o que você pode fazer neste espaço:"
 #: .\users\templates\users\index.html:13
 msgid "Hello!"
 msgstr "Olá!"
+
+#: .\users\templates\users\index.html:32 .\users\templates\users\index.html:34
+msgid "Generate credential"
+msgstr "Gerar credencial"
+
+#: .\users\templates\users\index.html:37 .\users\templates\users\index.html:39
+msgid "List credentials"
+msgstr "Listar credenciais"
 
 #: .\users\templates\users\update_profile.html:5
 msgid "Update profile"
