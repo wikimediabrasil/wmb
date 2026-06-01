@@ -8,6 +8,8 @@ import hashlib
 import pandas as pd
 import datetime
 import zipfile
+from dataclasses import dataclass
+from typing import Optional
 from fpdf import FPDF
 
 from django.http import HttpResponse
@@ -90,11 +92,81 @@ def format_certificate_date(date_start, date_end):
     return date_formatted
 
 
-def make_pdf_of_certificate(certificate):
-    # Create page
+########################################################################################################################
+# BATCH RENDERING CONTEXT
+########################################################################################################################
+
+@dataclass
+class CertificateRenderContext:
+    """
+    Pre-computed per-event constants.
+    Build once with build_render_context(event) before the certificate loop,
+    then pass into every make_pdf_of_certificate() call.
+    """
+    event_name: str
+    event_name_clean: str
+    phrase_date: str
+    president: str
+    president_role: str
+    signature_path: str
+    font_regular: str
+    font_bold: str
+
+
+_TARGET_DATE = datetime.date(2025, 11, 8)
+
+
+def build_render_context(event) -> CertificateRenderContext:
+    """
+    Call once per batch (before the certificate loop).
+    Sets the locale, resolves the president/signature, formats the date,
+    and resolves font paths — so none of this happens per certificate.
+    """
+    locale.setlocale(locale.LC_TIME, "pt_BR")
+
+    if event.date_end < _TARGET_DATE:
+        president = str(_("VALÉRIO ANDRADE MELO"))
+        signature = settings.VALERIOS_SIGNATURE
+    else:
+        president = str(_("ÉRICA CAMILLO AZZELLINI"))
+        signature = settings.ERICAS_SIGNATURE
+
+    event_name = str(event)
+
+    return CertificateRenderContext(
+        event_name=event_name,
+        event_name_clean=clean_string(event_name),
+        phrase_date=format_certificate_date(event.date_start, event.date_end),
+        president=president,
+        president_role=str(_("President of Wikimedia Brasil")),
+        signature_path=str(os.path.join(settings.BASE_DIR, 'static', 'images', signature)),
+        font_regular=os.path.join(settings.BASE_DIR, 'static/fonts/Merriweather-Regular.ttf'),
+        font_bold=os.path.join(settings.BASE_DIR, 'static/fonts/Merriweather-Bold.ttf'),
+    )
+
+
+########################################################################################################################
+# PDF GENERATION
+########################################################################################################################
+
+def make_pdf_of_certificate(certificate, ctx: Optional[CertificateRenderContext] = None):
+    """
+    Renders a single certificate PDF.
+
+    Pass a CertificateRenderContext built with build_render_context(event) when
+    generating a batch — it avoids redundant locale, font, date, and
+    president/signature work on every call.
+
+    For single-certificate use (e.g. download_certificate), ctx can be omitted
+    and a throwaway context will be built automatically.
+    """
+    if ctx is None:
+        ctx = build_render_context(certificate.event)
+
     pdf = CertificationPDF(orientation='L', unit='mm', format='A4')
     pdf.add_page()
     pdf.set_text_color(0, 0, 0)
+
     if certificate.background:
         pdf.image(certificate.background.path, x=0, y=0, w=297, h=210)
 
@@ -107,20 +179,16 @@ def make_pdf_of_certificate(certificate):
     pdf.add_font('Merriweather-Bold', '', os.path.join(settings.BASE_DIR, 'static/fonts/Merriweather-Bold.ttf'), uni=True)
     pdf.set_font('Merriweather', '', 35)  # Text of the body in Times New Roman, regular, 13 pt
 
-    title_phrase = _('CERTIFICATE')
-    locale.setlocale(locale.LC_TIME, "pt_BR")  # Setting the language to portuguese for the date
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(title_phrase))
-
-    identification_phrase = _('The Wikimedia Brasil chapter (CNPJ 29.801.908/0001-86) certifies that')
     pdf.set_font('Merriweather', '', 13)
-    pdf.cell(w=0, h=5, ln=1)  # New line
-    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(identification_phrase))
-    pdf.cell(w=0, h=5, ln=1)  # New line
+    pdf.cell(w=0, h=5, ln=1)
+    pdf.cell(w=0, h=5, border=0, ln=1, align='C',
+             txt=str(_('The Wikimedia Brasil chapter (CNPJ 29.801.908/0001-86) certifies that')))
+    pdf.cell(w=0, h=5, ln=1)
 
-    #######################################################################################################
-    # User name
-    #######################################################################################################
-    name = certificate.name  # User full name
+    # ------------------------------------------------------------------
+    # Participant name — shrink to fit page width if necessary
+    # ------------------------------------------------------------------
+    name = certificate.name
     pdf.set_font('Merriweather', '', 30)
     name_size = pdf.get_string_width(name)
 
@@ -129,19 +197,13 @@ def make_pdf_of_certificate(certificate):
         name_split = [name_part for name_part in name.split(' ') if not name_part.islower()]
         # There's a first and last names and at least one middle name
         if len(name_split) > 2:
-            first_name = name_split[0]
-            last_name = name_split[-1]
-            middle_names = [md_name[0] + '.' for md_name in name_split[1:-1]]
-            name = first_name + ' ' + ' '.join(middle_names) + ' ' + last_name
+            name = name_split[0] + ' ' + ' '.join(p[0] + '.' for p in name_split[1:-1]) + ' ' + name_split[-1]
             name_size = pdf.get_string_width(name)
-
-        # Even abbreviating, there is still the possibility that the name is too big, so
-        # we need to adjust it to the proper size
         if name_size > 287:
             pdf.set_font('Merriweather', '', math.floor(287 * 35 / name_size))
 
     pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(name))
-    pdf.cell(w=0, h=5, ln=1)  # New line
+    pdf.cell(w=0, h=5, ln=1)
 
     #######################################################################################################
     # participated in the event
@@ -149,7 +211,7 @@ def make_pdf_of_certificate(certificate):
     pdf.set_font('Merriweather', '', 13)
     phrase_participation = _("participated %(role)s in the event") % {"role": build_role(certificate.role)}
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(phrase_participation))
-    pdf.cell(w=0, h=5, ln=1)  # New line
+    pdf.cell(w=0, h=5, ln=1)
 
     #######################################################################################################
     # Name of the event
@@ -163,37 +225,38 @@ def make_pdf_of_certificate(certificate):
     # Dates and hours
     #######################################################################################################
     pdf.set_font('Merriweather', '', 13)
-
-    phrase_date = format_certificate_date(certificate.event.date_start, certificate.event.date_end)
     if certificate.with_hours:
-        phrase_time = _("%(date)s (Credit hours: %(hours)s).") % {"date": phrase_date, "hours": certificate.hours}
+        phrase_time = str(_("%(date)s (Credit hours: %(hours)s).") % {
+            "date": ctx.phrase_date, "hours": certificate.hours
+        })
     else:
-        phrase_time = _("%(date)s.") % {"date": phrase_date}
+        phrase_time = str(_("%(date)s.") % {"date": ctx.phrase_date})
 
-    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(phrase_time))
-    pdf.cell(w=0, h=15, ln=1)  # New line
+    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=phrase_time)
+    pdf.cell(w=0, h=15, ln=1)
 
+    # ------------------------------------------------------------------
+    # Signature block — all from context
+    # ------------------------------------------------------------------
     y = pdf.get_y()
-    target_date = datetime.date(2025, 11, 8)
-    if certificate.event.date_end < target_date:
-        president = _("VALÉRIO ANDRADE MELO")
-        signature = settings.VALERIOS_SIGNATURE
-    else:
-        president = _("ÉRICA CAMILLO AZZELLINI")
-        signature = settings.ERICAS_SIGNATURE
-    president_role = _("President of Wikimedia Brasil")
-    pdf.image(str(os.path.join(settings.BASE_DIR, 'static', 'images', signature)), x=131, y=y-5, w=35, h=16)
+    pdf.image(ctx.signature_path, x=131, y=y - 5, w=35, h=16)
     pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt="______________________")
-    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=str(president))
+    pdf.cell(w=0, h=10, border=0, ln=1, align='C', txt=ctx.president)
     pdf.set_font('Merriweather', '', 11)
-    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(president_role))
+    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=ctx.president_role)
 
-    user_hash = certificate.certificate_hash
-    validation_phrase =_('The validity of this document can be checked at https://wmb.toolforge.org/. The hash code for validation is: %(certificate_hash)s') % {"certificate_hash": user_hash}
+    # ------------------------------------------------------------------
+    # Footer — hash is per certificate
+    # ------------------------------------------------------------------
+    validation_phrase = str(
+        _('The validity of this document can be checked at https://wmb.toolforge.org/. '
+          'The hash code for validation is: %(certificate_hash)s')
+        % {"certificate_hash": certificate.certificate_hash}
+    )
     pdf.in_footer = 1
     pdf.set_y(-16.5)
     pdf.set_font('Merriweather', '', 8.8)
-    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=str(validation_phrase))
+    pdf.cell(w=0, h=5, border=0, ln=1, align='C', txt=validation_phrase)
     pdf.in_footer = 0
 
     return pdf
@@ -273,14 +336,19 @@ def certificate_create(data, event, background, emitted_by, with_hours=True):
     return certificate
 
 
-# ======================================================================================================================
+########################################################################################################################
 # CERTIFICATES DOWNLOAD
-# ======================================================================================================================
+########################################################################################################################
+
 def make_one_certificate_pdf(certificate):
+    # build_render_context called implicitly inside make_pdf_of_certificate
+    # when no ctx is passed — fine for single-certificate use.
     pdf = make_pdf_of_certificate(certificate)
     file = pdf.output(dest='S').encode('latin-1')
     response = HttpResponse(file, content_type='application/pdf')
-    content_disposition = 'attachment; filename="{} - {}.pdf"'.format(_("Certificate"), clean_string(certificate.name))
+    content_disposition = 'attachment; filename="{} - {}.pdf"'.format(
+        _("Certificate"), clean_string(certificate.name)
+    )
     response['Content-Disposition'] = content_disposition
     return response
 
@@ -295,24 +363,31 @@ def download_certificate(event, certificate_id, user):
 
 
 def download_certificates(event, user):
-    if user.has_perm('certificates.download_all'):
-        certificates = Certificate.objects.filter(event=event)
-        s = io.BytesIO()
-        zf = zipfile.ZipFile(s, "w")
-        zipfilenames = []
-
-        for certificate in certificates:
-            zipfilenames.append(clean_string(str(certificate.event)))
-            pdf = make_pdf_of_certificate(certificate)
-
-            file = pdf.output(dest='S').encode('latin-1')
-            zf.writestr("{}/{} {}.pdf".format(clean_string(str(certificate.event)), _("Certificate"), clean_string(certificate.name)), file)
-
-        zf.close()
-        response = HttpResponse(s.getvalue())
-        content_disposition = 'attachment; filename="{} - {}.zip"'.format(_("Certificates"), '; '.join(list(set(zipfilenames))))
-        response['Content-Disposition'] = content_disposition
-        response['Content-Type'] = 'application/zip'
-        return response
-    else:
+    if not user.has_perm('certificates.download_all'):
         return redirect(reverse("events:event_detail", kwargs={"event_id": event.id}))
+
+    certificates = Certificate.objects.filter(event=event).select_related('event')
+
+    # Build the context once — locale, date, president, fonts resolved here,
+    # not inside the loop.
+    ctx = build_render_context(event)
+
+    s = io.BytesIO()
+    zf = zipfile.ZipFile(s, "w", compression=zipfile.ZIP_DEFLATED)
+
+    for certificate in certificates:
+        pdf = make_pdf_of_certificate(certificate, ctx)
+        file = pdf.output(dest='S').encode('latin-1')
+        zf.writestr(
+            "{}/{} {}.pdf".format(ctx.event_name_clean, _("Certificate"), clean_string(certificate.name)),
+            file
+        )
+
+    zf.close()
+
+    response = HttpResponse(s.getvalue())
+    response['Content-Disposition'] = 'attachment; filename="{} - {}.zip"'.format(
+        _("Certificates"), ctx.event_name_clean
+    )
+    response['Content-Type'] = 'application/zip'
+    return response
