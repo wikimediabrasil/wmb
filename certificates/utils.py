@@ -378,16 +378,11 @@ def download_certificates(event, user):
     for certificate in certificates:
         pdf = make_pdf_of_certificate(certificate, ctx)
         file = pdf.output(dest='S').encode('latin-1')
-        zf.writestr(
-            "{}/{} {}.pdf".format(ctx.event_name_clean, _("Certificate"), clean_string(certificate.name)),
-            file
-        )
+        zf.writestr("{}/{}/{} {}.pdf".format(ctx.event_name_clean, clean_string(certificate.role), _("Certificate"), clean_string(certificate.name)),file)
 
     zf.close()
 
     response = HttpResponse(s.getvalue())
-    response['Content-Disposition'] = 'attachment; filename="{} - {}.zip"'.format(
-        _("Certificates"), ctx.event_name_clean
-    )
+    response['Content-Disposition'] = 'attachment; filename="{} - {}.zip"'.format(_("Certificates"), ctx.event_name_clean)
     response['Content-Type'] = 'application/zip'
     return response
